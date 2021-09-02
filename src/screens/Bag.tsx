@@ -32,7 +32,7 @@ export default function Bag() {
         }}>
         <AureLogo />
       </View>
-      <View>
+      <View style={{alignItems: 'center'}}>
         <Text
           style={{
             fontFamily: 'Poppins-Medium',
@@ -46,4 +46,3 @@ export default function Bag() {
     </SafeAreaView>
   );
 }
-

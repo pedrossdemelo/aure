@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import {StatusBar} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {changeBarColors} from 'react-native-immersive-bars';
@@ -16,9 +17,12 @@ import {enableScreens} from 'react-native-screens';
 const Stack = createStackNavigator();
 
 export default function App() {
+  enableScreens(true);
   changeBarColors(false, 'transparent', 'transparent');
   SystemNavigationBar.setNavigationBarContrastEnforced(false);
-  enableScreens(true);
+  StatusBar.setBackgroundColor('#F8F1EA', false);
+  StatusBar.setTranslucent(false);
+  StatusBar.setBarStyle('dark-content');
   return (
     <SafeAreaProvider>
       <NavigationContainer>

@@ -32,7 +32,7 @@ export default function Favorites() {
         }}>
         <AureLogo />
       </View>
-      <View>
+      <View style={{alignItems: 'center'}}>
         <Text
           style={{
             fontFamily: 'Poppins-Medium',
