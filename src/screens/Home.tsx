@@ -78,6 +78,7 @@ const UserHeader = () => {
         alignItems: 'center',
         paddingHorizontal: 24,
         width: '100%',
+        marginBottom: 8,
       }}>
       <UserGreetings />
       <UserProfilePic />
@@ -94,16 +95,105 @@ const Discover = () => {
           fontSize: 19.2,
           color: primaryGradient[800],
           lineHeight: 19.2 * 1.5,
-          flex: 1,
           marginBottom: 4,
-          marginHorizontal: 8,
+          marginHorizontal: 16,
         }}>
         Conheça
       </Text>
     );
   };
-  return <View style={{}} />;
+
+  const DiscoverCards = () => {
+    return (
+      <View style={{flex: 1, flexDirection: 'row', aspectRatio: 4.16 / 1.6}}>
+        <View
+          style={{
+            backgroundColor: primaryGradient[200],
+            flex: 1,
+            marginHorizontal: 8,
+            borderRadius: 8,
+            elevation: 2,
+            shadowColor: '#D68F61',
+            alignItems: 'flex-end',
+            flexDirection: 'row-reverse',
+          }}>
+          <Text
+            style={{
+              fontFamily: 'Poppins-Medium',
+              fontSize: 19.2,
+              color: primaryGradient[800],
+              lineHeight: 19.2 * 1.5,
+              marginHorizontal: 8,
+              textAlign: 'right',
+            }}
+            numberOfLines={1}>
+            Alianças
+          </Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: primaryGradient[200],
+            flex: 1,
+            marginHorizontal: 8,
+            borderRadius: 8,
+            elevation: 2,
+            shadowColor: '#D68F61',
+            alignItems: 'flex-end',
+            flexDirection: 'row-reverse',
+          }}>
+          <Text
+            style={{
+              fontFamily: 'Poppins-Medium',
+              fontSize: 19.2,
+              color: primaryGradient[800],
+              lineHeight: 19.2 * 1.5,
+              marginHorizontal: 8,
+              textAlign: 'right',
+            }}
+            numberOfLines={1}>
+            Homem
+          </Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: primaryGradient[200],
+            flex: 1,
+            marginHorizontal: 8,
+            borderRadius: 8,
+            elevation: 2,
+            shadowColor: '#D68F61',
+            alignItems: 'flex-end',
+            flexDirection: 'row-reverse',
+          }}>
+          <Text
+            style={{
+              fontFamily: 'Poppins-Medium',
+              fontSize: 19.2,
+              color: primaryGradient[800],
+              lineHeight: 19.2 * 1.5,
+              marginHorizontal: 8,
+              textAlign: 'right',
+            }}
+            numberOfLines={1}>
+            Mulher
+          </Text>
+        </View>
+      </View>
+    );
+  };
+
+  return (
+    <View
+      style={{
+        marginHorizontal: 8,
+        marginBottom: 16,
+      }}>
+      <DiscoverHeader />
+      <DiscoverCards />
+    </View>
+  );
 };
+
 const FeaturedCollections = () => {
   const FeaturedCollectionsHeader = () => {
     return (
@@ -128,7 +218,7 @@ const FeaturedCollections = () => {
         style={{
           flex: 1,
           aspectRatio: 4 / 3,
-          backgroundColor: 'white',
+          backgroundColor: primaryGradient[200],
           borderRadius: 8,
           elevation: 2,
           shadowColor: '#D68F61',
@@ -230,14 +320,152 @@ const FeaturedCollections = () => {
       style={{
         flexDirection: 'column',
         flex: 1,
-        marginTop: 16,
         marginHorizontal: 16,
-        marginBottom: 8,
+        marginBottom: 16,
       }}>
       <FeaturedCollectionsHeader />
       <FeaturedCollectionsImage />
       <FeaturedCollectionsSelectionDots />
       <CollectionText />
+    </View>
+  );
+};
+
+const OccasionSection = () => {
+  const OccasionHeader = () => {
+    return (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Medium',
+          fontSize: 19.2,
+          color: primaryGradient[800],
+          lineHeight: 19.2 * 1.5,
+          flex: 1,
+          marginBottom: 4,
+          marginHorizontal: 24,
+        }}>
+        Joias para toda ocasião
+      </Text>
+    );
+  };
+  const OccasionCards = () => {
+    return (
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flex: 1, flexDirection: 'column', marginLeft: 8}}>
+          <View
+            style={{
+              backgroundColor: primaryGradient[200],
+              flex: 1,
+              height: 80,
+              marginHorizontal: 8,
+              borderRadius: 8,
+              elevation: 2,
+              shadowColor: '#D68F61',
+              alignItems: 'flex-end',
+              flexDirection: 'row-reverse',
+              marginBottom: 8,
+            }}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Medium',
+                fontSize: 19.2,
+                color: primaryGradient[800],
+                lineHeight: 19.2 * 1.5,
+                marginHorizontal: 8,
+                textAlign: 'right',
+              }}
+              numberOfLines={1}>
+              Formatura
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: primaryGradient[200],
+              flex: 1,
+              height: 80,
+              marginHorizontal: 8,
+              borderRadius: 8,
+              elevation: 2,
+              shadowColor: '#D68F61',
+              alignItems: 'flex-end',
+              flexDirection: 'row-reverse',
+              marginTop: 8,
+            }}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Medium',
+                fontSize: 19.2,
+                color: primaryGradient[800],
+                lineHeight: 19.2 * 1.5,
+                marginHorizontal: 8,
+                textAlign: 'right',
+              }}
+              numberOfLines={1}>
+              Nascimento
+            </Text>
+          </View>
+        </View>
+        <View style={{flex: 1, flexDirection: 'column', marginRight: 8}}>
+          <View
+            style={{
+              backgroundColor: primaryGradient[200],
+              flex: 1,
+              height: 80,
+              marginHorizontal: 8,
+              borderRadius: 8,
+              elevation: 2,
+              shadowColor: '#D68F61',
+              alignItems: 'flex-end',
+              flexDirection: 'row-reverse',
+              marginBottom: 8,
+            }}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Medium',
+                fontSize: 19.2,
+                color: primaryGradient[800],
+                lineHeight: 19.2 * 1.5,
+                marginHorizontal: 8,
+                textAlign: 'right',
+              }}
+              numberOfLines={1}>
+              Presentes
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: primaryGradient[200],
+              flex: 1,
+              height: 80,
+              marginHorizontal: 8,
+              borderRadius: 8,
+              elevation: 2,
+              shadowColor: '#D68F61',
+              alignItems: 'flex-end',
+              flexDirection: 'row-reverse',
+              marginTop: 8,
+            }}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Medium',
+                fontSize: 19.2,
+                color: primaryGradient[800],
+                lineHeight: 19.2 * 1.5,
+                marginHorizontal: 8,
+                textAlign: 'right',
+              }}
+              numberOfLines={1}>
+              Bodas
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
+  return (
+    <View style={{marginBottom: 16}}>
+      <OccasionHeader />
+      <OccasionCards />
     </View>
   );
 };
@@ -253,10 +481,14 @@ export default function Home() {
         backgroundColor: primaryGradient[100],
         marginTop: insets.top,
         marginBottom: insets.bottom + 52 - 16,
-      }}>
+      }}
+      showsVerticalScrollIndicator={false}
+      overScrollMode={'never'}>
       <AureHeader />
       <UserHeader />
+      <Discover />
       <FeaturedCollections />
+      <OccasionSection />
     </ScrollView>
   );
 }
