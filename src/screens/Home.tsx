@@ -1,12 +1,14 @@
-import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  useWindowDimensions,
+} from 'react-native';
 import {useSafeAreaInsets, SafeAreaView} from 'react-native-safe-area-context';
-
 import AureLogo from '../assets/icons/AureLogo';
-// import BAP_Home from './src/assets/icons/BAP_Home';
-// import BAP_Catalog from './src/assets/icons/BAP_Catalog';
-// import BAP_Favorites from './src/assets/icons/BAP_Favorites';
-// import BAP_Bag from './src/assets/icons/BAP_Bag';
 
 const primaryGradient = {
   100: '#F8F1EA',
@@ -37,18 +39,18 @@ const UserHeader = () => {
       <Text
         style={{
           fontFamily: 'Poppins-Medium',
-          fontSize: 19.2,
+          fontSize: 19,
           color: primaryGradient[800],
-          lineHeight: 19.2 * 1.5,
+          lineHeight: 19 * 1.5,
           flex: 1,
         }}>
         Bom dia,{'\n'}
         <Text
           style={{
             fontFamily: 'Poppins-Medium',
-            fontSize: 25.6,
+            fontSize: 25,
             color: primaryGradient[800],
-            lineHeight: 25.6 * 1.25,
+            lineHeight: 25 * 1.25,
           }}>
           Aurelia Stevens
         </Text>
@@ -92,9 +94,9 @@ const Discover = () => {
       <Text
         style={{
           fontFamily: 'Poppins-Medium',
-          fontSize: 19.2,
+          fontSize: 19,
           color: primaryGradient[800],
-          lineHeight: 19.2 * 1.5,
+          lineHeight: 19 * 1.5,
           marginBottom: 4,
           marginHorizontal: 16,
         }}>
@@ -120,9 +122,9 @@ const Discover = () => {
           <Text
             style={{
               fontFamily: 'Poppins-Medium',
-              fontSize: 19.2,
+              fontSize: 19,
               color: primaryGradient[800],
-              lineHeight: 19.2 * 1.5,
+              lineHeight: 19 * 1.5,
               marginHorizontal: 8,
               textAlign: 'right',
             }}
@@ -144,9 +146,9 @@ const Discover = () => {
           <Text
             style={{
               fontFamily: 'Poppins-Medium',
-              fontSize: 19.2,
+              fontSize: 19,
               color: primaryGradient[800],
-              lineHeight: 19.2 * 1.5,
+              lineHeight: 19 * 1.5,
               marginHorizontal: 8,
               textAlign: 'right',
             }}
@@ -168,9 +170,9 @@ const Discover = () => {
           <Text
             style={{
               fontFamily: 'Poppins-Medium',
-              fontSize: 19.2,
+              fontSize: 19,
               color: primaryGradient[800],
-              lineHeight: 19.2 * 1.5,
+              lineHeight: 19 * 1.5,
               marginHorizontal: 8,
               textAlign: 'right',
             }}
@@ -200,9 +202,9 @@ const FeaturedCollections = () => {
       <Text
         style={{
           fontFamily: 'Poppins-Medium',
-          fontSize: 19.2,
+          fontSize: 19,
           color: primaryGradient[800],
-          lineHeight: 19.2 * 1.5,
+          lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
           marginHorizontal: 8,
@@ -212,7 +214,7 @@ const FeaturedCollections = () => {
     );
   };
 
-  const FeaturedCollectionsImage = () => {
+  const FeaturedCollectionImage = () => {
     return (
       <View
         style={{
@@ -231,8 +233,8 @@ const FeaturedCollections = () => {
     return (
       <View
         style={{
-          marginTop: 10.4,
-          marginBottom: 5.2,
+          marginTop: 11.4,
+          marginBottom: 8.075,
           flexDirection: 'row',
           alignItems: 'center',
           flex: 1,
@@ -287,7 +289,7 @@ const FeaturedCollections = () => {
     );
   };
 
-  const CollectionText = () => {
+  const CollectionDescription = () => {
     return (
       <View style={{flex: 1, alignItems: 'center'}}>
         <Text
@@ -295,7 +297,7 @@ const FeaturedCollections = () => {
             fontFamily: 'Poppins-Medium',
             fontSize: 15,
             color: primaryGradient[800],
-            lineHeight: 16 * 1.5,
+            lineHeight: 15 * 1.25,
             flex: 1,
             textAlign: 'center',
           }}>
@@ -303,9 +305,9 @@ const FeaturedCollections = () => {
           <Text
             style={{
               fontFamily: 'Lato-Regular',
-              fontSize: 14,
+              fontSize: 13,
               color: primaryGradient[700],
-              lineHeight: 14 * 1.25,
+              lineHeight: 13 * 1.15,
               flex: 1,
             }}>
             Coleção Vivara
@@ -324,9 +326,9 @@ const FeaturedCollections = () => {
         marginBottom: 16,
       }}>
       <FeaturedCollectionsHeader />
-      <FeaturedCollectionsImage />
+      <FeaturedCollectionImage />
       <FeaturedCollectionsSelectionDots />
-      <CollectionText />
+      <CollectionDescription />
     </View>
   );
 };
@@ -337,9 +339,9 @@ const OccasionSection = () => {
       <Text
         style={{
           fontFamily: 'Poppins-Medium',
-          fontSize: 19.2,
+          fontSize: 19,
           color: primaryGradient[800],
-          lineHeight: 19.2 * 1.5,
+          lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
           marginHorizontal: 24,
@@ -368,9 +370,9 @@ const OccasionSection = () => {
             <Text
               style={{
                 fontFamily: 'Poppins-Medium',
-                fontSize: 19.2,
+                fontSize: 19,
                 color: primaryGradient[800],
-                lineHeight: 19.2 * 1.5,
+                lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
               }}
@@ -394,9 +396,9 @@ const OccasionSection = () => {
             <Text
               style={{
                 fontFamily: 'Poppins-Medium',
-                fontSize: 19.2,
+                fontSize: 19,
                 color: primaryGradient[800],
-                lineHeight: 19.2 * 1.5,
+                lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
               }}
@@ -422,9 +424,9 @@ const OccasionSection = () => {
             <Text
               style={{
                 fontFamily: 'Poppins-Medium',
-                fontSize: 19.2,
+                fontSize: 19,
                 color: primaryGradient[800],
-                lineHeight: 19.2 * 1.5,
+                lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
               }}
@@ -448,9 +450,9 @@ const OccasionSection = () => {
             <Text
               style={{
                 fontFamily: 'Poppins-Medium',
-                fontSize: 19.2,
+                fontSize: 19,
                 color: primaryGradient[800],
-                lineHeight: 19.2 * 1.5,
+                lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
               }}
@@ -466,6 +468,379 @@ const OccasionSection = () => {
     <View style={{marginBottom: 16}}>
       <OccasionHeader />
       <OccasionCards />
+    </View>
+  );
+};
+
+const FeaturedBrands = () => {
+  const FeaturedBrandsHeader = () => {
+    return (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Medium',
+          fontSize: 19,
+          color: primaryGradient[800],
+          lineHeight: 19 * 1.5,
+          flex: 1,
+          marginBottom: 4,
+          marginHorizontal: 8,
+        }}>
+        Marcas que inspiram
+      </Text>
+    );
+  };
+
+  const FeaturedBrandImage = () => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          aspectRatio: 4 / 3,
+          backgroundColor: primaryGradient[200],
+          borderRadius: 8,
+          elevation: 2,
+          shadowColor: '#D68F61',
+        }}
+      />
+    );
+  };
+
+  const FeaturedBrandsSelectionDots = () => {
+    return (
+      <View
+        style={{
+          marginTop: 11.4,
+          marginBottom: 8.075,
+          flexDirection: 'row',
+          alignItems: 'center',
+          flex: 1,
+          justifyContent: 'center',
+        }}>
+        <View
+          style={{
+            backgroundColor: primaryGradient[800],
+            width: 6,
+            height: 6,
+            borderRadius: 3,
+            marginHorizontal: 3,
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: primaryGradient[500],
+            width: 4,
+            height: 4,
+            borderRadius: 2,
+            marginHorizontal: 3,
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: primaryGradient[500],
+            width: 4,
+            height: 4,
+            borderRadius: 2,
+            marginHorizontal: 3,
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: primaryGradient[500],
+            width: 4,
+            height: 4,
+            borderRadius: 2,
+            marginHorizontal: 3,
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: primaryGradient[500],
+            width: 4,
+            height: 4,
+            borderRadius: 2,
+            marginHorizontal: 3,
+          }}
+        />
+      </View>
+    );
+  };
+
+  const BrandDescription = () => {
+    return (
+      <View style={{flex: 1, alignItems: 'center'}}>
+        <Text
+          style={{
+            fontFamily: 'Poppins-Medium',
+            fontSize: 15,
+            color: primaryGradient[800],
+            lineHeight: 15 * 1.25,
+            flex: 1,
+            textAlign: 'center',
+          }}>
+          Saint Laurent{'\n'}
+          <Text
+            style={{
+              fontFamily: 'Lato-Regular',
+              fontSize: 13,
+              color: primaryGradient[700],
+              lineHeight: 13 * 1.25,
+              flex: 1,
+            }}>
+            Saint Laurent oferece uma ampla variedade de produtos de luxo, conheça as peças mais cobiçadas da marca
+          </Text>
+        </Text>
+      </View>
+    );
+  };
+
+  return (
+    <View
+      style={{
+        flexDirection: 'column',
+        flex: 1,
+        marginHorizontal: 16,
+        marginBottom: 16,
+      }}>
+      <FeaturedBrandsHeader />
+      <FeaturedBrandImage />
+      <FeaturedBrandsSelectionDots />
+      <BrandDescription />
+    </View>
+  );
+};
+
+const Product = () => {
+  const window = useWindowDimensions();
+  const ProductCard = () => {
+    const ProductDiscountTag = () => null;
+    const ProductFavoriteButton = () => null;
+    return (
+      <View
+        style={{
+          backgroundColor: 'white',
+          flex: 1,
+          borderRadius: 8,
+          elevation: 2,
+          shadowColor: '#D68F61',
+          aspectRatio: 5 / 4,
+        }}>
+        <ProductDiscountTag />
+        <ProductFavoriteButton />
+      </View>
+    );
+  };
+  const ProductPrice = () => {
+    const ProductOriginalPrice = () => null;
+    const ProductCurrentPrice = () => {
+      return (
+        <Text
+          style={{
+            fontFamily: 'Lato-Bold',
+            fontSize: 14,
+            color: primaryGradient[800],
+            lineHeight: 14 * 1.25,
+            marginRight: 2,
+          }}
+          numberOfLines={1}>
+          R$ 2400
+        </Text>
+      );
+    };
+    const ProductInstallmentPrice = () => {
+      return (
+        <Text
+          style={{
+            fontFamily: 'Lato-Regular',
+            fontSize: 11,
+            color: primaryGradient[800],
+            lineHeight: 11 * 1.25,
+            marginLeft: 2,
+            textAlign: 'right',
+            flex: 1,
+          }}
+          numberOfLines={1}>
+          12x R$ 200
+        </Text>
+      );
+    };
+    return (
+      <View
+        style={{
+          marginHorizontal: 4,
+          marginTop: 6,
+          marginBottom: 3.75,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+        <ProductCurrentPrice />
+        <ProductInstallmentPrice />
+      </View>
+    );
+  };
+  const ProductDescription = () => {
+    return (
+      <View style={{flex: 1, marginHorizontal: 4}}>
+        <Text
+          style={{
+            fontFamily: 'Poppins-Medium',
+            fontSize: 15,
+            color: primaryGradient[800],
+            lineHeight: 15 * 1.25,
+          }}
+          numberOfLines={2}>
+          Vivara{'\n'}
+          <Text
+            style={{
+              fontFamily: 'Lato-Regular',
+              fontSize: 13,
+              color: primaryGradient[700],
+              lineHeight: 13 * 1.15,
+            }}>
+            Anel Vivara Diamantes Negros e uma descrição exageradamente grande
+          </Text>
+        </Text>
+      </View>
+    );
+  };
+  return (
+    <View
+      style={{
+        width: window.width * 0.5 - 20,
+        marginHorizontal: 4,
+      }}>
+      <ProductCard />
+      <ProductPrice />
+      <ProductDescription />
+    </View>
+  );
+};
+
+const ForYouSection = () => {
+  const ForYouSectionHeader = () => {
+    return (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Medium',
+          fontSize: 19,
+          color: primaryGradient[800],
+          lineHeight: 19 * 1.5,
+          flex: 1,
+          marginBottom: 4,
+          marginHorizontal: 24,
+        }}>
+        Joias para você
+      </Text>
+    );
+  };
+
+  const ProductListHorizontalScrollView = () => {
+    return (
+      <ScrollView
+        style={{paddingLeft: 12}}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        overScrollMode={'never'}>
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <View style={{width: 24}} />
+      </ScrollView>
+    );
+  };
+
+  return (
+    <View style={{flex: 1, marginBottom: 16}}>
+      <ForYouSectionHeader />
+      <ProductListHorizontalScrollView />
+    </View>
+  );
+};
+
+const DiscountsSection = () => {
+  const DiscountsSectionHeader = () => {
+    return (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Medium',
+          fontSize: 19,
+          color: primaryGradient[800],
+          lineHeight: 19 * 1.5,
+          flex: 1,
+          marginBottom: 4,
+          marginHorizontal: 24,
+        }}>
+        Descontos imperdíveis
+      </Text>
+    );
+  };
+
+  const ProductListHorizontalScrollView = () => {
+    return (
+      <ScrollView
+        style={{paddingLeft: 12}}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        overScrollMode={'never'}>
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <View style={{width: 24}} />
+      </ScrollView>
+    );
+  };
+
+  return (
+    <View style={{flex: 1, marginBottom: 16}}>
+      <DiscountsSectionHeader />
+      <ProductListHorizontalScrollView />
+    </View>
+  );
+};
+
+const LastSeenSection = () => {
+  const LastSeenSectionHeader = () => {
+    return (
+      <Text
+        style={{
+          fontFamily: 'Poppins-Medium',
+          fontSize: 19,
+          color: primaryGradient[800],
+          lineHeight: 19 * 1.5,
+          flex: 1,
+          marginBottom: 4,
+          marginHorizontal: 24,
+        }}>
+        Vistos por último
+      </Text>
+    );
+  };
+
+  const ProductListHorizontalScrollView = () => {
+    return (
+      <ScrollView
+        style={{paddingLeft: 12}}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        overScrollMode={'never'}>
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <View style={{width: 24}} />
+      </ScrollView>
+    );
+  };
+
+  return (
+    <View style={{flex: 1, marginBottom: 16}}>
+      <LastSeenSectionHeader />
+      <ProductListHorizontalScrollView />
     </View>
   );
 };
@@ -489,6 +864,11 @@ export default function Home() {
       <Discover />
       <FeaturedCollections />
       <OccasionSection />
+      <FeaturedBrands />
+      <ForYouSection />
+      <DiscountsSection />
+      <LastSeenSection />
+      <View style={{height: 16}} />
     </ScrollView>
   );
 }
