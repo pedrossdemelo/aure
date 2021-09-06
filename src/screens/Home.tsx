@@ -586,7 +586,8 @@ const FeaturedBrands = () => {
               lineHeight: 13 * 1.25,
               flex: 1,
             }}>
-            Saint Laurent oferece uma ampla variedade de produtos de luxo, conheça as peças mais cobiçadas da marca
+            Saint Laurent oferece uma ampla variedade de produtos de luxo,
+            conheça as peças mais cobiçadas da marca
           </Text>
         </Text>
       </View>
@@ -737,16 +738,21 @@ const ForYouSection = () => {
   const ProductListHorizontalScrollView = () => {
     return (
       <ScrollView
-        style={{paddingLeft: 12}}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         overScrollMode={'never'}>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <View style={{width: 24}} />
+        <View style={{marginHorizontal: 12, flexDirection: 'row'}}>
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </View>
       </ScrollView>
     );
   };
@@ -780,16 +786,21 @@ const DiscountsSection = () => {
   const ProductListHorizontalScrollView = () => {
     return (
       <ScrollView
-        style={{paddingLeft: 12}}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         overScrollMode={'never'}>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <View style={{width: 24}} />
+        <View style={{marginHorizontal: 12, flexDirection: 'row'}}>
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </View>
       </ScrollView>
     );
   };
@@ -823,16 +834,21 @@ const LastSeenSection = () => {
   const ProductListHorizontalScrollView = () => {
     return (
       <ScrollView
-        style={{paddingLeft: 12}}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         overScrollMode={'never'}>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <View style={{width: 24}} />
+        <View style={{marginHorizontal: 12, flexDirection: 'row'}}>
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </View>
       </ScrollView>
     );
   };
