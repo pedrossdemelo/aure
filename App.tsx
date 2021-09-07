@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {StatusBar} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {changeBarColors} from 'react-native-immersive-bars';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -16,7 +16,7 @@ import {enableScreens} from 'react-native-screens';
 
 enableScreens();
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   changeBarColors(false, 'transparent', 'transparent');
