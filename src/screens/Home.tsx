@@ -864,36 +864,27 @@ const LastSeenSection = () => {
 export default function Home() {
   const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView
+    <ScrollView
       style={{
         flex: 1,
+        borderTopRightRadius: 16,
+        borderTopLeftRadius: 16,
         backgroundColor: primaryGradient[100],
-      }}>
-      <View
-        style={{
-          flex: 1,
-          borderTopRightRadius: 16,
-          borderTopLeftRadius: 16,
-          overflow: 'hidden',
-        }}>
-        <ScrollView
-          style={{
-            flex: 1,
-            marginBottom: 36,
-          }}
-          showsVerticalScrollIndicator={false}
-          overScrollMode={'never'}>
-          <AureHeader />
-          <UserHeader />
-          <Discover />
-          <FeaturedCollections />
-          <OccasionSection />
-          <FeaturedBrands />
-          <ForYouSection />
-          <DiscountsSection />
-          <LastSeenSection />
-        </ScrollView>
-      </View>
-    </SafeAreaView>
+        marginTop: insets.top,
+        marginBottom: insets.bottom + 52 - 16,
+      }}
+      showsVerticalScrollIndicator={false}
+      overScrollMode={'never'}>
+      <AureHeader />
+      <UserHeader />
+      <Discover />
+      <FeaturedCollections />
+      <OccasionSection />
+      <FeaturedBrands />
+      <ForYouSection />
+      <DiscountsSection />
+      <LastSeenSection />
+      <View style={{height: 16}} />
+    </ScrollView>
   );
 }
