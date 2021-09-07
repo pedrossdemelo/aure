@@ -307,7 +307,7 @@ const FeaturedCollections = () => {
               fontFamily: 'Lato-Regular',
               fontSize: 13,
               color: primaryGradient[700],
-              lineHeight: 13 * 1.15,
+              lineHeight: 13 * 1.2,
               flex: 1,
             }}>
             Coleção Vivara

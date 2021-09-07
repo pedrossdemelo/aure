@@ -14,10 +14,11 @@ import SystemNavigationBar from 'react-native-system-navigation-bar';
 import Tabs from './src/navigation/tabs';
 import {enableScreens} from 'react-native-screens';
 
+enableScreens();
+
 const Stack = createStackNavigator();
 
 export default function App() {
-  enableScreens(true);
   changeBarColors(false, 'transparent', 'transparent');
   SystemNavigationBar.setNavigationBarContrastEnforced(false);
   StatusBar.setBackgroundColor('#F8F1EA', false);
