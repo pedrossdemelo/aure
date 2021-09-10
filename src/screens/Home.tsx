@@ -1,33 +1,55 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ScrollView,
-  Image,
   useWindowDimensions,
+  StyleSheet,
+  Pressable,
+  Platform,
 } from 'react-native';
-import {useSafeAreaInsets, SafeAreaView} from 'react-native-safe-area-context';
+
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import AureLogo from '../assets/icons/AureLogo';
 
-const primaryGradient = {
-  100: '#F8F1EA',
-  200: '#F2E6D8',
-  300: '#EEDFCC',
-  400: '#E0C8B0',
-  500: '#D2B095',
-  600: '#A68C7A',
-  700: '#90786C',
-  800: '#321A12',
-};
+import {theme} from '../theme';
+
+const pallete = [
+  '#F8F1EA',
+  '#F2E6D8',
+  '#EEDFCC',
+  '#E0C8B0',
+  '#D2B095',
+  '#A68C7A',
+  '#90786C',
+  '#321A12',
+];
+
+const t = StyleSheet.create({
+  header: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 25,
+    color: theme.colors.textPrimary,
+    lineHeight: 25 * 1.25,
+  },
+
+  title: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 19,
+    color: theme.colors.textPrimary,
+    lineHeight: 19 * 1.5,
+  },
+
+  titleMargin: {
+    marginVertical: theme.spacing.xxs,
+    marginHorizontal: theme.spacing.l,
+  },
+});
 
 const AureHeader = () => {
   return (
-    <View
-      style={{
-        marginVertical: 16,
-        alignItems: 'center',
-      }}>
+    <View style={{marginVertical: 16, alignItems: 'center'}}>
       <AureLogo />
     </View>
   );
@@ -36,20 +58,13 @@ const AureHeader = () => {
 const UserHeader = () => {
   const UserGreetings = () => {
     return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: primaryGradient[800],
-          lineHeight: 19 * 1.5,
-          flex: 1,
-        }}>
-        Bom dia,{'\n'}
+      <Text style={[t.title, {flex: 1}]}>
+        Bom dia, {'\n'}
         <Text
           style={{
             fontFamily: 'Poppins-Medium',
             fontSize: 25,
-            color: primaryGradient[800],
+            color: pallete[7],
             lineHeight: 25 * 1.25,
           }}>
           Aurelia Stevens
@@ -65,7 +80,7 @@ const UserHeader = () => {
           height: 40,
           width: 40,
           borderRadius: 20,
-          backgroundColor: primaryGradient[200],
+          backgroundColor: pallete[1],
           marginLeft: 16,
         }}
       />
@@ -79,8 +94,7 @@ const UserHeader = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 24,
-        width: '100%',
-        marginBottom: 8,
+        flex: 1,
       }}>
       <UserGreetings />
       <UserProfilePic />
@@ -90,31 +104,25 @@ const UserHeader = () => {
 
 const Discover = () => {
   const DiscoverHeader = () => {
-    return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: primaryGradient[800],
-          lineHeight: 19 * 1.5,
-          marginBottom: 4,
-          marginHorizontal: 16,
-        }}>
-        Conheça
-      </Text>
-    );
+    return <Text style={[t.title, t.titleMargin]}>Conheça</Text>;
   };
 
   const DiscoverCards = () => {
     return (
-      <View style={{flex: 1, flexDirection: 'row', aspectRatio: 4.16 / 1.6}}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          aspectRatio: 4.16 / 1.6,
+          marginHorizontal: 8,
+        }}>
         <View
           style={{
-            backgroundColor: primaryGradient[200],
+            backgroundColor: pallete[1],
             flex: 1,
             marginHorizontal: 8,
             borderRadius: 8,
-            elevation: 2,
+            elevation: Platform.Version < 28 ? 1 : 3,
             shadowColor: '#D68F61',
             alignItems: 'flex-end',
             flexDirection: 'row-reverse',
@@ -123,7 +131,7 @@ const Discover = () => {
             style={{
               fontFamily: 'Poppins-Medium',
               fontSize: 19,
-              color: primaryGradient[800],
+              color: pallete[7],
               lineHeight: 19 * 1.5,
               marginHorizontal: 8,
               textAlign: 'right',
@@ -134,11 +142,11 @@ const Discover = () => {
         </View>
         <View
           style={{
-            backgroundColor: primaryGradient[200],
+            backgroundColor: pallete[1],
             flex: 1,
             marginHorizontal: 8,
             borderRadius: 8,
-            elevation: 2,
+            elevation: Platform.Version < 28 ? 1 : 3,
             shadowColor: '#D68F61',
             alignItems: 'flex-end',
             flexDirection: 'row-reverse',
@@ -147,7 +155,7 @@ const Discover = () => {
             style={{
               fontFamily: 'Poppins-Medium',
               fontSize: 19,
-              color: primaryGradient[800],
+              color: pallete[7],
               lineHeight: 19 * 1.5,
               marginHorizontal: 8,
               textAlign: 'right',
@@ -158,11 +166,11 @@ const Discover = () => {
         </View>
         <View
           style={{
-            backgroundColor: primaryGradient[200],
+            backgroundColor: pallete[1],
             flex: 1,
             marginHorizontal: 8,
             borderRadius: 8,
-            elevation: 2,
+            elevation: Platform.Version < 28 ? 1 : 3,
             shadowColor: '#D68F61',
             alignItems: 'flex-end',
             flexDirection: 'row-reverse',
@@ -171,7 +179,7 @@ const Discover = () => {
             style={{
               fontFamily: 'Poppins-Medium',
               fontSize: 19,
-              color: primaryGradient[800],
+              color: pallete[7],
               lineHeight: 19 * 1.5,
               marginHorizontal: 8,
               textAlign: 'right',
@@ -187,8 +195,7 @@ const Discover = () => {
   return (
     <View
       style={{
-        marginHorizontal: 8,
-        marginBottom: 16,
+        marginVertical: 8,
       }}>
       <DiscoverHeader />
       <DiscoverCards />
@@ -203,7 +210,7 @@ const FeaturedCollections = () => {
         style={{
           fontFamily: 'Poppins-Medium',
           fontSize: 19,
-          color: primaryGradient[800],
+          color: pallete[7],
           lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
@@ -220,9 +227,9 @@ const FeaturedCollections = () => {
         style={{
           flex: 1,
           aspectRatio: 4 / 3,
-          backgroundColor: primaryGradient[200],
+          backgroundColor: pallete[1],
           borderRadius: 8,
-          elevation: 2,
+          elevation: Platform.Version < 28 ? 1 : 3,
           shadowColor: '#D68F61',
         }}
       />
@@ -242,7 +249,7 @@ const FeaturedCollections = () => {
         }}>
         <View
           style={{
-            backgroundColor: primaryGradient[800],
+            backgroundColor: pallete[7],
             width: 6,
             height: 6,
             borderRadius: 3,
@@ -251,7 +258,7 @@ const FeaturedCollections = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -260,7 +267,7 @@ const FeaturedCollections = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -269,7 +276,7 @@ const FeaturedCollections = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -278,7 +285,7 @@ const FeaturedCollections = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -296,7 +303,7 @@ const FeaturedCollections = () => {
           style={{
             fontFamily: 'Poppins-Medium',
             fontSize: 15,
-            color: primaryGradient[800],
+            color: pallete[7],
             lineHeight: 15 * 1.25,
             flex: 1,
             textAlign: 'center',
@@ -306,7 +313,7 @@ const FeaturedCollections = () => {
             style={{
               fontFamily: 'Lato-Regular',
               fontSize: 13,
-              color: primaryGradient[700],
+              color: pallete[6],
               lineHeight: 13 * 1.2,
               flex: 1,
             }}>
@@ -340,7 +347,7 @@ const OccasionSection = () => {
         style={{
           fontFamily: 'Poppins-Medium',
           fontSize: 19,
-          color: primaryGradient[800],
+          color: pallete[7],
           lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
@@ -356,12 +363,12 @@ const OccasionSection = () => {
         <View style={{flex: 1, flexDirection: 'column', marginLeft: 8}}>
           <View
             style={{
-              backgroundColor: primaryGradient[200],
+              backgroundColor: pallete[1],
               flex: 1,
               height: 80,
               marginHorizontal: 8,
               borderRadius: 8,
-              elevation: 2,
+              elevation: Platform.Version < 28 ? 1 : 3,
               shadowColor: '#D68F61',
               alignItems: 'flex-end',
               flexDirection: 'row-reverse',
@@ -371,7 +378,7 @@ const OccasionSection = () => {
               style={{
                 fontFamily: 'Poppins-Medium',
                 fontSize: 19,
-                color: primaryGradient[800],
+                color: pallete[7],
                 lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
@@ -382,12 +389,12 @@ const OccasionSection = () => {
           </View>
           <View
             style={{
-              backgroundColor: primaryGradient[200],
+              backgroundColor: pallete[1],
               flex: 1,
               height: 80,
               marginHorizontal: 8,
               borderRadius: 8,
-              elevation: 2,
+              elevation: Platform.Version < 28 ? 1 : 3,
               shadowColor: '#D68F61',
               alignItems: 'flex-end',
               flexDirection: 'row-reverse',
@@ -397,7 +404,7 @@ const OccasionSection = () => {
               style={{
                 fontFamily: 'Poppins-Medium',
                 fontSize: 19,
-                color: primaryGradient[800],
+                color: pallete[7],
                 lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
@@ -410,12 +417,12 @@ const OccasionSection = () => {
         <View style={{flex: 1, flexDirection: 'column', marginRight: 8}}>
           <View
             style={{
-              backgroundColor: primaryGradient[200],
+              backgroundColor: pallete[1],
               flex: 1,
               height: 80,
               marginHorizontal: 8,
               borderRadius: 8,
-              elevation: 2,
+              elevation: Platform.Version < 28 ? 1 : 3,
               shadowColor: '#D68F61',
               alignItems: 'flex-end',
               flexDirection: 'row-reverse',
@@ -425,7 +432,7 @@ const OccasionSection = () => {
               style={{
                 fontFamily: 'Poppins-Medium',
                 fontSize: 19,
-                color: primaryGradient[800],
+                color: pallete[7],
                 lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
@@ -436,12 +443,12 @@ const OccasionSection = () => {
           </View>
           <View
             style={{
-              backgroundColor: primaryGradient[200],
+              backgroundColor: pallete[1],
               flex: 1,
               height: 80,
               marginHorizontal: 8,
               borderRadius: 8,
-              elevation: 2,
+              elevation: Platform.Version < 28 ? 1 : 3,
               shadowColor: '#D68F61',
               alignItems: 'flex-end',
               flexDirection: 'row-reverse',
@@ -451,7 +458,7 @@ const OccasionSection = () => {
               style={{
                 fontFamily: 'Poppins-Medium',
                 fontSize: 19,
-                color: primaryGradient[800],
+                color: pallete[7],
                 lineHeight: 19 * 1.5,
                 marginHorizontal: 8,
                 textAlign: 'right',
@@ -479,7 +486,7 @@ const FeaturedBrands = () => {
         style={{
           fontFamily: 'Poppins-Medium',
           fontSize: 19,
-          color: primaryGradient[800],
+          color: pallete[7],
           lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
@@ -496,9 +503,9 @@ const FeaturedBrands = () => {
         style={{
           flex: 1,
           aspectRatio: 4 / 3,
-          backgroundColor: primaryGradient[200],
+          backgroundColor: pallete[1],
           borderRadius: 8,
-          elevation: 2,
+          elevation: Platform.Version < 28 ? 1 : 3,
           shadowColor: '#D68F61',
         }}
       />
@@ -518,7 +525,7 @@ const FeaturedBrands = () => {
         }}>
         <View
           style={{
-            backgroundColor: primaryGradient[800],
+            backgroundColor: pallete[7],
             width: 6,
             height: 6,
             borderRadius: 3,
@@ -527,7 +534,7 @@ const FeaturedBrands = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -536,7 +543,7 @@ const FeaturedBrands = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -545,7 +552,7 @@ const FeaturedBrands = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -554,7 +561,7 @@ const FeaturedBrands = () => {
         />
         <View
           style={{
-            backgroundColor: primaryGradient[500],
+            backgroundColor: pallete[4],
             width: 4,
             height: 4,
             borderRadius: 2,
@@ -572,7 +579,7 @@ const FeaturedBrands = () => {
           style={{
             fontFamily: 'Poppins-Medium',
             fontSize: 15,
-            color: primaryGradient[800],
+            color: pallete[7],
             lineHeight: 15 * 1.25,
             flex: 1,
             textAlign: 'center',
@@ -582,7 +589,7 @@ const FeaturedBrands = () => {
             style={{
               fontFamily: 'Lato-Regular',
               fontSize: 13,
-              color: primaryGradient[700],
+              color: pallete[6],
               lineHeight: 13 * 1.25,
               flex: 1,
             }}>
@@ -618,15 +625,32 @@ const Product = () => {
     return (
       <View
         style={{
+          borderRadius: 8,
+          elevation: Platform.Version < 28 ? 1 : 3,
+          shadowColor: '#D68F61',
+          overflow: 'hidden',
+          aspectRatio: 5 / 4,
           backgroundColor: 'white',
           flex: 1,
-          borderRadius: 8,
-          elevation: 2,
-          shadowColor: '#D68F61',
-          aspectRatio: 5 / 4,
         }}>
-        <ProductDiscountTag />
-        <ProductFavoriteButton />
+        <TouchableNativeFeedback
+          background={TouchableNativeFeedback.Ripple(theme.colors.background)}
+          useForeground={false}
+          style={{}}>
+          <View
+            style={{
+              height: '100%',
+            }}>
+            <View
+              style={{
+                position: 'absolute',
+                left: 4,
+                bottom: 4,
+                backgroundColor: 'red',
+              }}
+            ><Text>Hi</Text></View>
+          </View>
+        </TouchableNativeFeedback>
       </View>
     );
   };
@@ -638,7 +662,7 @@ const Product = () => {
           style={{
             fontFamily: 'Lato-Bold',
             fontSize: 14,
-            color: primaryGradient[800],
+            color: pallete[7],
             lineHeight: 14 * 1.25,
             marginRight: 2,
           }}
@@ -653,7 +677,7 @@ const Product = () => {
           style={{
             fontFamily: 'Lato-Regular',
             fontSize: 11,
-            color: primaryGradient[800],
+            color: pallete[7],
             lineHeight: 11 * 1.25,
             marginLeft: 2,
             textAlign: 'right',
@@ -675,6 +699,7 @@ const Product = () => {
           alignItems: 'center',
         }}>
         <ProductCurrentPrice />
+        <ProductOriginalPrice />
         <ProductInstallmentPrice />
       </View>
     );
@@ -686,7 +711,7 @@ const Product = () => {
           style={{
             fontFamily: 'Poppins-Medium',
             fontSize: 15,
-            color: primaryGradient[800],
+            color: pallete[7],
             lineHeight: 15 * 1.25,
           }}
           numberOfLines={2}>
@@ -695,7 +720,7 @@ const Product = () => {
             style={{
               fontFamily: 'Lato-Regular',
               fontSize: 13,
-              color: primaryGradient[700],
+              color: pallete[6],
               lineHeight: 13 * 1.15,
             }}>
             Anel Vivara Diamantes Negros e uma descrição exageradamente grande
@@ -724,7 +749,7 @@ const ForYouSection = () => {
         style={{
           fontFamily: 'Poppins-Medium',
           fontSize: 19,
-          color: primaryGradient[800],
+          color: pallete[7],
           lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
@@ -766,13 +791,137 @@ const ForYouSection = () => {
 };
 
 const DiscountsSection = () => {
+  const Product = () => {
+    const window = useWindowDimensions();
+    const ProductCard = () => {
+      const ProductDiscountTag = () => null;
+      const ProductFavoriteButton = () => null;
+      return (
+        <View
+          style={{
+            borderRadius: 8,
+            elevation: Platform.Version < 28 ? 1 : 3,
+            shadowColor: '#D68F61',
+            flex: 1,
+            overflow: 'hidden',
+            aspectRatio: 5 / 4,
+            backgroundColor: 'white',
+          }}>
+          <Pressable
+            android_ripple={{color: theme.colors.background}}
+            style={{flex: 1}}
+            onPress={() => {}}>
+            <View
+              style={{
+                backgroundColor: 'red',
+                width: 40,
+                height: 20,
+                borderRadius: 4,
+                position: 'absolute',
+                left: 4,
+                bottom: 4,
+              }}>
+              <Text> oi</Text>
+            </View>
+          </Pressable>
+        </View>
+      );
+    };
+    const ProductPrice = () => {
+      const ProductOriginalPrice = () => null;
+      const ProductCurrentPrice = () => {
+        return (
+          <Text
+            style={{
+              fontFamily: 'Lato-Bold',
+              fontSize: 14,
+              color: pallete[7],
+              lineHeight: 14 * 1.25,
+              marginRight: 2,
+            }}
+            numberOfLines={1}>
+            R$ 2400
+          </Text>
+        );
+      };
+      const ProductInstallmentPrice = () => {
+        return (
+          <Text
+            style={{
+              fontFamily: 'Lato-Regular',
+              fontSize: 11,
+              color: pallete[7],
+              lineHeight: 11 * 1.25,
+              marginLeft: 2,
+              textAlign: 'right',
+              flex: 1,
+            }}
+            numberOfLines={1}>
+            12x R$ 200
+          </Text>
+        );
+      };
+      return (
+        <View
+          style={{
+            marginHorizontal: 4,
+            marginTop: 6,
+            marginBottom: 3.75,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <ProductCurrentPrice />
+          <ProductOriginalPrice />
+          <ProductInstallmentPrice />
+        </View>
+      );
+    };
+    const ProductDescription = () => {
+      return (
+        <View style={{flex: 1, marginHorizontal: 4}}>
+          <Text
+            style={{
+              fontFamily: 'Poppins-Medium',
+              fontSize: 15,
+              color: pallete[7],
+              lineHeight: 15 * 1.25,
+            }}
+            numberOfLines={2}>
+            Vivara{'\n'}
+            <Text
+              style={{
+                fontFamily: 'Lato-Regular',
+                fontSize: 13,
+                color: pallete[6],
+                lineHeight: 13 * 1.15,
+              }}>
+              Anel Vivara Diamantes Negros e uma descrição exageradamente grande
+            </Text>
+          </Text>
+        </View>
+      );
+    };
+    return (
+      <View
+        style={{
+          width: window.width * 0.5 - 20,
+          marginHorizontal: 4,
+        }}>
+        <ProductCard />
+        <ProductPrice />
+        <ProductDescription />
+      </View>
+    );
+  };
+
   const DiscountsSectionHeader = () => {
     return (
       <Text
         style={{
           fontFamily: 'Poppins-Medium',
           fontSize: 19,
-          color: primaryGradient[800],
+          color: pallete[7],
           lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
@@ -820,7 +969,7 @@ const LastSeenSection = () => {
         style={{
           fontFamily: 'Poppins-Medium',
           fontSize: 19,
-          color: primaryGradient[800],
+          color: pallete[7],
           lineHeight: 19 * 1.5,
           flex: 1,
           marginBottom: 4,
@@ -869,12 +1018,11 @@ export default function Home() {
         flex: 1,
         borderTopRightRadius: 16,
         borderTopLeftRadius: 16,
-        backgroundColor: primaryGradient[100],
-        marginTop: insets.top,
-        marginBottom: insets.bottom + 52 - 16,
+        backgroundColor: pallete[0],
+        paddingTop: insets.top,
       }}
       showsVerticalScrollIndicator={false}
-      overScrollMode={'never'}>
+      overScrollMode={Platform.Version < 31 ? 'never' : 'always'}>
       <AureHeader />
       <UserHeader />
       <Discover />
@@ -884,7 +1032,7 @@ export default function Home() {
       <ForYouSection />
       <DiscountsSection />
       <LastSeenSection />
-      <View style={{height: 16}} />
+      <View style={{height: insets.bottom + insets.top + 52}} />
     </ScrollView>
   );
 }

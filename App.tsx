@@ -8,11 +8,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {changeBarColors} from 'react-native-immersive-bars';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import Tabs from './src/navigation/tabs';
 import {enableScreens} from 'react-native-screens';
+import {theme} from './src/theme';
 
 enableScreens();
 
@@ -21,20 +22,22 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   changeBarColors(false, 'transparent', 'transparent');
   SystemNavigationBar.setNavigationBarContrastEnforced(false);
-  StatusBar.setBackgroundColor('#F8F1EA', false);
-  StatusBar.setTranslucent(false);
+  StatusBar.setBackgroundColor(theme.colors.background, false);
+  StatusBar.setTranslucent(true);
   StatusBar.setBarStyle('dark-content');
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-          initialRouteName={'Home'}>
-          <Stack.Screen name="Home" component={Tabs} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+            initialRouteName={'Home'}>
+            <Stack.Screen name="Main" component={Tabs} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
