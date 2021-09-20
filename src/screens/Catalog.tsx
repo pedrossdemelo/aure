@@ -21,7 +21,7 @@ const primaryGradient = {
   800: '#321A12',
 };
 
-export default function Catalog() {
+function Catalog() {
   return (
     <SafeAreaView
       style={{
@@ -109,3 +109,5 @@ export default function Catalog() {
     </SafeAreaView>
   );
 }
+
+export default React.memo(Catalog);

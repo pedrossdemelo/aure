@@ -15,7 +15,7 @@ const primaryGradient = {
   800: '#321A12',
 };
 
-export default function Favorites() {
+function Favorites() {
   return (
     <SafeAreaView
       style={{
@@ -46,3 +46,5 @@ export default function Favorites() {
     </SafeAreaView>
   );
 }
+
+export default React.memo(Favorites);

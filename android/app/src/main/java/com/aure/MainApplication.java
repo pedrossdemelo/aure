@@ -1,5 +1,7 @@
 package com.aure;
 
+import com.facebook.react.bridge.JSIModulePackage; // Reanimated 2
+import com.swmansion.reanimated.ReanimatedJSIModulePackage; // Reanimated 2
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
@@ -33,6 +35,12 @@ public class MainApplication extends Application implements ReactApplication {
         protected String getJSMainModuleName() {
           return "index";
         }
+        // Reanimated 2
+        @Override
+        protected JSIModulePackage getJSIModulePackage() {
+        return new ReanimatedJSIModulePackage();
+        }
+
       };
 
   @Override

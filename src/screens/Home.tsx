@@ -103,6 +103,8 @@ const UserHeader = () => {
 };
 
 const Discover = () => {
+  const window = useWindowDimensions();
+
   const DiscoverHeader = () => {
     return <Text style={[t.title, t.titleMargin]}>Conheça</Text>;
   };
@@ -116,30 +118,32 @@ const Discover = () => {
           aspectRatio: 4.16 / 1.6,
           marginHorizontal: 8,
         }}>
-        <View
-          style={{
-            backgroundColor: pallete[1],
-            flex: 1,
-            marginHorizontal: 8,
-            borderRadius: 8,
-            elevation: Platform.Version < 28 ? 1 : 3,
-            shadowColor: '#D68F61',
-            alignItems: 'flex-end',
-            flexDirection: 'row-reverse',
-          }}>
-          <Text
+        {window.width > 367 ? (
+          <View
             style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: 19,
-              color: pallete[7],
-              lineHeight: 19 * 1.5,
+              backgroundColor: pallete[1],
+              flex: 1,
               marginHorizontal: 8,
-              textAlign: 'right',
-            }}
-            numberOfLines={1}>
-            Alianças
-          </Text>
-        </View>
+              borderRadius: 8,
+              elevation: Platform.Version < 28 ? 1 : 3,
+              shadowColor: '#D68F61',
+              alignItems: 'flex-end',
+              flexDirection: 'row-reverse',
+            }}>
+            <Text
+              style={{
+                fontFamily: 'Poppins-Medium',
+                fontSize: 19,
+                color: pallete[7],
+                lineHeight: 19 * 1.5,
+                marginHorizontal: 8,
+                textAlign: 'right',
+              }}
+              numberOfLines={1}>
+              Alianças
+            </Text>
+          </View>
+        ) : null}
         <View
           style={{
             backgroundColor: pallete[1],
@@ -629,9 +633,9 @@ const Product = () => {
           elevation: Platform.Version < 28 ? 1 : 3,
           shadowColor: '#D68F61',
           overflow: 'hidden',
-          aspectRatio: 5 / 4,
+          aspectRatio: 1.1, // 11 / 10
           backgroundColor: 'white',
-          flex: 1,
+          width: window.width / 2,
         }}>
         <TouchableNativeFeedback
           background={TouchableNativeFeedback.Ripple(theme.colors.background)}
@@ -647,8 +651,9 @@ const Product = () => {
                 left: 4,
                 bottom: 4,
                 backgroundColor: 'red',
-              }}
-            ><Text>Hi</Text></View>
+              }}>
+              <Text>Hi</Text>
+            </View>
           </View>
         </TouchableNativeFeedback>
       </View>
@@ -713,6 +718,7 @@ const Product = () => {
             fontSize: 15,
             color: pallete[7],
             lineHeight: 15 * 1.25,
+            flex: 1,
           }}
           numberOfLines={2}>
           Vivara{'\n'}
@@ -732,8 +738,8 @@ const Product = () => {
   return (
     <View
       style={{
-        width: window.width * 0.5 - 20,
         marginHorizontal: 4,
+        maxWidth: window.width / 2,
       }}>
       <ProductCard />
       <ProductPrice />
@@ -790,10 +796,10 @@ const ForYouSection = () => {
   );
 };
 
-const DiscountsSection = () => {
+const DiscountsSection = props => {
   const Product = () => {
     const window = useWindowDimensions();
-    const ProductCard = () => {
+    const ProductCard = props => {
       const ProductDiscountTag = () => null;
       const ProductFavoriteButton = () => null;
       return (
@@ -810,7 +816,7 @@ const DiscountsSection = () => {
           <Pressable
             android_ripple={{color: theme.colors.background}}
             style={{flex: 1}}
-            onPress={() => {}}>
+            onPress={() => props.onPress}>
             <View
               style={{
                 backgroundColor: 'red',
@@ -1010,29 +1016,50 @@ const LastSeenSection = () => {
   );
 };
 
-export default function Home() {
+function Home({navigation}) {
   const insets = useSafeAreaInsets();
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-        borderTopRightRadius: 16,
-        borderTopLeftRadius: 16,
-        backgroundColor: pallete[0],
-        paddingTop: insets.top,
-      }}
-      showsVerticalScrollIndicator={false}
-      overScrollMode={Platform.Version < 31 ? 'never' : 'always'}>
-      <AureHeader />
-      <UserHeader />
-      <Discover />
-      <FeaturedCollections />
-      <OccasionSection />
-      <FeaturedBrands />
-      <ForYouSection />
-      <DiscountsSection />
-      <LastSeenSection />
-      <View style={{height: insets.bottom + insets.top + 52}} />
-    </ScrollView>
+    <>
+      <View
+        style={{
+          height: insets.top,
+          width: '100%',
+          backgroundColor: 'rgba(248, 241, 234, 0.9)',
+          top: 0,
+          position: 'absolute',
+          zIndex: 1,
+        }}
+      />
+      <ScrollView
+        style={{
+          backgroundColor: pallete[0],
+          paddingTop: insets.top,
+          flex: 1,
+        }}
+        showsVerticalScrollIndicator={false}
+        overScrollMode={Platform.Version < 31 ? 'never' : 'always'}>
+        <AureHeader />
+        <UserHeader />
+        <Discover />
+        <FeaturedCollections />
+        <OccasionSection />
+        <FeaturedBrands />
+        <ForYouSection />
+        <DiscountsSection />
+        <LastSeenSection />
+        <TouchableNativeFeedback
+          background={TouchableNativeFeedback.Ripple(
+            theme.colors.foreground,
+            false,
+            undefined,
+          )}
+          onPress={() => navigation.navigate('Catálogo')}
+          style={{width: 200, height: 100, backgroundColor: 'white'}}
+        />
+        <View style={{height: insets.bottom + insets.top + 52}} />
+      </ScrollView>
+    </>
   );
 }
+
+export default React.memo(Home);

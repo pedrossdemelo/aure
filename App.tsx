@@ -3,8 +3,9 @@
  */
 
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {changeBarColors} from 'react-native-immersive-bars';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -15,15 +16,12 @@ import Tabs from './src/navigation/tabs';
 import {enableScreens} from 'react-native-screens';
 import {theme} from './src/theme';
 
-enableScreens();
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  enableScreens(true);
   changeBarColors(false, 'transparent', 'transparent');
   SystemNavigationBar.setNavigationBarContrastEnforced(false);
-  StatusBar.setBackgroundColor(theme.colors.background, false);
-  StatusBar.setTranslucent(true);
   StatusBar.setBarStyle('dark-content');
   return (
     <GestureHandlerRootView style={{flex: 1}}>

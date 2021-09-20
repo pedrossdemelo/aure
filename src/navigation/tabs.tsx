@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -181,4 +181,4 @@ const Tabs = () => {
   );
 };
 
-export default Tabs;
+export default React.memo(Tabs);

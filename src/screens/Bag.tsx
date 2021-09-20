@@ -15,7 +15,7 @@ const primaryGradient = {
   800: '#321A12',
 };
 
-export default function Bag() {
+function Bag() {
   return (
     <SafeAreaView
       style={{
@@ -46,3 +46,5 @@ export default function Bag() {
     </SafeAreaView>
   );
 }
+
+export default React.memo(Bag);
