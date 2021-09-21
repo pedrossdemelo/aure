@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -11,6 +11,8 @@ import Home from '../screens/Home';
 import Catalog from '../screens/Catalog';
 import Favorites from '../screens/Favorites-products';
 import Bag from '../screens/Bag';
+
+import {theme} from '../theme';
 
 const gradient = [
   '#F8F1EA',
@@ -36,7 +38,7 @@ const Tabs = () => {
           elevation: 0,
           borderTopStartRadius: 16,
           borderTopEndRadius: 16,
-          backgroundColor: 'rgba(248, 241, 234, 0.9)',
+          backgroundColor: theme.colors.translucent.background,
           borderTopWidth: 0,
           paddingHorizontal: 16,
           paddingBottom:

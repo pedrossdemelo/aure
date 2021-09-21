@@ -1,1063 +1,303 @@
 import React from 'react';
+
 import {
   Text,
   View,
   ScrollView,
   useWindowDimensions,
   StyleSheet,
-  Pressable,
   Platform,
+  ScaledSize,
+  ColorValue,
+  TouchableNativeFeedbackProps,
+  ViewStyle,
 } from 'react-native';
 
+import FastImage from 'react-native-fast-image';
+
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
+import {EdgeInsets, useSafeAreaInsets} from 'react-native-safe-area-context';
+
 import AureLogo from '../assets/icons/AureLogo';
 
 import {theme} from '../theme';
 
-const pallete = [
-  '#F8F1EA',
-  '#F2E6D8',
-  '#EEDFCC',
-  '#E0C8B0',
-  '#D2B095',
-  '#A68C7A',
-  '#90786C',
-  '#321A12',
-];
+const getHookedStyleSheet = (insets: EdgeInsets, window: ScaledSize) =>
+  StyleSheet.create({
+    translucentStatusBar: {
+      height: insets.top,
+      width: '100%',
+      backgroundColor: theme.colors.translucent.background,
+      top: 0,
+      position: 'absolute',
+      zIndex: 1,
+    },
+
+    mainScrollView: {
+      backgroundColor: theme.colors.background,
+      paddingTop: insets.top,
+      flex: 1,
+    },
+  });
+
+const v = StyleSheet.create({
+  logoContainer: {
+    marginVertical: theme.spacing.m,
+    alignItems: 'center',
+  },
+
+  userHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: theme.spacing.l,
+  },
+
+  userAvatar: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    marginLeft: theme.spacing.m,
+  },
+
+  sectionContainer: {
+    marginVertical: theme.spacing.s,
+  },
+
+  discoverCard: {
+    flex: 1,
+    marginHorizontal: theme.spacing.s,
+    borderRadius: theme.spacing.s,
+    elevation: Platform.Version < 28 ? 1 : 3,
+    shadowColor: theme.colors.shadow,
+  },
+
+  discoverCardsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    aspectRatio: 13 / 5,
+    marginHorizontal: 8,
+  },
+});
 
 const t = StyleSheet.create({
   header: {
     fontFamily: 'Poppins-Medium',
-    fontSize: 25,
+    fontSize: theme.fontSize.header,
     color: theme.colors.textPrimary,
-    lineHeight: 25 * 1.25,
+    lineHeight: theme.fontSize.header * 1.25,
   },
 
   title: {
     fontFamily: 'Poppins-Medium',
-    fontSize: 19,
+    fontSize: theme.fontSize.title,
     color: theme.colors.textPrimary,
-    lineHeight: 19 * 1.5,
+    lineHeight: theme.fontSize.title * 1.5,
+  },
+
+  title2: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: theme.fontSize.title2,
+    color: theme.colors.textPrimary,
+    lineHeight: theme.fontSize.title2 * 1.25,
+  },
+
+  paragraph: {
+    fontFamily: 'Lato-Regular',
+    fontSize: theme.fontSize.paragraph,
+    color: theme.colors.textSecondary,
+    lineHeight: theme.fontSize.paragraph * 1.2,
   },
 
   titleMargin: {
     marginVertical: theme.spacing.xxs,
     marginHorizontal: theme.spacing.l,
   },
+
+  discoverCardTextAlignment: {
+    marginHorizontal: theme.spacing.s,
+    textAlign: 'right',
+    marginVertical: theme.spacing.xxs,
+  },
 });
 
-const AureHeader = () => {
+const Placeholder =
+  'http://thenewcode.com/assets/images/thumbnails/sarah-parmenter.jpeg';
+interface AndroidFeedbackButtonProps extends TouchableNativeFeedbackProps {
+  children?: JSX.Element[] | JSX.Element;
+  style?: ViewStyle;
+  styleInternal?: ViewStyle;
+  rippleColor: ColorValue;
+}
+interface Children {
+  children?: JSX.Element[] | JSX.Element;
+}
+
+function AndroidFeedbackButton(props: AndroidFeedbackButtonProps) {
   return (
-    <View style={{marginVertical: 16, alignItems: 'center'}}>
+    <View style={[{overflow: 'hidden'}, props.style]}>
+      <TouchableNativeFeedback
+        background={TouchableNativeFeedback.Ripple(props.rippleColor, false)}
+        useForeground={false}
+        onPress={props.onPress}
+        onLongPress={props.onLongPress}>
+        <View style={[props.styleInternal, {height: '100%'}]}>
+          {props.children}
+        </View>
+      </TouchableNativeFeedback>
+    </View>
+  );
+}
+
+function TranslucentStatusBar() {
+  const insets = useSafeAreaInsets();
+  const window = useWindowDimensions();
+  const hs = getHookedStyleSheet(insets, window);
+  return <View style={[hs.translucentStatusBar]} />;
+}
+
+function MainScrollView({children}: Children) {
+  const insets = useSafeAreaInsets();
+  const window = useWindowDimensions();
+  const hs = getHookedStyleSheet(insets, window);
+  return (
+    <ScrollView
+      style={[hs.mainScrollView]}
+      showsVerticalScrollIndicator={false}
+      overScrollMode={Platform.Version < 31 ? 'never' : 'always'}>
+      {children}
+    </ScrollView>
+  );
+}
+
+function LogoHeader() {
+  return (
+    <View style={[v.logoContainer]}>
       <AureLogo />
     </View>
   );
-};
+}
 
-const UserHeader = () => {
-  const UserGreetings = () => {
+function UserHeader() {
+  function UserGreetings() {
     return (
       <Text style={[t.title, {flex: 1}]}>
         Bom dia, {'\n'}
-        <Text
-          style={{
-            fontFamily: 'Poppins-Medium',
-            fontSize: 25,
-            color: pallete[7],
-            lineHeight: 25 * 1.25,
-          }}>
-          Aurelia Stevens
-        </Text>
+        <Text style={[t.header]}>Aurelia Stevens</Text>
       </Text>
     );
-  };
+  }
 
-  const UserProfilePic = () => {
+  function UserProfilePic() {
     return (
-      <View
-        style={{
-          height: 40,
-          width: 40,
-          borderRadius: 20,
-          backgroundColor: pallete[1],
-          marginLeft: 16,
+      <FastImage
+        source={{
+          uri: Placeholder,
         }}
-      />
+        style={[v.userAvatar]}>
+        <AndroidFeedbackButton
+          rippleColor={theme.colors.background}
+          onPress={() => {}}
+        />
+      </FastImage>
     );
-  };
+  }
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 24,
-        flex: 1,
-      }}>
+    <View style={[v.userHeaderContainer]}>
       <UserGreetings />
       <UserProfilePic />
     </View>
   );
-};
+}
 
-const Discover = () => {
+function DiscoverSection() {
   const window = useWindowDimensions();
 
-  const DiscoverHeader = () => {
+  function DiscoverHeader() {
     return <Text style={[t.title, t.titleMargin]}>Conheça</Text>;
-  };
+  }
 
-  const DiscoverCards = () => {
+  function DiscoverCards() {
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          aspectRatio: 4.16 / 1.6,
-          marginHorizontal: 8,
-        }}>
-        {window.width > 367 ? (
-          <View
-            style={{
-              backgroundColor: pallete[1],
-              flex: 1,
-              marginHorizontal: 8,
-              borderRadius: 8,
-              elevation: Platform.Version < 28 ? 1 : 3,
-              shadowColor: '#D68F61',
-              alignItems: 'flex-end',
-              flexDirection: 'row-reverse',
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Medium',
-                fontSize: 19,
-                color: pallete[7],
-                lineHeight: 19 * 1.5,
-                marginHorizontal: 8,
-                textAlign: 'right',
-              }}
-              numberOfLines={1}>
-              Alianças
-            </Text>
-          </View>
-        ) : null}
-        <View
-          style={{
-            backgroundColor: pallete[1],
-            flex: 1,
-            marginHorizontal: 8,
-            borderRadius: 8,
-            elevation: Platform.Version < 28 ? 1 : 3,
-            shadowColor: '#D68F61',
+      <FastImage
+        source={{
+          uri: Placeholder,
+        }}
+        style={[v.discoverCard]}>
+        <AndroidFeedbackButton
+          rippleColor={theme.colors.background}
+          onPress={() => {}}
+          styleInternal={{
             alignItems: 'flex-end',
             flexDirection: 'row-reverse',
           }}>
           <Text
-            style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: 19,
-              color: pallete[7],
-              lineHeight: 19 * 1.5,
-              marginHorizontal: 8,
-              textAlign: 'right',
-            }}
+            style={[
+              t.title,
+              t.discoverCardTextAlignment,
+              {lineHeight: theme.fontSize.title * 1},
+            ]}
             numberOfLines={1}>
-            Homem
+            Alianças
           </Text>
-        </View>
-        <View
-          style={{
-            backgroundColor: pallete[1],
-            flex: 1,
-            marginHorizontal: 8,
-            borderRadius: 8,
-            elevation: Platform.Version < 28 ? 1 : 3,
-            shadowColor: '#D68F61',
-            alignItems: 'flex-end',
-            flexDirection: 'row-reverse',
-          }}>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: 19,
-              color: pallete[7],
-              lineHeight: 19 * 1.5,
-              marginHorizontal: 8,
-              textAlign: 'right',
-            }}
-            numberOfLines={1}>
-            Mulher
-          </Text>
-        </View>
-      </View>
+        </AndroidFeedbackButton>
+      </FastImage>
     );
-  };
+  }
 
   return (
-    <View
-      style={{
-        marginVertical: 8,
-      }}>
+    <View style={v.sectionContainer}>
       <DiscoverHeader />
-      <DiscoverCards />
+      <View style={v.discoverCardsContainer}>
+        <DiscoverCards />
+        <DiscoverCards />
+        <DiscoverCards />
+      </View>
     </View>
   );
-};
+}
 
-const FeaturedCollections = () => {
-  const FeaturedCollectionsHeader = () => {
-    return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: pallete[7],
-          lineHeight: 19 * 1.5,
-          flex: 1,
-          marginBottom: 4,
-          marginHorizontal: 8,
-        }}>
-        Coleções em destaque
-      </Text>
-    );
-  };
+function FeaturedCollectionsSection() {
+  return null;
+}
 
-  const FeaturedCollectionImage = () => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          aspectRatio: 4 / 3,
-          backgroundColor: pallete[1],
-          borderRadius: 8,
-          elevation: Platform.Version < 28 ? 1 : 3,
-          shadowColor: '#D68F61',
-        }}
-      />
-    );
-  };
+function OccasionSection() {
+  return null;
+}
 
-  const FeaturedCollectionsSelectionDots = () => {
-    return (
-      <View
-        style={{
-          marginTop: 11.4,
-          marginBottom: 8.075,
-          flexDirection: 'row',
-          alignItems: 'center',
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <View
-          style={{
-            backgroundColor: pallete[7],
-            width: 6,
-            height: 6,
-            borderRadius: 3,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-      </View>
-    );
-  };
+function FeaturedBrandsSection() {
+  return null;
+}
 
-  const CollectionDescription = () => {
-    return (
-      <View style={{flex: 1, alignItems: 'center'}}>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Medium',
-            fontSize: 15,
-            color: pallete[7],
-            lineHeight: 15 * 1.25,
-            flex: 1,
-            textAlign: 'center',
-          }}>
-          Vivara{'\n'}
-          <Text
-            style={{
-              fontFamily: 'Lato-Regular',
-              fontSize: 13,
-              color: pallete[6],
-              lineHeight: 13 * 1.2,
-              flex: 1,
-            }}>
-            Coleção Vivara
-          </Text>
-        </Text>
-      </View>
-    );
-  };
+function ForYouSection() {
+  return null;
+}
 
-  return (
-    <View
-      style={{
-        flexDirection: 'column',
-        flex: 1,
-        marginHorizontal: 16,
-        marginBottom: 16,
-      }}>
-      <FeaturedCollectionsHeader />
-      <FeaturedCollectionImage />
-      <FeaturedCollectionsSelectionDots />
-      <CollectionDescription />
-    </View>
-  );
-};
+function DiscountsSection() {
+  return null;
+}
 
-const OccasionSection = () => {
-  const OccasionHeader = () => {
-    return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: pallete[7],
-          lineHeight: 19 * 1.5,
-          flex: 1,
-          marginBottom: 4,
-          marginHorizontal: 24,
-        }}>
-        Joias para toda ocasião
-      </Text>
-    );
-  };
-  const OccasionCards = () => {
-    return (
-      <View style={{flex: 1, flexDirection: 'row'}}>
-        <View style={{flex: 1, flexDirection: 'column', marginLeft: 8}}>
-          <View
-            style={{
-              backgroundColor: pallete[1],
-              flex: 1,
-              height: 80,
-              marginHorizontal: 8,
-              borderRadius: 8,
-              elevation: Platform.Version < 28 ? 1 : 3,
-              shadowColor: '#D68F61',
-              alignItems: 'flex-end',
-              flexDirection: 'row-reverse',
-              marginBottom: 8,
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Medium',
-                fontSize: 19,
-                color: pallete[7],
-                lineHeight: 19 * 1.5,
-                marginHorizontal: 8,
-                textAlign: 'right',
-              }}
-              numberOfLines={1}>
-              Formatura
-            </Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: pallete[1],
-              flex: 1,
-              height: 80,
-              marginHorizontal: 8,
-              borderRadius: 8,
-              elevation: Platform.Version < 28 ? 1 : 3,
-              shadowColor: '#D68F61',
-              alignItems: 'flex-end',
-              flexDirection: 'row-reverse',
-              marginTop: 8,
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Medium',
-                fontSize: 19,
-                color: pallete[7],
-                lineHeight: 19 * 1.5,
-                marginHorizontal: 8,
-                textAlign: 'right',
-              }}
-              numberOfLines={1}>
-              Nascimento
-            </Text>
-          </View>
-        </View>
-        <View style={{flex: 1, flexDirection: 'column', marginRight: 8}}>
-          <View
-            style={{
-              backgroundColor: pallete[1],
-              flex: 1,
-              height: 80,
-              marginHorizontal: 8,
-              borderRadius: 8,
-              elevation: Platform.Version < 28 ? 1 : 3,
-              shadowColor: '#D68F61',
-              alignItems: 'flex-end',
-              flexDirection: 'row-reverse',
-              marginBottom: 8,
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Medium',
-                fontSize: 19,
-                color: pallete[7],
-                lineHeight: 19 * 1.5,
-                marginHorizontal: 8,
-                textAlign: 'right',
-              }}
-              numberOfLines={1}>
-              Presentes
-            </Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: pallete[1],
-              flex: 1,
-              height: 80,
-              marginHorizontal: 8,
-              borderRadius: 8,
-              elevation: Platform.Version < 28 ? 1 : 3,
-              shadowColor: '#D68F61',
-              alignItems: 'flex-end',
-              flexDirection: 'row-reverse',
-              marginTop: 8,
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Poppins-Medium',
-                fontSize: 19,
-                color: pallete[7],
-                lineHeight: 19 * 1.5,
-                marginHorizontal: 8,
-                textAlign: 'right',
-              }}
-              numberOfLines={1}>
-              Bodas
-            </Text>
-          </View>
-        </View>
-      </View>
-    );
-  };
-  return (
-    <View style={{marginBottom: 16}}>
-      <OccasionHeader />
-      <OccasionCards />
-    </View>
-  );
-};
+function LastSeenSection() {
+  return null;
+}
 
-const FeaturedBrands = () => {
-  const FeaturedBrandsHeader = () => {
-    return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: pallete[7],
-          lineHeight: 19 * 1.5,
-          flex: 1,
-          marginBottom: 4,
-          marginHorizontal: 8,
-        }}>
-        Marcas que inspiram
-      </Text>
-    );
-  };
-
-  const FeaturedBrandImage = () => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          aspectRatio: 4 / 3,
-          backgroundColor: pallete[1],
-          borderRadius: 8,
-          elevation: Platform.Version < 28 ? 1 : 3,
-          shadowColor: '#D68F61',
-        }}
-      />
-    );
-  };
-
-  const FeaturedBrandsSelectionDots = () => {
-    return (
-      <View
-        style={{
-          marginTop: 11.4,
-          marginBottom: 8.075,
-          flexDirection: 'row',
-          alignItems: 'center',
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <View
-          style={{
-            backgroundColor: pallete[7],
-            width: 6,
-            height: 6,
-            borderRadius: 3,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: pallete[4],
-            width: 4,
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 3,
-          }}
-        />
-      </View>
-    );
-  };
-
-  const BrandDescription = () => {
-    return (
-      <View style={{flex: 1, alignItems: 'center'}}>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Medium',
-            fontSize: 15,
-            color: pallete[7],
-            lineHeight: 15 * 1.25,
-            flex: 1,
-            textAlign: 'center',
-          }}>
-          Saint Laurent{'\n'}
-          <Text
-            style={{
-              fontFamily: 'Lato-Regular',
-              fontSize: 13,
-              color: pallete[6],
-              lineHeight: 13 * 1.25,
-              flex: 1,
-            }}>
-            Saint Laurent oferece uma ampla variedade de produtos de luxo,
-            conheça as peças mais cobiçadas da marca
-          </Text>
-        </Text>
-      </View>
-    );
-  };
-
-  return (
-    <View
-      style={{
-        flexDirection: 'column',
-        flex: 1,
-        marginHorizontal: 16,
-        marginBottom: 16,
-      }}>
-      <FeaturedBrandsHeader />
-      <FeaturedBrandImage />
-      <FeaturedBrandsSelectionDots />
-      <BrandDescription />
-    </View>
-  );
-};
-
-const Product = () => {
-  const window = useWindowDimensions();
-  const ProductCard = () => {
-    const ProductDiscountTag = () => null;
-    const ProductFavoriteButton = () => null;
-    return (
-      <View
-        style={{
-          borderRadius: 8,
-          elevation: Platform.Version < 28 ? 1 : 3,
-          shadowColor: '#D68F61',
-          overflow: 'hidden',
-          aspectRatio: 1.1, // 11 / 10
-          backgroundColor: 'white',
-          width: window.width / 2,
-        }}>
-        <TouchableNativeFeedback
-          background={TouchableNativeFeedback.Ripple(theme.colors.background)}
-          useForeground={false}
-          style={{}}>
-          <View
-            style={{
-              height: '100%',
-            }}>
-            <View
-              style={{
-                position: 'absolute',
-                left: 4,
-                bottom: 4,
-                backgroundColor: 'red',
-              }}>
-              <Text>Hi</Text>
-            </View>
-          </View>
-        </TouchableNativeFeedback>
-      </View>
-    );
-  };
-  const ProductPrice = () => {
-    const ProductOriginalPrice = () => null;
-    const ProductCurrentPrice = () => {
-      return (
-        <Text
-          style={{
-            fontFamily: 'Lato-Bold',
-            fontSize: 14,
-            color: pallete[7],
-            lineHeight: 14 * 1.25,
-            marginRight: 2,
-          }}
-          numberOfLines={1}>
-          R$ 2400
-        </Text>
-      );
-    };
-    const ProductInstallmentPrice = () => {
-      return (
-        <Text
-          style={{
-            fontFamily: 'Lato-Regular',
-            fontSize: 11,
-            color: pallete[7],
-            lineHeight: 11 * 1.25,
-            marginLeft: 2,
-            textAlign: 'right',
-            flex: 1,
-          }}
-          numberOfLines={1}>
-          12x R$ 200
-        </Text>
-      );
-    };
-    return (
-      <View
-        style={{
-          marginHorizontal: 4,
-          marginTop: 6,
-          marginBottom: 3.75,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
-        <ProductCurrentPrice />
-        <ProductOriginalPrice />
-        <ProductInstallmentPrice />
-      </View>
-    );
-  };
-  const ProductDescription = () => {
-    return (
-      <View style={{flex: 1, marginHorizontal: 4}}>
-        <Text
-          style={{
-            fontFamily: 'Poppins-Medium',
-            fontSize: 15,
-            color: pallete[7],
-            lineHeight: 15 * 1.25,
-            flex: 1,
-          }}
-          numberOfLines={2}>
-          Vivara{'\n'}
-          <Text
-            style={{
-              fontFamily: 'Lato-Regular',
-              fontSize: 13,
-              color: pallete[6],
-              lineHeight: 13 * 1.15,
-            }}>
-            Anel Vivara Diamantes Negros e uma descrição exageradamente grande
-          </Text>
-        </Text>
-      </View>
-    );
-  };
-  return (
-    <View
-      style={{
-        marginHorizontal: 4,
-        maxWidth: window.width / 2,
-      }}>
-      <ProductCard />
-      <ProductPrice />
-      <ProductDescription />
-    </View>
-  );
-};
-
-const ForYouSection = () => {
-  const ForYouSectionHeader = () => {
-    return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: pallete[7],
-          lineHeight: 19 * 1.5,
-          flex: 1,
-          marginBottom: 4,
-          marginHorizontal: 24,
-        }}>
-        Joias para você
-      </Text>
-    );
-  };
-
-  const ProductListHorizontalScrollView = () => {
-    return (
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        overScrollMode={'never'}>
-        <View style={{marginHorizontal: 12, flexDirection: 'row'}}>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-        </View>
-      </ScrollView>
-    );
-  };
-
-  return (
-    <View style={{flex: 1, marginBottom: 16}}>
-      <ForYouSectionHeader />
-      <ProductListHorizontalScrollView />
-    </View>
-  );
-};
-
-const DiscountsSection = props => {
-  const Product = () => {
-    const window = useWindowDimensions();
-    const ProductCard = props => {
-      const ProductDiscountTag = () => null;
-      const ProductFavoriteButton = () => null;
-      return (
-        <View
-          style={{
-            borderRadius: 8,
-            elevation: Platform.Version < 28 ? 1 : 3,
-            shadowColor: '#D68F61',
-            flex: 1,
-            overflow: 'hidden',
-            aspectRatio: 5 / 4,
-            backgroundColor: 'white',
-          }}>
-          <Pressable
-            android_ripple={{color: theme.colors.background}}
-            style={{flex: 1}}
-            onPress={() => props.onPress}>
-            <View
-              style={{
-                backgroundColor: 'red',
-                width: 40,
-                height: 20,
-                borderRadius: 4,
-                position: 'absolute',
-                left: 4,
-                bottom: 4,
-              }}>
-              <Text> oi</Text>
-            </View>
-          </Pressable>
-        </View>
-      );
-    };
-    const ProductPrice = () => {
-      const ProductOriginalPrice = () => null;
-      const ProductCurrentPrice = () => {
-        return (
-          <Text
-            style={{
-              fontFamily: 'Lato-Bold',
-              fontSize: 14,
-              color: pallete[7],
-              lineHeight: 14 * 1.25,
-              marginRight: 2,
-            }}
-            numberOfLines={1}>
-            R$ 2400
-          </Text>
-        );
-      };
-      const ProductInstallmentPrice = () => {
-        return (
-          <Text
-            style={{
-              fontFamily: 'Lato-Regular',
-              fontSize: 11,
-              color: pallete[7],
-              lineHeight: 11 * 1.25,
-              marginLeft: 2,
-              textAlign: 'right',
-              flex: 1,
-            }}
-            numberOfLines={1}>
-            12x R$ 200
-          </Text>
-        );
-      };
-      return (
-        <View
-          style={{
-            marginHorizontal: 4,
-            marginTop: 6,
-            marginBottom: 3.75,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <ProductCurrentPrice />
-          <ProductOriginalPrice />
-          <ProductInstallmentPrice />
-        </View>
-      );
-    };
-    const ProductDescription = () => {
-      return (
-        <View style={{flex: 1, marginHorizontal: 4}}>
-          <Text
-            style={{
-              fontFamily: 'Poppins-Medium',
-              fontSize: 15,
-              color: pallete[7],
-              lineHeight: 15 * 1.25,
-            }}
-            numberOfLines={2}>
-            Vivara{'\n'}
-            <Text
-              style={{
-                fontFamily: 'Lato-Regular',
-                fontSize: 13,
-                color: pallete[6],
-                lineHeight: 13 * 1.15,
-              }}>
-              Anel Vivara Diamantes Negros e uma descrição exageradamente grande
-            </Text>
-          </Text>
-        </View>
-      );
-    };
-    return (
-      <View
-        style={{
-          width: window.width * 0.5 - 20,
-          marginHorizontal: 4,
-        }}>
-        <ProductCard />
-        <ProductPrice />
-        <ProductDescription />
-      </View>
-    );
-  };
-
-  const DiscountsSectionHeader = () => {
-    return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: pallete[7],
-          lineHeight: 19 * 1.5,
-          flex: 1,
-          marginBottom: 4,
-          marginHorizontal: 24,
-        }}>
-        Descontos imperdíveis
-      </Text>
-    );
-  };
-
-  const ProductListHorizontalScrollView = () => {
-    return (
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        overScrollMode={'never'}>
-        <View style={{marginHorizontal: 12, flexDirection: 'row'}}>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-        </View>
-      </ScrollView>
-    );
-  };
-
-  return (
-    <View style={{flex: 1, marginBottom: 16}}>
-      <DiscountsSectionHeader />
-      <ProductListHorizontalScrollView />
-    </View>
-  );
-};
-
-const LastSeenSection = () => {
-  const LastSeenSectionHeader = () => {
-    return (
-      <Text
-        style={{
-          fontFamily: 'Poppins-Medium',
-          fontSize: 19,
-          color: pallete[7],
-          lineHeight: 19 * 1.5,
-          flex: 1,
-          marginBottom: 4,
-          marginHorizontal: 24,
-        }}>
-        Vistos por último
-      </Text>
-    );
-  };
-
-  const ProductListHorizontalScrollView = () => {
-    return (
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        overScrollMode={'never'}>
-        <View style={{marginHorizontal: 12, flexDirection: 'row'}}>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-        </View>
-      </ScrollView>
-    );
-  };
-
-  return (
-    <View style={{flex: 1, marginBottom: 16}}>
-      <LastSeenSectionHeader />
-      <ProductListHorizontalScrollView />
-    </View>
-  );
-};
-
-function Home({navigation}) {
-  const insets = useSafeAreaInsets();
+function Home() {
   return (
     <>
-      <View
-        style={{
-          height: insets.top,
-          width: '100%',
-          backgroundColor: 'rgba(248, 241, 234, 0.9)',
-          top: 0,
-          position: 'absolute',
-          zIndex: 1,
-        }}
-      />
-      <ScrollView
-        style={{
-          backgroundColor: pallete[0],
-          paddingTop: insets.top,
-          flex: 1,
-        }}
-        showsVerticalScrollIndicator={false}
-        overScrollMode={Platform.Version < 31 ? 'never' : 'always'}>
-        <AureHeader />
+      <TranslucentStatusBar />
+      <MainScrollView>
+        <LogoHeader />
         <UserHeader />
-        <Discover />
-        <FeaturedCollections />
+        <DiscoverSection />
+        <FeaturedCollectionsSection />
         <OccasionSection />
-        <FeaturedBrands />
+        <FeaturedBrandsSection />
         <ForYouSection />
         <DiscountsSection />
         <LastSeenSection />
-        <TouchableNativeFeedback
-          background={TouchableNativeFeedback.Ripple(
-            theme.colors.foreground,
-            false,
-            undefined,
-          )}
-          onPress={() => navigation.navigate('Catálogo')}
-          style={{width: 200, height: 100, backgroundColor: 'white'}}
-        />
-        <View style={{height: insets.bottom + insets.top + 52}} />
-      </ScrollView>
+      </MainScrollView>
     </>
   );
 }

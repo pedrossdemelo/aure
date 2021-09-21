@@ -9,13 +9,19 @@ const palette = {
     AlmondFrost: '#90786C',
     DarkSienna: '#321A12',
   },
+
   secondary: {
+    RawSienna: '#D68F61',
     Coral: '#FF8862',
     Tumbleweed: '#F6B591',
     MandysPink: '#F1CBA9',
     PeachPuff: '#F0D5BB',
     Peach: '#F9DDA8',
     AppleGreen: '#8DB13F',
+  },
+
+  translucent: {
+    Isabelline: 'rgba(248, 241, 234, 0.9)',
   },
 };
 
@@ -29,7 +35,12 @@ export const theme = {
     touchableSecondary: palette.secondary.PeachPuff,
     notification: palette.secondary.Coral,
     discount: palette.secondary.Coral,
+    translucent: {
+      background: palette.translucent.Isabelline,
+    },
+    shadow: palette.secondary.RawSienna,
   },
+
   spacing: {
     xxs: 2,
     xs: 4,
@@ -38,5 +49,12 @@ export const theme = {
     l: 24,
     xl: 32,
     xxl: 40,
+  },
+
+  fontSize: {
+    header: 25,
+    title: 19,
+    title2: 15,
+    paragraph: 13,
   },
 };
