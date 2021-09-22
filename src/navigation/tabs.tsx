@@ -31,6 +31,7 @@ const Tabs = () => {
   const insets = useSafeAreaInsets();
   return (
     <Tab.Navigator
+      sceneContainerStyle={{backgroundColor: theme.colors.background}}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {

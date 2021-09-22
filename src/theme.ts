@@ -39,6 +39,7 @@ export const theme = {
       background: palette.translucent.Isabelline,
     },
     shadow: palette.secondary.RawSienna,
+    dots: palette.primary.Tan,
   },
 
   spacing: {
@@ -55,6 +56,8 @@ export const theme = {
     header: 25,
     title: 19,
     title2: 15,
+    price: 14,
     paragraph: 13,
+    paragraph2: 11,
   },
 };
