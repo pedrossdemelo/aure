@@ -57,6 +57,7 @@ export const theme = {
     title: 19,
     title2: 15,
     price: 14,
+    smallButton: 14,
     paragraph: 13,
     paragraph2: 11,
   },

@@ -7,11 +7,7 @@ import AureLogo from '../assets/icons/AureLogo';
 import {theme} from '../theme';
 
 function Catalog() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Catalogo</Text>
-    </View>
-  );
+  return <></>;
 }
 
 export default React.memo(Catalog);

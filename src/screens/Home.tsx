@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Text,
   View,
-  ScrollView,
   useWindowDimensions,
   StyleSheet,
   Platform,
@@ -11,11 +10,18 @@ import {
   ColorValue,
   TouchableNativeFeedbackProps,
   ViewStyle,
+  Dimensions,
+  Image,
 } from 'react-native';
 
 import FastImage from 'react-native-fast-image';
 
-import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
+
+import {
+  TouchableNativeFeedback,
+  ScrollView,
+} from 'react-native-gesture-handler';
 
 import {EdgeInsets, useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -146,7 +152,7 @@ const v = StyleSheet.create({
   },
 });
 
-const t = StyleSheet.create({
+export const t = StyleSheet.create({
   header: {
     fontFamily: 'Poppins-Medium',
     fontSize: theme.fontSize.header,
@@ -208,26 +214,37 @@ const t = StyleSheet.create({
     textAlign: 'right',
     lineHeight: theme.fontSize.title * 1,
   },
+
+  smallButton: {
+    fontFamily: 'Lato-Regular',
+    fontSize: theme.fontSize.smallButton,
+    color: theme.colors.textPrimary,
+    lineHeight: theme.fontSize.smallButton * 1.2,
+  },
 });
 
 const Placeholder =
-  'http://thenewcode.com/assets/images/thumbnails/sarah-parmenter.jpeg';
+  'https://bnsec.bluenile.com/bluenile/is/image/bluenile/-emerald-and-diamond-halo-ring-in-14k-yellow-gold-/75859_main?$phab_detailmain$';
 interface AndroidFeedbackButtonProps extends TouchableNativeFeedbackProps {
   children?: JSX.Element[] | JSX.Element;
   style?: ViewStyle;
   styleInternal?: ViewStyle;
-  rippleColor: ColorValue;
+  rippleColor?: ColorValue;
+  useForeground?: boolean;
 }
 interface Children {
   children?: JSX.Element[] | JSX.Element;
 }
 
-function AndroidFeedbackButton(props: AndroidFeedbackButtonProps) {
+export function AndroidFeedbackButton(props: AndroidFeedbackButtonProps) {
   return (
     <View style={[{overflow: 'hidden'}, props.style]}>
       <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple(props.rippleColor, false)}
-        useForeground={false}
+        background={TouchableNativeFeedback.Ripple(
+          props.rippleColor || theme.colors.background,
+          false,
+        )}
+        useForeground={props.useForeground || false}
         onPress={props.onPress}
         onLongPress={props.onLongPress}>
         <View style={[props.styleInternal, {height: '100%'}]}>
@@ -245,7 +262,7 @@ function TranslucentStatusBar() {
   return <View style={[hs.translucentStatusBar]} />;
 }
 
-function MainScrollView({children}: Children) {
+export function MainScrollView({children}: Children) {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
   const hs = getHookedStyleSheet(insets, window);
@@ -517,8 +534,7 @@ function Product() {
   };
 
   return (
-    <View
-      style={[hs.productContainer]}>
+    <View style={[hs.productContainer]}>
       <ProductCard />
       <ProductPrice />
       <ProductDescription />
@@ -568,10 +584,68 @@ function LastSeenSection() {
   return null;
 }
 
+function BagItem() {
+  const navigation = useNavigation();
+
+  function SmallButton({title, onPress}) {
+    return (
+      <AndroidFeedbackButton
+        useForeground={true}
+        style={{
+          borderRadius: 200,
+          backgroundColor: theme.colors.touchablePrimary,
+        }}
+        styleInternal={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingHorizontal: 12,
+          paddingVertical: 7.6,
+        }}
+        onPress={onPress}>
+        <Text style={[t.smallButton]}>{title}</Text>
+      </AndroidFeedbackButton>
+    );
+  }
+
+  return (
+    <View
+      style={{
+        borderColor: theme.colors.foreground,
+        borderWidth: 0.2,
+        padding: theme.spacing.s,
+        backgroundColor: 'white',
+      }}>
+      <View style={{backgroundColor: 'grey', flexDirection: 'row'}}>
+        <FastImage
+          source={{uri: ''}}
+          style={[
+            {
+              margin: theme.spacing.s,
+              borderRadius: theme.spacing.s,
+              width: 136,
+              aspectRatio: 3 / 4,
+            },
+            v.shadow,
+          ]}>
+          <AndroidFeedbackButton />
+        </FastImage>
+        <View style={{backgroundColor: 'red', flex: 1}} />
+      </View>
+      <View style={{margin: theme.spacing.s, flexDirection: 'row', flex: 1}}>
+        <SmallButton
+          title={'Guardar'}
+          onPress={() => {
+            navigation.navigate('Catálogo');
+          }}
+        />
+      </View>
+    </View>
+  );
+}
 function Home() {
   return (
     <>
-      <TranslucentStatusBar />
+      {Platform.OS === 'android' ? <TranslucentStatusBar /> : null}
       <MainScrollView>
         <LogoHeader />
         <UserHeader />
@@ -584,6 +658,12 @@ function Home() {
         <ForYouSection />
         <DiscountsSection />
         <LastSeenSection />
+        <FastImage
+          source={{uri: Placeholder}}
+          style={{height: 300, width: 300}}
+        />
+        <Image source={{uri: Placeholder}} style={{height: 300, width: 300}} />
+        <BagItem />
       </MainScrollView>
     </>
   );
