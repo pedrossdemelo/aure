@@ -4,268 +4,46 @@ import {
   Text,
   View,
   useWindowDimensions,
-  StyleSheet,
   Platform,
-  ScaledSize,
-  ColorValue,
-  TouchableNativeFeedbackProps,
-  ViewStyle,
+  StyleProp,
   Dimensions,
-  Image,
 } from 'react-native';
 
 import FastImage from 'react-native-fast-image';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {
-  TouchableNativeFeedback,
-  ScrollView,
-} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 
-import {EdgeInsets, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import AureLogo from '../assets/icons/AureLogo';
 
 import {theme} from '../theme';
 
-const getHookedStyleSheet = (insets: EdgeInsets, window: ScaledSize) =>
-  StyleSheet.create({
-    translucentStatusBar: {
-      height: insets.top,
-      width: '100%',
-      backgroundColor: theme.colors.translucent.background,
-      top: 0,
-      position: 'absolute',
-      zIndex: 1,
-    },
+import {t, v, getHookedStyles} from '../styles';
 
-    mainScrollViewContentContainer: {
-      paddingTop: insets.top,
-      paddingBottom:
-        insets.bottom === 0 ? insets.bottom + 52 : insets.bottom + 47.7,
-    },
+import {TouchableFeedback} from '../components/atoms/TouchableFeedback';
 
-    productContainer: {
-      marginHorizontal: theme.spacing.xs,
-      width: (window.width - 16) / 2,
-    },
-  });
+import {ImageTouchableFeedback} from '../components/atoms/ImageTouchableFeedback';
 
-const v = StyleSheet.create({
-  logoContainer: {
-    marginVertical: theme.spacing.m,
-    alignItems: 'center',
-  },
-
-  userHeaderContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: theme.spacing.l,
-  },
-
-  userAvatar: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-    marginLeft: theme.spacing.m,
-  },
-
-  sectionContainer: {
-    marginVertical: theme.spacing.s,
-  },
-
-  shadow: {
-    elevation: Platform.Version < 28 ? 1 : 3,
-    shadowColor: theme.colors.shadow,
-  },
-
-  discoverCard: {
-    flex: 1,
-    marginHorizontal: theme.spacing.s,
-    borderRadius: theme.spacing.s,
-  },
-
-  discoverCardsContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    aspectRatio: 13 / 5,
-    marginHorizontal: theme.spacing.s,
-  },
-
-  featuredCollectionImage: {
-    flex: 1,
-    aspectRatio: 4 / 3,
-    marginHorizontal: theme.spacing.m,
-    borderRadius: theme.spacing.s,
-  },
-
-  selectionDotsContainer: {
-    marginTop: 11.4,
-    marginBottom: 8.075,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  selectedDot: {
-    backgroundColor: theme.colors.foreground,
-    width: theme.spacing.xs * 1.5,
-    height: theme.spacing.xs * 1.5,
-    borderRadius: theme.spacing.xxs * 1.5,
-    marginHorizontal: theme.spacing.xxs * 1.5,
-  },
-
-  selectionDot: {
-    backgroundColor: theme.colors.dots,
-    width: theme.spacing.xs,
-    height: theme.spacing.xs,
-    borderRadius: theme.spacing.xxs,
-    marginHorizontal: theme.spacing.xxs * 1.5,
-  },
-
-  occasionCard: {
-    flex: 1,
-    height: 80,
-    marginHorizontal: theme.spacing.s,
-    borderRadius: theme.spacing.s,
-  },
-
-  productCard: {
-    flex: 1,
-    borderRadius: theme.spacing.s,
-    aspectRatio: 1.1, // 11 / 10
-  },
-
-  horizontalScrollViewContainer: {
-    paddingHorizontal: theme.spacing.m - theme.spacing.xs,
-  },
-
-  productPricingContainer: {
-    marginHorizontal: theme.spacing.xxs,
-    marginTop: theme.spacing.xs * 1.5,
-    marginBottom: theme.spacing.xs - 0.25,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-});
-
-export const t = StyleSheet.create({
-  header: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: theme.fontSize.header,
-    color: theme.colors.textPrimary,
-    lineHeight: theme.fontSize.header * 1.25,
-  },
-
-  title: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: theme.fontSize.title,
-    color: theme.colors.textPrimary,
-    lineHeight: theme.fontSize.title * 1.5,
-  },
-
-  title2: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: theme.fontSize.title2,
-    color: theme.colors.textPrimary,
-    lineHeight: theme.fontSize.title2 * 1.25,
-  },
-
-  price: {
-    fontFamily: 'Lato-Bold',
-    fontSize: theme.fontSize.price,
-    color: theme.colors.textPrimary,
-    lineHeight: theme.fontSize.price * 1.25,
-    marginHorizontal: theme.spacing.xxs,
-  },
-
-  paragraph: {
-    fontFamily: 'Lato-Regular',
-    fontSize: theme.fontSize.paragraph,
-    color: theme.colors.textSecondary,
-    lineHeight: theme.fontSize.paragraph * 1.2,
-  },
-
-  paragraph2: {
-    fontFamily: 'Lato-Regular',
-    fontSize: theme.fontSize.paragraph2,
-    color: theme.colors.textSecondary,
-    lineHeight: theme.fontSize.paragraph2 * 1.2,
-  },
-
-  installmentPrice: {
-    color: theme.colors.textPrimary,
-    marginHorizontal: theme.spacing.xxs,
-    textAlign: 'right',
-    flex: 1,
-  },
-
-  titleMargin: {
-    marginBottom: theme.spacing.xxs,
-    marginHorizontal: theme.spacing.l,
-  },
-
-  discoverCardTextAlignment: {
-    paddingHorizontal: theme.spacing.s,
-    paddingVertical: theme.spacing.xxs,
-    textAlign: 'right',
-    lineHeight: theme.fontSize.title * 1,
-  },
-
-  smallButton: {
-    fontFamily: 'Lato-Regular',
-    fontSize: theme.fontSize.smallButton,
-    color: theme.colors.textPrimary,
-    lineHeight: theme.fontSize.smallButton * 1.2,
-  },
-});
-
-const Placeholder =
-  'https://bnsec.bluenile.com/bluenile/is/image/bluenile/-emerald-and-diamond-halo-ring-in-14k-yellow-gold-/75859_main?$phab_detailmain$';
-interface AndroidFeedbackButtonProps extends TouchableNativeFeedbackProps {
-  children?: JSX.Element[] | JSX.Element;
-  style?: ViewStyle;
-  styleInternal?: ViewStyle;
-  rippleColor?: ColorValue;
-  useForeground?: boolean;
-}
+export const Placeholder =
+  'https://media.tiffany.com/is/image/Tiffany/EcomItemL2/anel-de-noivado-tiffany-soleste-em-platina-com-lapidao-brilhante-61100415_995693_ED_M.jpg?&op_usm=1.75,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&';
 interface Children {
   children?: JSX.Element[] | JSX.Element;
-}
-
-export function AndroidFeedbackButton(props: AndroidFeedbackButtonProps) {
-  return (
-    <View style={[{overflow: 'hidden'}, props.style]}>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple(
-          props.rippleColor || theme.colors.background,
-          false,
-        )}
-        useForeground={props.useForeground || false}
-        onPress={props.onPress}
-        onLongPress={props.onLongPress}>
-        <View style={[props.styleInternal, {height: '100%'}]}>
-          {props.children}
-        </View>
-      </TouchableNativeFeedback>
-    </View>
-  );
 }
 
 function TranslucentStatusBar() {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
-  const hs = getHookedStyleSheet(insets, window);
+  const hs = getHookedStyles(insets, window);
   return <View style={[hs.translucentStatusBar]} />;
 }
 
 export function MainScrollView({children}: Children) {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
-  const hs = getHookedStyleSheet(insets, window);
+  const hs = getHookedStyles(insets, window);
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -298,16 +76,11 @@ function UserHeader() {
 
   function UserProfilePic() {
     return (
-      <FastImage
-        source={{
-          uri: Placeholder,
-        }}
-        style={[v.userAvatar]}>
-        <AndroidFeedbackButton
-          rippleColor={theme.colors.background}
-          onPress={() => {}}
-        />
-      </FastImage>
+      <ImageTouchableFeedback
+        style={[v.userAvatar]}
+        source={Placeholder}
+        onPress={() => {}}
+      />
     );
   }
 
@@ -328,21 +101,21 @@ function DiscoverSection() {
 
   function DiscoverCards() {
     return (
-      <FastImage source={{uri: Placeholder}} style={[v.discoverCard, v.shadow]}>
-        <AndroidFeedbackButton
-          rippleColor={theme.colors.background}
-          onPress={() => {}}
-          styleInternal={{
-            alignItems: 'flex-end',
-            flexDirection: 'row-reverse',
-          }}>
-          <Text
-            style={[t.title, t.discoverCardTextAlignment]}
-            numberOfLines={1}>
-            Alianças
-          </Text>
-        </AndroidFeedbackButton>
-      </FastImage>
+      <ImageTouchableFeedback
+        source={Placeholder}
+        style={[v.discoverCard]}
+        shadow={[v.shadow]}
+        pressColor={theme.colors.background}
+        onPress={() => {}}
+        styleInternal={{
+          alignItems: 'flex-end',
+          flexDirection: 'row-reverse',
+        }}
+        flex={1}>
+        <Text style={[t.title, t.discoverCardTextAlignment]} numberOfLines={1}>
+          Alianças
+        </Text>
+      </ImageTouchableFeedback>
     );
   }
 
@@ -365,16 +138,12 @@ function FeaturedCollectionsSection() {
 
   function FeaturedCollectionImage() {
     return (
-      <FastImage
-        source={{
-          uri: Placeholder,
-        }}
-        style={[v.featuredCollectionImage, v.shadow]}>
-        <AndroidFeedbackButton
-          rippleColor={theme.colors.background}
-          onPress={() => {}}
-        />
-      </FastImage>
+      <ImageTouchableFeedback
+        shadow={[v.shadow]}
+        source={Placeholder}
+        style={[v.featuredCollectionImage, v.shadow]}
+        onPress={() => {}}
+      />
     );
   }
 
@@ -418,21 +187,21 @@ function OccasionSection() {
 
   function OccasionCard() {
     return (
-      <FastImage source={{uri: Placeholder}} style={[v.occasionCard, v.shadow]}>
-        <AndroidFeedbackButton
-          rippleColor={theme.colors.background}
-          onPress={() => {}}
-          styleInternal={{
-            alignItems: 'flex-end',
-            flexDirection: 'row-reverse',
-          }}>
-          <Text
-            style={[t.title, t.discoverCardTextAlignment]}
-            numberOfLines={1}>
-            Formatura
-          </Text>
-        </AndroidFeedbackButton>
-      </FastImage>
+      <ImageTouchableFeedback
+        source={Placeholder}
+        style={[v.occasionCard]}
+        shadow={[v.shadow]}
+        pressColor={theme.colors.background}
+        onPress={() => {}}
+        styleInternal={{
+          alignItems: 'flex-end',
+          flexDirection: 'row-reverse',
+        }}
+        flex={1}>
+        <Text style={[t.title, t.discoverCardTextAlignment]} numberOfLines={1}>
+          Formatura
+        </Text>
+      </ImageTouchableFeedback>
     );
   }
 
@@ -468,7 +237,7 @@ function FeaturedBrandsSection() {
 function Product() {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
-  const hs = getHookedStyleSheet(insets, window);
+  const hs = getHookedStyles(insets, window);
 
   function ProductCard() {
     function ProductDiscountTag() {
@@ -480,14 +249,15 @@ function Product() {
     }
 
     return (
-      <FastImage source={{uri: Placeholder}} style={[v.productCard, v.shadow]}>
-        <AndroidFeedbackButton
-          rippleColor={theme.colors.background}
-          onPress={() => {}}>
-          <ProductDiscountTag />
-          <ProductFavoriteButton />
-        </AndroidFeedbackButton>
-      </FastImage>
+      <ImageTouchableFeedback
+        source={Placeholder}
+        style={[v.productCard]}
+        shadow={[v.shadow]}
+        pressColor={theme.colors.background}
+        onPress={() => {}}>
+        <ProductDiscountTag />
+        <ProductFavoriteButton />
+      </ImageTouchableFeedback>
     );
   }
 
@@ -585,16 +355,25 @@ function LastSeenSection() {
 }
 
 function BagItem() {
-  const navigation = useNavigation();
+  const window = useWindowDimensions();
+  interface SmallButtonProps {
+    title: string;
+    onPress: () => void;
+    style?: StyleProp;
+  }
 
-  function SmallButton({title, onPress}) {
+  function SmallButton({title, onPress, style}: SmallButtonProps) {
     return (
-      <AndroidFeedbackButton
+      <TouchableFeedback
         useForeground={true}
-        style={{
-          borderRadius: 200,
-          backgroundColor: theme.colors.touchablePrimary,
-        }}
+        style={[
+          {
+            borderRadius: 200,
+            backgroundColor: theme.colors.touchablePrimary,
+            maxHeight: 32 * Dimensions.get('screen').fontScale,
+          },
+          style,
+        ]}
         styleInternal={{
           alignItems: 'center',
           justifyContent: 'center',
@@ -603,21 +382,20 @@ function BagItem() {
         }}
         onPress={onPress}>
         <Text style={[t.smallButton]}>{title}</Text>
-      </AndroidFeedbackButton>
+      </TouchableFeedback>
     );
   }
-
   return (
     <View
       style={{
-        borderColor: theme.colors.foreground,
+        borderColor: 'black',
         borderWidth: 0.2,
         padding: theme.spacing.s,
-        backgroundColor: 'white',
+        backgroundColor: 'beige',
       }}>
-      <View style={{backgroundColor: 'grey', flexDirection: 'row'}}>
-        <FastImage
-          source={{uri: ''}}
+      <View style={{backgroundColor: 'grey', flexDirection: 'row', maxHeight: 138 * 4 / 3 + 16}}>
+        <ImageTouchableFeedback
+          source={Placeholder}
           style={[
             {
               margin: theme.spacing.s,
@@ -625,28 +403,45 @@ function BagItem() {
               width: 136,
               aspectRatio: 3 / 4,
             },
-            v.shadow,
-          ]}>
-          <AndroidFeedbackButton />
-        </FastImage>
-        <View style={{backgroundColor: 'red', flex: 1}} />
+          ]}
+          shadow={[v.shadow]}
+        />
+        <View style={{backgroundColor: 'white', flex: 1}}>
+          <View style={{flex: 1}}>
+            <Text style={{}}>Hello{'\n'}I am text HAHAHAHAHAHHAAAAAAAAAAAAOIOIIOREIOERIOREOKFDJOSFODIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Text>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text>Helooooo{'\n'}im cum</Text>
+            <SmallButton title={'Penis'} onPress={()=>{}}></SmallButton>
+          </View>
+        </View>
       </View>
-      <View style={{margin: theme.spacing.s, flexDirection: 'row', flex: 1}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          flex: 1,
+          justifyContent: 'space-between',
+        }}>
         <SmallButton
           title={'Guardar'}
-          onPress={() => {
-            navigation.navigate('Catálogo');
-          }}
+          onPress={() => {}}
+          style={{width: 136, margin: theme.spacing.s}}
         />
+        <View style={{flexDirection: 'row', margin: theme.spacing.xs}}>
+          {window.width > 367 ? <SmallButton title={'Guardar'} onPress={() => {}} style={{margin: theme.spacing.xs}} /> : null}
+          <SmallButton title={'Guardar'} onPress={() => {}} style={{margin: theme.spacing.xs}} />
+        </View>
       </View>
     </View>
   );
 }
 function Home() {
+  var p = 0;
   return (
     <>
       {Platform.OS === 'android' ? <TranslucentStatusBar /> : null}
       <MainScrollView>
+        <BagItem />
         <LogoHeader />
         <UserHeader />
         <DiscoverSection />
@@ -658,12 +453,6 @@ function Home() {
         <ForYouSection />
         <DiscountsSection />
         <LastSeenSection />
-        <FastImage
-          source={{uri: Placeholder}}
-          style={{height: 300, width: 300}}
-        />
-        <Image source={{uri: Placeholder}} style={{height: 300, width: 300}} />
-        <BagItem />
       </MainScrollView>
     </>
   );
