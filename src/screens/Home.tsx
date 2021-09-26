@@ -370,7 +370,11 @@ function BagItem() {
           {
             borderRadius: 200,
             backgroundColor: theme.colors.touchablePrimary,
-            maxHeight: 32 * Dimensions.get('screen').fontScale,
+            maxHeight:
+              theme.fontSize.smallButton *
+                1.2 *
+                Dimensions.get('screen').fontScale +
+              7.6 * 2,
           },
           style,
         ]}
@@ -388,12 +392,13 @@ function BagItem() {
   return (
     <View
       style={{
-        borderColor: 'black',
-        borderWidth: 0.2,
         padding: theme.spacing.s,
-        backgroundColor: 'beige',
       }}>
-      <View style={{backgroundColor: 'grey', flexDirection: 'row', maxHeight: 138 * 4 / 3 + 16}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          maxHeight: (138 * 4) / 5 + 16,
+        }}>
         <ImageTouchableFeedback
           source={Placeholder}
           style={[
@@ -401,18 +406,55 @@ function BagItem() {
               margin: theme.spacing.s,
               borderRadius: theme.spacing.s,
               width: 136,
-              aspectRatio: 3 / 4,
+              aspectRatio: 5/4,
             },
           ]}
           shadow={[v.shadow]}
         />
-        <View style={{backgroundColor: 'white', flex: 1}}>
-          <View style={{flex: 1}}>
-            <Text style={{}}>Hello{'\n'}I am text HAHAHAHAHAHHAAAAAAAAAAAAOIOIIOREIOERIOREOKFDJOSFODIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Text>
+        <View style={{flex: 1}}>
+          <View style={{flex: 1, marginTop: theme.spacing.s, marginHorizontal: theme.spacing.s}}>
+            <Text style={[t.title2, {marginTop: theme.spacing.xs}]}>
+              Hello{'\n'}
+              <Text style={[t.paragraph, {flexWrap: 'wrap'}]}>
+                Anel Vivara com Diamantes e uma descrição desnecessáriamente
+                grande e imensa que ninguém vai ler ngm liga pra sua marca de
+                mal vai se fuder.
+              </Text>
+            </Text>
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text>Helooooo{'\n'}im cum</Text>
-            <SmallButton title={'Penis'} onPress={()=>{}}></SmallButton>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <Text
+              style={[
+                {
+                  margin: theme.spacing.s,
+                  fontSize: theme.fontSize.price,
+                  color: theme.colors.textPrimary,
+                  lineHeight: theme.fontSize.price * 1.2,
+                  fontFamily: 'Lato-Bold',
+                  marginBottom: theme.spacing.xs + theme.spacing.s + 0.5,
+                },
+              ]}>
+              R$ 1600{'\n'}
+              <Text
+                style={{
+                  fontSize: theme.fontSize.paragraph2,
+                  color: theme.colors.textPrimary,
+                  lineHeight: theme.fontSize.paragraph2 * 1.2,
+                  fontFamily: 'Lato-Regular',
+                }}>
+                12x R$120
+              </Text>
+            </Text>
+            <SmallButton
+              title={'Penis'}
+              onPress={() => {}}
+              style={{marginHorizontal: theme.spacing.s}}
+            />
           </View>
         </View>
       </View>
@@ -428,8 +470,18 @@ function BagItem() {
           style={{width: 136, margin: theme.spacing.s}}
         />
         <View style={{flexDirection: 'row', margin: theme.spacing.xs}}>
-          {window.width > 367 ? <SmallButton title={'Guardar'} onPress={() => {}} style={{margin: theme.spacing.xs}} /> : null}
-          <SmallButton title={'Guardar'} onPress={() => {}} style={{margin: theme.spacing.xs}} />
+          {window.width > 340 ? (
+            <SmallButton
+              title={'Guardar'}
+              onPress={() => {}}
+              style={{margin: theme.spacing.xs}}
+            />
+          ) : null}
+          <SmallButton
+            title={'Guardar'}
+            onPress={() => {}}
+            style={{margin: theme.spacing.xs}}
+          />
         </View>
       </View>
     </View>
