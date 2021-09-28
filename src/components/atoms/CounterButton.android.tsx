@@ -1,8 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, useWindowDimensions} from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  useWindowDimensions,
+} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import {theme} from '../../theme';
-import {TouchableHighlight} from 'react-native';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 import {t} from '../../styles';
 
 function PlusIcon() {
@@ -68,51 +72,53 @@ export function CounterButton() {
           }}
         />
       </View>
-      <TouchableHighlight
-        underlayColor={theme.colors.buttonRipple.remove}
-        activeOpacity={2/3}
+      <TouchableNativeFeedback
+        background={TouchableNativeFeedback.Ripple(
+          theme.colors.buttonRipple.remove,
+          true,
+        )}
+        useForeground
         onPress={() => setCount(count - 1)}
         hitSlop={{
           bottom: theme.spacing.s,
           top: theme.spacing.s,
           left: theme.spacing.s,
           right: theme.spacing.s,
-        }}
-        style={{borderRadius: 999, overflow: 'hidden'}}>
+        }}>
         <View
           style={{
             height: smallButtonHeight,
             width: smallButtonHeight,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: theme.colors.touchablePrimary,
           }}>
           <MinusIcon />
         </View>
-      </TouchableHighlight>
+      </TouchableNativeFeedback>
       <Text style={[t.smallButton]}>{count}</Text>
-      <TouchableHighlight
-        underlayColor={theme.colors.buttonRipple.add}
+      <TouchableNativeFeedback
+        background={TouchableNativeFeedback.Ripple(
+          theme.colors.buttonRipple.add,
+          true,
+        )}
+        useForeground
         onPress={() => setCount(count + 1)}
-        activeOpacity={2 / 3}
         hitSlop={{
           bottom: theme.spacing.s,
           top: theme.spacing.s,
           left: theme.spacing.s,
           right: theme.spacing.s,
-        }}
-        style={{borderRadius: 999, overflow: 'hidden'}}>
+        }}>
         <View
           style={{
             height: smallButtonHeight,
             width: smallButtonHeight,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: theme.colors.touchablePrimary,
           }}>
           <PlusIcon />
         </View>
-      </TouchableHighlight>
+      </TouchableNativeFeedback>
     </View>
   );
 }

@@ -23,6 +23,7 @@ export function SmallButton({
   onLongPress,
   pressColor,
 }: SmallButtonProps) {
+  const fontScale = Dimensions.get('screen').fontScale;
   return (
     <TouchableHighlight
       onPress={onPress}
@@ -32,12 +33,10 @@ export function SmallButton({
       style={[
         {
           overflow: 'hidden',
-          borderRadius: 300,
+          borderRadius: 999,
           height:
-            theme.fontSize.smallButton *
-              1.2 *
-              Dimensions.get('screen').fontScale +
-            7.6 * 2,
+            theme.fontSize.smallButton * 1.2 * fontScale +
+            (32 - theme.fontSize.smallButton * 1.2),
           minHeight: 32,
         },
         style,
@@ -49,8 +48,8 @@ export function SmallButton({
             ? {
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingHorizontal: 12,
-                paddingVertical: 7.6,
+                paddingHorizontal: 12 * (fontScale <= 1 ? 1 : fontScale * 0.85),
+                paddingVertical: 7.3,
               }
             : null,
           {height: '100%', backgroundColor: theme.colors.touchablePrimary},

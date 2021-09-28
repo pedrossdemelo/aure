@@ -18,6 +18,7 @@ const palette = {
     PeachPuff: '#F0D5BB',
     Peach: '#F9DDA8',
     AppleGreen: '#8DB13F',
+    BeauBlue: '#BCD7F0',
   },
 
   translucent: {
@@ -35,6 +36,10 @@ export const theme = {
     touchableSecondary: palette.secondary.PeachPuff,
     notification: palette.secondary.Coral,
     discount: palette.secondary.Coral,
+    buttonRipple: {
+      add: palette.secondary.PeachPuff,
+      remove: palette.secondary.BeauBlue,
+    },
     translucent: {
       background: palette.translucent.Isabelline,
     },
@@ -57,7 +62,7 @@ export const theme = {
     title: 19,
     title2: 15,
     price: 14,
-    smallButton: 14,
+    smallButton: 14.5,
     paragraph: 13,
     paragraph2: 11,
   },

@@ -1,12 +1,15 @@
 import React from 'react';
-import {useWindowDimensions, View, Text} from 'react-native';
+import {useWindowDimensions, View, Text, Dimensions} from 'react-native';
 import {ImageTouchableFeedback} from '../components/atoms/ImageTouchableFeedback';
 import {t, v} from '../styles';
 import {theme} from '../theme';
 import {Placeholder} from './Home';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  ScrollView
+} from 'react-native-gesture-handler';
 import {SmallButton} from '../components/atoms/SmallButton';
+import {CounterButton} from '../components/atoms/CounterButton';
 import Svg, {Path} from 'react-native-svg';
 
 function BagItem() {
@@ -79,11 +82,7 @@ function BagItem() {
                 12x R$120
               </Text>
             </Text>
-            <SmallButton
-              title={'Penis'}
-              onPress={() => {}}
-              style={{marginHorizontal: theme.spacing.s}}
-            />
+            <CounterButton />
           </View>
         </View>
       </View>
@@ -101,10 +100,16 @@ function BagItem() {
             width: 136,
             alignItems: 'center',
             justifyContent: 'space-between',
-            paddingHorizontal: 12,
+            paddingHorizontal:
+              12 *
+              (Dimensions.get('screen').fontScale <= 1
+                ? 1
+                : Dimensions.get('screen').fontScale * 0.85),
             flexDirection: 'row',
           }}>
-          <Text style={[t.smallButton]}>Tamanho: 14</Text>
+          <Text style={[t.smallButton]} numberOfLines={1}>
+            Tam: 14
+          </Text>
           <Svg width={12} height={12} fill="none">
             <Path
               d="M2 4.8l3.293 3.674a.93.93 0 001.414 0L10 4.8"
@@ -138,6 +143,10 @@ export default function Bag() {
   const insets = useSafeAreaInsets();
   return (
     <ScrollView style={{marginTop: insets.top}}>
+      <View
+        style={{alignItems: 'center', justifyContent: 'center', height: 100}}>
+          <Text>Playground</Text>
+      </View>
       <BagItem />
       <BagItem />
       <BagItem />

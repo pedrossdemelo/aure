@@ -23,6 +23,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8A8E3B4BEA6E4339B9CB0606 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EE69AEDE17447BCBF49C107 /* Poppins-Bold.ttf */; };
 		E1F619E167E244A98EBC1BAF /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E26C1A9224574ABEB20930D9 /* Poppins-Regular.ttf */; };
+		FF69CE0F8E43475A9E3C6766 /* Lato-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06F0BE8F068A4861BD13C198 /* Lato-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		00E356EE1AD99517003FC87E /* aureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* aureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aureTests.m; sourceTree = "<group>"; };
+		06F0BE8F068A4861BD13C198 /* Lato-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-SemiBold.ttf"; path = "../src/assets/fonts/Lato-SemiBold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* aure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = aure/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = aure/AppDelegate.m; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				189B0518F4B947899B850056 /* Poppins-Medium.ttf */,
 				E26C1A9224574ABEB20930D9 /* Poppins-Regular.ttf */,
 				861E2C78B9EE4D3599468BFA /* Poppins-Thin.ttf */,
+				06F0BE8F068A4861BD13C198 /* Lato-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				529A971FED634086BD9B8C37 /* Poppins-Medium.ttf in Resources */,
 				E1F619E167E244A98EBC1BAF /* Poppins-Regular.ttf in Resources */,
 				296F1A8CF6F84E3E8973D14D /* Poppins-Thin.ttf in Resources */,
+				FF69CE0F8E43475A9E3C6766 /* Lato-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
