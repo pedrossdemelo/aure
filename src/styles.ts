@@ -190,7 +190,7 @@ export const t = StyleSheet.create({
   },
 
   smallButton: {
-    fontFamily: 'Lato-Regular',
+    fontFamily: 'Lato-Bold',
     fontSize: theme.fontSize.smallButton,
     color: theme.colors.textPrimary,
     lineHeight: theme.fontSize.smallButton * 1.2,
