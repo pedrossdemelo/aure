@@ -5,9 +5,7 @@ import {t, v} from '../styles';
 import {theme} from '../theme';
 import {Placeholder} from './Home';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {
-  ScrollView
-} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import {SmallButton} from '../components/atoms/SmallButton';
 import {CounterButton} from '../components/atoms/CounterButton';
 import Svg, {Path} from 'react-native-svg';
@@ -145,7 +143,7 @@ export default function Bag() {
     <ScrollView style={{marginTop: insets.top}}>
       <View
         style={{alignItems: 'center', justifyContent: 'center', height: 100}}>
-          <Text>Playground</Text>
+        <Text>Playground</Text>
       </View>
       <BagItem />
       <BagItem />

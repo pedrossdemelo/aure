@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  useWindowDimensions,
-} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, useWindowDimensions} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import {theme} from '../../theme';
 import {TouchableNativeFeedback} from 'react-native';

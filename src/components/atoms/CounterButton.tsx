@@ -70,7 +70,7 @@ export function CounterButton() {
       </View>
       <TouchableHighlight
         underlayColor={theme.colors.buttonRipple.remove}
-        activeOpacity={2/3}
+        activeOpacity={2 / 3}
         onPress={() => setCount(count - 1)}
         hitSlop={{
           bottom: theme.spacing.s,
