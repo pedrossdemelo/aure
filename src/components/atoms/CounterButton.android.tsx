@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import {theme} from '../../theme';
-import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+import {TouchableNativeFeedback} from 'react-native';
 import {t} from '../../styles';
 
 function PlusIcon() {
