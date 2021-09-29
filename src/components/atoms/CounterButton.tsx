@@ -5,16 +5,6 @@ import {theme} from '../../theme';
 import {TouchableHighlight} from 'react-native';
 import {t} from '../../styles';
 
-function validateCount(count: number) {
-  if (count <= 0) {
-    return 1;
-  }
-  if (count >= 100) {
-    return 99;
-  }
-  return count;
-}
-
 function PlusIcon() {
   return (
     <Svg width={12} height={12} fill="none">
