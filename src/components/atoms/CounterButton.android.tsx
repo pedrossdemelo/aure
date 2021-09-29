@@ -91,7 +91,18 @@ export function CounterButton() {
           <MinusIcon />
         </View>
       </TouchableNativeFeedback>
-      <Text style={[t.smallButton]}>{count}</Text>
+      {/* <View style={{width: 17 * (fontScale <= 1 ? 1 : fontScale * 0.85), alignItems: 'center'}}> */}
+      <Text
+        style={[
+          t.smallButton,
+          {
+            minWidth: 17 * (fontScale <= 1 ? 1 : fontScale * 0.85),
+            textAlign: 'center',
+          },
+        ]}>
+        {count}
+      </Text>
+      {/* </View> */}
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.Ripple(
           theme.colors.buttonRipple.add,
