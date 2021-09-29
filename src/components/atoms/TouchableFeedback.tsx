@@ -17,6 +17,9 @@ export interface TouchableFeedbackProps {
   activeOpacity?: number;
 }
 
+/**
+ * @deprecated
+ */
 export function TouchableFeedback({
   children,
   onPress,

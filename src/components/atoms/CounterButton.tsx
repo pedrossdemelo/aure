@@ -5,6 +5,16 @@ import {theme} from '../../theme';
 import {TouchableHighlight} from 'react-native';
 import {t} from '../../styles';
 
+function validateCount(count: number) {
+  if (count <= 0) {
+    return 1;
+  }
+  if (count >= 100) {
+    return 99;
+  }
+  return count;
+}
+
 function PlusIcon() {
   return (
     <Svg width={12} height={12} fill="none">
@@ -35,6 +45,15 @@ function MinusIcon() {
 
 export function CounterButton() {
   const [count, setCount] = useState(1);
+  function validSetCount(currentCount: number, operation: number) {
+    if (currentCount <= 1 && operation < 0) {
+      return setCount(1);
+    }
+    if (currentCount >= 99 && operation > 0) {
+      return setCount(99);
+    }
+    return setCount(currentCount + operation);
+  }
   const fontScale = useWindowDimensions().fontScale;
 
   const smallButtonHeight =
@@ -71,7 +90,7 @@ export function CounterButton() {
       <TouchableHighlight
         underlayColor={theme.colors.buttonRipple.remove}
         activeOpacity={2 / 3}
-        onPress={() => setCount(count - 1)}
+        onPress={() => validSetCount(count, -1)}
         hitSlop={{
           bottom: theme.spacing.s,
           top: theme.spacing.s,
@@ -90,10 +109,19 @@ export function CounterButton() {
           <MinusIcon />
         </View>
       </TouchableHighlight>
-      <Text style={[t.smallButton]}>{count}</Text>
+      <Text
+        style={[
+          t.smallButton,
+          {
+            minWidth: 17 * (fontScale <= 1 ? 1 : fontScale * 0.85),
+            textAlign: 'center',
+          },
+        ]}>
+        {count}
+      </Text>
       <TouchableHighlight
         underlayColor={theme.colors.buttonRipple.add}
-        onPress={() => setCount(count + 1)}
+        onPress={() => validSetCount(count, +1)}
         activeOpacity={2 / 3}
         hitSlop={{
           bottom: theme.spacing.s,

@@ -36,6 +36,15 @@ function MinusIcon() {
 export function CounterButton() {
   const [count, setCount] = useState(1);
   const fontScale = useWindowDimensions().fontScale;
+  function validSetCount(currentCount: number, operation: number) {
+    if (currentCount <= 1 && operation < 0) {
+      return setCount(1);
+    }
+    if (currentCount >= 99 && operation > 0) {
+      return setCount(99);
+    }
+    return setCount(currentCount + operation);
+  }
 
   const smallButtonHeight =
     theme.fontSize.smallButton * 1.2 * fontScale +
@@ -74,7 +83,7 @@ export function CounterButton() {
           true,
         )}
         useForeground
-        onPress={() => setCount(count - 1)}
+        onPress={() => validSetCount(count, -1)}
         hitSlop={{
           bottom: theme.spacing.s,
           top: theme.spacing.s,
@@ -91,7 +100,6 @@ export function CounterButton() {
           <MinusIcon />
         </View>
       </TouchableNativeFeedback>
-      {/* <View style={{width: 17 * (fontScale <= 1 ? 1 : fontScale * 0.85), alignItems: 'center'}}> */}
       <Text
         style={[
           t.smallButton,
@@ -102,14 +110,13 @@ export function CounterButton() {
         ]}>
         {count}
       </Text>
-      {/* </View> */}
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.Ripple(
           theme.colors.buttonRipple.add,
           true,
         )}
         useForeground
-        onPress={() => setCount(count + 1)}
+        onPress={() => validSetCount(count, +1)}
         hitSlop={{
           bottom: theme.spacing.s,
           top: theme.spacing.s,

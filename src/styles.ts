@@ -1,4 +1,4 @@
-import {Dimensions, Platform, ScaledSize, StyleSheet} from 'react-native';
+import {Platform, ScaledSize, StyleSheet} from 'react-native';
 import {EdgeInsets} from 'react-native-safe-area-context';
 import {theme} from './theme';
 
@@ -26,6 +26,18 @@ export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
   });
 
 export const v = StyleSheet.create({
+  // Component style for shadows
+  shadow: {
+    elevation: Platform.OS === 'android' && Platform.Version < 28 ? 1 : 3,
+    shadowColor: theme.colors.shadow,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 2.5,
+  },
+  // Component styles for the home screen
   logoContainer: {
     marginVertical: theme.spacing.m,
     alignItems: 'center',
@@ -47,17 +59,6 @@ export const v = StyleSheet.create({
 
   sectionContainer: {
     marginVertical: theme.spacing.s,
-  },
-
-  shadow: {
-    elevation: Platform.OS === 'android' && Platform.Version < 28 ? 1 : 3,
-    shadowColor: theme.colors.shadow,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 2.5,
   },
 
   discoverCard: {
@@ -124,6 +125,8 @@ export const v = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  //Component styles for bag screen
+  
 });
 
 export const t = StyleSheet.create({
@@ -139,6 +142,11 @@ export const t = StyleSheet.create({
     fontSize: theme.fontSize.title,
     color: theme.colors.textPrimary,
     lineHeight: theme.fontSize.title * 1.5,
+  },
+
+  titleMargin: {
+    marginBottom: theme.spacing.xxs,
+    marginHorizontal: theme.spacing.l,
   },
 
   title2: {
@@ -175,11 +183,6 @@ export const t = StyleSheet.create({
     marginHorizontal: theme.spacing.xxs,
     textAlign: 'right',
     flex: 1,
-  },
-
-  titleMargin: {
-    marginBottom: theme.spacing.xxs,
-    marginHorizontal: theme.spacing.l,
   },
 
   discoverCardTextAlignment: {

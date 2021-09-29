@@ -1,5 +1,11 @@
 import React from 'react';
-import {useWindowDimensions, View, Text, Dimensions} from 'react-native';
+import {
+  useWindowDimensions,
+  View,
+  Text,
+  Dimensions,
+  Platform,
+} from 'react-native';
 import {ImageTouchableFeedback} from '../components/atoms/ImageTouchableFeedback';
 import {t, v} from '../styles';
 import {theme} from '../theme';
@@ -140,11 +146,12 @@ function BagItem() {
 export default function Bag() {
   const insets = useSafeAreaInsets();
   return (
-    <ScrollView style={{marginTop: insets.top}}>
-      <View
-        style={{alignItems: 'center', justifyContent: 'center', height: 100}}>
-        <Text>Playground</Text>
-      </View>
+    <ScrollView
+      style={{marginTop: insets.top}}
+      showsVerticalScrollIndicator={false}
+      overScrollMode={
+        Platform.OS === 'android' && Platform.Version < 31 ? 'never' : 'always'
+      }>
       <BagItem />
       <BagItem />
       <BagItem />
