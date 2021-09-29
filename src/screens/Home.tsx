@@ -1,30 +1,10 @@
 import React from 'react';
-
-import {
-  Text,
-  View,
-  useWindowDimensions,
-  Platform,
-  StyleProp,
-  Dimensions,
-} from 'react-native';
-
-import FastImage from 'react-native-fast-image';
-
-import {useNavigation} from '@react-navigation/native';
-
+import {Text, View, useWindowDimensions, Platform} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
 import AureLogo from '../assets/icons/AureLogo';
-
 import {theme} from '../theme';
-
 import {t, v, getHookedStyles} from '../styles';
-
-import {TouchableFeedback} from '../components/atoms/TouchableFeedback';
-
 import {ImageTouchableFeedback} from '../components/atoms/ImageTouchableFeedback';
 
 export const Placeholder =

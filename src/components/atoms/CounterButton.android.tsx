@@ -3,103 +3,73 @@ import {View, Text, useWindowDimensions} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import {theme} from '../../theme';
 import {TouchableNativeFeedback} from 'react-native';
-import {t} from '../../styles';
+import {t, v} from '../../styles';
+import {MinusIcon} from '../../assets/icons/MinusIcon';
+import {PlusIcon} from '../../assets/icons/PlusIcon';
 
-function PlusIcon() {
-  return (
-    <Svg width={12} height={12} fill="none">
-      <Path
-        d="M1 6h10M6 11V1"
-        stroke={theme.colors.textPrimary}
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </Svg>
-  );
+//TODO: Merge counterbutton android and ios
+interface IconButtonProps {
+  children: JSX.Element;
+  onPress?: () => void;
+  onLongPress?: () => void;
 }
-
-function MinusIcon() {
+function OperationIconButton({
+  children,
+  onPress,
+  onLongPress,
+}: IconButtonProps) {
+  const fontScale = useWindowDimensions().fontScale;
+  const smallButtonHeight =
+    theme.fontSize.smallButton * 1.2 * fontScale +
+    (32 - theme.fontSize.smallButton * 1.2);
   return (
-    <Svg width={12} height={12} fill="none">
-      <Path
-        d="M1 6h10"
-        stroke={theme.colors.textPrimary}
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </Svg>
+    <TouchableNativeFeedback
+      background={TouchableNativeFeedback.Ripple(
+        theme.colors.buttonRipple.remove,
+        true,
+      )}
+      useForeground
+      onPress={onPress}
+      onLongPress={onLongPress}
+      hitSlop={v.smallHitSlop}>
+      <View
+        style={[
+          v.center,
+          {
+            height: smallButtonHeight,
+            width: smallButtonHeight,
+          },
+        ]}>
+        {children}
+      </View>
+    </TouchableNativeFeedback>
   );
 }
 
 export function CounterButton() {
   const [count, setCount] = useState(1);
-  const fontScale = useWindowDimensions().fontScale;
   function validSetCount(currentCount: number, operation: number) {
     if (currentCount <= 1 && operation < 0) {
-      return setCount(1);
+      return;
     }
     if (currentCount >= 99 && operation > 0) {
-      return setCount(99);
+      return;
     }
     return setCount(currentCount + operation);
   }
+  const fontScale = useWindowDimensions().fontScale;
 
   const smallButtonHeight =
     theme.fontSize.smallButton * 1.2 * fontScale +
     (32 - theme.fontSize.smallButton * 1.2);
   return (
-    <View
-      style={{
-        padding: theme.spacing.s,
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}>
-      <View
-        style={[
-          {
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            left: 0,
-            bottom: 0,
-            justifyContent: 'center',
-          },
-        ]}>
-        <View
-          style={{
-            marginHorizontal: theme.spacing.s,
-            borderRadius: 999,
-            flex: 1,
-            maxHeight: smallButtonHeight,
-            backgroundColor: theme.colors.touchablePrimary,
-          }}
-        />
+    <View style={v.counterButtonContainer}>
+      <View style={v.absoluteFillContainerCenter}>
+        <View style={[v.counterButtonPill, {maxHeight: smallButtonHeight}]} />
       </View>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple(
-          theme.colors.buttonRipple.remove,
-          true,
-        )}
-        useForeground
-        onPress={() => validSetCount(count, -1)}
-        hitSlop={{
-          bottom: theme.spacing.s,
-          top: theme.spacing.s,
-          left: theme.spacing.s,
-          right: theme.spacing.s,
-        }}>
-        <View
-          style={{
-            height: smallButtonHeight,
-            width: smallButtonHeight,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <MinusIcon />
-        </View>
-      </TouchableNativeFeedback>
+      <OperationIconButton onPress={() => validSetCount(count, -1)}>
+        <MinusIcon />
+      </OperationIconButton>
       <Text
         style={[
           t.smallButton,
@@ -110,29 +80,9 @@ export function CounterButton() {
         ]}>
         {count}
       </Text>
-      <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple(
-          theme.colors.buttonRipple.add,
-          true,
-        )}
-        useForeground
-        onPress={() => validSetCount(count, +1)}
-        hitSlop={{
-          bottom: theme.spacing.s,
-          top: theme.spacing.s,
-          left: theme.spacing.s,
-          right: theme.spacing.s,
-        }}>
-        <View
-          style={{
-            height: smallButtonHeight,
-            width: smallButtonHeight,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <PlusIcon />
-        </View>
-      </TouchableNativeFeedback>
+      <OperationIconButton onPress={() => validSetCount(count, +1)}>
+        <PlusIcon />
+      </OperationIconButton>
     </View>
   );
 }

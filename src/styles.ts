@@ -2,7 +2,11 @@ import {Platform, ScaledSize, StyleSheet} from 'react-native';
 import {EdgeInsets} from 'react-native-safe-area-context';
 import {theme} from './theme';
 
-export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
+export const getHookedStyles = (
+  insets: EdgeInsets,
+  window: ScaledSize,
+  fontScale,
+) =>
   StyleSheet.create({
     translucentStatusBar: {
       height: insets.top,
@@ -26,7 +30,7 @@ export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
   });
 
 export const v = StyleSheet.create({
-  // Component style for shadows
+  // Component style for general purpose
   shadow: {
     elevation: Platform.OS === 'android' && Platform.Version < 28 ? 1 : 3,
     shadowColor: theme.colors.shadow,
@@ -36,6 +40,18 @@ export const v = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 2.5,
+  },
+
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  smallHitSlop: {
+    bottom: theme.spacing.s,
+    top: theme.spacing.s,
+    left: theme.spacing.s,
+    right: theme.spacing.s,
   },
   // Component styles for the home screen
   logoContainer: {
@@ -125,8 +141,28 @@ export const v = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  //Component styles for bag screen
-  
+  //Component styles for CounterButton
+  counterButtonContainer: {
+    padding: theme.spacing.s,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  absoluteFillContainerCenter: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    left: 0,
+    bottom: 0,
+    justifyContent: 'center',
+  },
+
+  counterButtonPill: {
+    marginHorizontal: theme.spacing.s,
+    borderRadius: 999,
+    flex: 1,
+    backgroundColor: theme.colors.touchablePrimary,
+  },
 });
 
 export const t = StyleSheet.create({
