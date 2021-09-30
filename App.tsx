@@ -13,6 +13,7 @@ import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import Tabs from './src/navigation/tabs';
 import {enableScreens} from 'react-native-screens';
+import {theme} from './src/theme';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +23,8 @@ export default function App() {
   SystemNavigationBar.setNavigationBarContrastEnforced(false);
   StatusBar.setBarStyle('dark-content');
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
+    <GestureHandlerRootView
+      style={{flex: 1, backgroundColor: theme.colors.background}}>
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator
