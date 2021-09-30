@@ -7,6 +7,7 @@ import {theme} from '../theme';
 import {t, v, getHookedStyles} from '../styles';
 import {ImageTouchableFeedback} from '../components/atoms/ImageTouchableFeedback';
 
+//TODO: put components in the molecules folder
 export const Placeholder =
   'https://media.tiffany.com/is/image/Tiffany/EcomItemL2/anel-de-noivado-tiffany-soleste-em-platina-com-lapidao-brilhante-61100415_995693_ED_M.jpg?&op_usm=1.75,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&';
 interface Children {
