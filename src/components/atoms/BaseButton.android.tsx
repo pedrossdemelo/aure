@@ -1,20 +1,28 @@
 import React from 'react';
-import {View, Text, StyleProp, ColorValue, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  StyleProp,
+  ColorValue,
+  useWindowDimensions,
+} from 'react-native';
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
-import {t} from '../../styles';
 import {theme} from '../../theme';
 
-interface SmallButtonProps {
+interface BaseButtonProps {
   title?: string;
   onPress: () => void;
   onLongPress?: () => void;
   style?: StyleProp;
   pressColor?: ColorValue;
   styleInternal?: StyleProp;
+  textStyle: StyleProp;
+  minHeight: number;
+  color: ColorValue;
   children?: JSX.Element[] | JSX.Element;
 }
 
-export function SmallButton({
+export function BaseButton({
   title,
   onPress,
   style,
@@ -22,8 +30,11 @@ export function SmallButton({
   children,
   onLongPress,
   pressColor,
-}: SmallButtonProps) {
-  const fontScale = Dimensions.get('screen').fontScale;
+  minHeight,
+  textStyle,
+  color,
+}: BaseButtonProps) {
+  const fontScale = useWindowDimensions().fontScale;
   return (
     <View
       style={[
@@ -31,9 +42,9 @@ export function SmallButton({
           overflow: 'hidden',
           borderRadius: 999,
           height:
-            theme.fontSize.smallButton * 1.2 * fontScale +
-            (32 - theme.fontSize.smallButton * 1.2),
-          minHeight: 32,
+            textStyle.lineHeight * fontScale +
+            (minHeight - textStyle.lineHeight),
+          minHeight: minHeight,
         },
         style,
       ]}>
@@ -53,13 +64,12 @@ export function SmallButton({
                   alignItems: 'center',
                   justifyContent: 'center',
                   paddingHorizontal:
-                    12 * (fontScale <= 1 ? 1 : fontScale * 0.85),
-                  paddingVertical: 7.3,
+                    0.375 * minHeight * (fontScale <= 1 ? 1 : fontScale * 0.85),
                 }
               : null,
-            {height: '100%', backgroundColor: theme.colors.touchablePrimary},
+            {height: '100%', backgroundColor: color},
           ]}>
-          {title ? <Text style={[t.smallButton]}>{title}</Text> : null}
+          {title ? <Text style={[textStyle]}>{title}</Text> : null}
           {children}
         </View>
       </TouchableNativeFeedback>

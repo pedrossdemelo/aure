@@ -2,16 +2,19 @@ import React from 'react';
 import Svg, {Path} from 'react-native-svg';
 import {theme} from '../../theme';
 
-export function PlusIcon() {
+export function ArrowM() {
   return (
-    <Svg width={12} height={12} fill="none">
+    <Svg width={20} height={20} fill="none">
       <Path
-        d="M1 6h10M6 11V1"
+        d="M12 16l6-6.001-6-6.002M2 10h16"
         stroke={theme.colors.textPrimary}
-        strokeWidth={2}
+        strokeWidth={2.5}
+        strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
     </Svg>
   );
 }
+
+export default ArrowM;

@@ -2,11 +2,7 @@ import {Platform, ScaledSize, StyleSheet} from 'react-native';
 import {EdgeInsets} from 'react-native-safe-area-context';
 import {theme} from './theme';
 
-export const getHookedStyles = (
-  insets: EdgeInsets,
-  window: ScaledSize,
-  fontScale,
-) =>
+export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
   StyleSheet.create({
     translucentStatusBar: {
       height: insets.top,
@@ -53,6 +49,38 @@ export const v = StyleSheet.create({
     left: theme.spacing.s,
     right: theme.spacing.s,
   },
+  // Component styles for BagItem.tsx
+  bagItemLineSeparator: {
+    height: theme.spacing.xxs,
+    backgroundColor: theme.colors.touchablePrimary,
+    marginHorizontal: theme.spacing.m,
+    borderRadius: theme.spacing.xxs / 2,
+  },
+
+  priceAndCounterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  bagItemPrice: {
+    margin: theme.spacing.s,
+    fontSize: theme.fontSize.price,
+    color: theme.colors.textPrimary,
+    lineHeight: theme.fontSize.price * 1.2,
+    fontFamily: 'Lato-Bold',
+    marginBottom: theme.spacing.xs + theme.spacing.s + 0.5,
+  },
+
+  bagItemButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  bagItemRightButtonsContainer: {
+    flexDirection: 'row',
+    margin: theme.spacing.xs,
+  },
   // Component styles for the home screen
   logoContainer: {
     marginVertical: theme.spacing.m,
@@ -86,6 +114,11 @@ export const v = StyleSheet.create({
     flexDirection: 'row',
     aspectRatio: 13 / 5,
     marginHorizontal: theme.spacing.s,
+  },
+
+  imageTouchableAlignmentRight: {
+    alignItems: 'flex-end',
+    flexDirection: 'row-reverse',
   },
 
   featuredCollectionImage: {
@@ -163,6 +196,19 @@ export const v = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.touchablePrimary,
   },
+  //Component styles for PricePreview.tsx
+  pricePreviewContainer: {
+    paddingHorizontal: theme.spacing.m,
+    paddingVertical: theme.spacing.m - 2,
+    paddingBottom: theme.spacing.m - 6,
+    borderBottomWidth: theme.spacing.xxs,
+    borderBottomColor: theme.colors.touchablePrimary,
+  },
+
+  pricePreviewSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 
 export const t = StyleSheet.create({
@@ -221,7 +267,7 @@ export const t = StyleSheet.create({
     flex: 1,
   },
 
-  discoverCardTextAlignment: {
+  imageTouchableTextAlignmentRight: {
     paddingHorizontal: theme.spacing.s,
     paddingVertical: theme.spacing.xxs,
     textAlign: 'right',
@@ -233,5 +279,12 @@ export const t = StyleSheet.create({
     fontSize: theme.fontSize.smallButton,
     color: theme.colors.textPrimary,
     lineHeight: theme.fontSize.smallButton * 1.2,
+  },
+
+  mediumButton: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: theme.fontSize.mediumButton,
+    color: theme.colors.textPrimary,
+    lineHeight: theme.fontSize.mediumButton * 1.2,
   },
 });

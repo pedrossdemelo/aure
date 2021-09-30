@@ -61,9 +61,16 @@ export const theme = {
     header: 25,
     title: 19,
     title2: 15,
-    price: 14,
-    smallButton: 14.5,
     paragraph: 13,
     paragraph2: 11,
+    price: 14,
+    smallButton: 14.5,
+    mediumButton: 16,
+  },
+
+  buttons: {
+    small: 32,
+    medium: 38,
+    large: 44,
   },
 };
