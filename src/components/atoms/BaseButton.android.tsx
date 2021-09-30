@@ -17,6 +17,7 @@ interface BaseButtonProps {
   pressColor?: ColorValue;
   styleInternal?: StyleProp;
   textStyle: StyleProp;
+  shadow?: StyleProp;
   minHeight: number;
   color: ColorValue;
   children?: JSX.Element[] | JSX.Element;
@@ -33,6 +34,7 @@ export function BaseButton({
   minHeight,
   textStyle,
   color,
+  shadow,
 }: BaseButtonProps) {
   const fontScale = useWindowDimensions().fontScale;
   return (
@@ -47,6 +49,7 @@ export function BaseButton({
           minHeight: minHeight,
         },
         style,
+        shadow,
       ]}>
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.Ripple(

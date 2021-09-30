@@ -1,14 +1,15 @@
 import React from 'react';
-import {useWindowDimensions, Platform} from 'react-native';
+import {useWindowDimensions, Platform, StyleProp} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {getHookedStyles} from '../../styles';
 
 interface MainScrollViewProps {
   children?: JSX.Element[] | JSX.Element;
+  style?: StyleProp;
 }
 
-export function MainScrollView({children}: MainScrollViewProps) {
+export function MainScrollView({children, style}: MainScrollViewProps) {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
   const hs = getHookedStyles(insets, window);
@@ -18,7 +19,7 @@ export function MainScrollView({children}: MainScrollViewProps) {
       overScrollMode={
         Platform.OS === 'android' && Platform.Version < 31 ? 'never' : 'always'
       }
-      contentContainerStyle={[hs.mainScrollViewContentContainer]}>
+      contentContainerStyle={[hs.mainScrollViewContentContainer, style]}>
       {children}
     </ScrollView>
   );
