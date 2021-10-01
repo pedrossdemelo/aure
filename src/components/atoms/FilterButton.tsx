@@ -1,18 +1,18 @@
 import React from 'react';
 import {Text, useWindowDimensions} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {ArrowM} from '../../assets/icons/ArrowM';
+import FilterIconM from '../../assets/icons/FilterIconM';
 import {t, v} from '../../styles';
 import {theme} from '../../theme';
 import {MediumButton} from './MediumButton';
 
-export function CheckoutButton() {
+export function FilterButton() {
   const fontScale = useWindowDimensions().fontScale;
   const insets = useSafeAreaInsets();
   return (
     <MediumButton
       onPress={() => {
-        console.log('Checkout Button Pressed');
+        console.log('Filter Button Pressed');
       }}
       style={[
         {
@@ -45,9 +45,9 @@ export function CheckoutButton() {
       <Text
         style={[t.mediumButton, {marginRight: theme.spacing.s}]}
         numberOfLines={1}>
-        Fechar pedido
+        Filtro
       </Text>
-      <ArrowM />
+      <FilterIconM />
     </MediumButton>
   );
 }

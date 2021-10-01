@@ -4,7 +4,7 @@ import {t} from '../../styles';
 import {theme} from '../../theme';
 import {BaseButton} from './BaseButton';
 
-interface SmallButtonProps {
+interface MediumButtonProps {
   title?: string;
   onPress: () => void;
   onLongPress?: () => void;
@@ -15,7 +15,7 @@ interface SmallButtonProps {
   children?: JSX.Element[] | JSX.Element;
 }
 
-export function SmallButton({
+export function MediumButton({
   title,
   onPress,
   style,
@@ -23,16 +23,16 @@ export function SmallButton({
   children,
   onLongPress,
   shadow,
-}: SmallButtonProps) {
+}: MediumButtonProps) {
   return (
     <BaseButton
       onPress={onPress}
-      color={theme.colors.touchablePrimary}
+      color={theme.colors.touchableSecondary}
       onLongPress={onLongPress}
-      textStyle={t.smallButton}
+      textStyle={t.mediumButton}
       pressColor={theme.colors.background}
       style={style}
-      minHeight={theme.buttons.small}
+      minHeight={theme.buttons.medium}
       title={title}
       shadow={shadow}
       styleInternal={styleInternal}>
