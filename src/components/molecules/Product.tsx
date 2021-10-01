@@ -167,7 +167,11 @@ export function ProductFromList({
   };
 
   return (
-    <View style={[hs.productContainer, {marginBottom: theme.spacing.s}]}>
+    <View
+      style={[
+        hs.productContainer,
+        {marginBottom: theme.spacing.m, width: (window.width - 40) / 2},
+      ]}>
       <ProductCard />
       <ProductPrice />
       <ProductDescription />
@@ -250,7 +254,11 @@ function ProductFromList2({
   };
 
   return (
-    <View style={[hs.productContainer, {marginBottom: theme.spacing.s}]}>
+    <View
+      style={[
+        hs.productContainer,
+        {marginBottom: theme.spacing.m, width: (window.width - 40) / 2},
+      ]}>
       <ProductCard />
       <ProductPrice />
       <ProductDescription />

@@ -39,7 +39,10 @@ function fknLol() {
       price: makeid(8),
       installmentPrice: makeid(4),
       image:
-        Placeholder,
+        n % 2
+          ? `https://source.unsplash.com/random/${makeid(2) + i}`
+          : `https://source.unsplash.com/random/${makeid(2) + n}`,
+      key: n,
     });
   }
   return;
@@ -55,14 +58,20 @@ function Catalog() {
     <>
       <View style={{flex: 1}}>
         <FlatList
-          contentContainerStyle={[hs.mainScrollViewContentContainer, {paddingBottom: 200}]}
-          style={{paddingHorizontal: theme.spacing.xs}}
+          showsVerticalScrollIndicator={false}
+          overScrollMode={
+            Platform.OS === 'android' && Platform.Version < 31
+              ? 'never'
+              : 'always'
+          }
+          contentContainerStyle={[
+            hs.mainScrollViewContentContainer,
+            {paddingBottom: 200},
+          ]}
+          style={{paddingHorizontal: theme.spacing.s + 4}}
           numColumns={2}
           data={productData}
-          initialNumToRender={8}
-          removeClippedSubviews
-          windowSize={11}
-          maxToRenderPerBatch={8}
+          keyExtractor={item => item.key}
           renderItem={({item}) => (
             <ProductFromList2
               image={item.image}

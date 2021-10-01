@@ -1,11 +1,7 @@
 import React from 'react';
-import {View, Platform, ColorValue, StyleProp} from 'react-native';
-import {
-  TouchableNativeFeedback,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import {View, ColorValue, StyleProp} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import FastImage from 'react-native-fast-image';
-import {theme} from '../../theme';
 
 interface ImageTouchableFeedbackProps {
   source: string;

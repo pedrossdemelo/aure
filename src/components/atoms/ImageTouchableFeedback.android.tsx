@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Platform, ColorValue, StyleProp} from 'react-native';
+import {View, Platform, ColorValue, StyleProp, ImageBackground} from 'react-native';
 import {
   TouchableNativeFeedback,
   TouchableOpacity,
