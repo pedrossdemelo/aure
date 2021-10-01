@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, useWindowDimensions} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {ArrowM} from '../../assets/icons/ArrowM';
+import {ArrowIconM} from '../../assets/icons/ArrowIconM';
 import {t, v} from '../../styles';
 import {theme} from '../../theme';
 import {MediumButton} from './MediumButton';
@@ -38,16 +38,16 @@ export function CheckoutButton() {
             0.375 *
               theme.buttons.medium *
               (fontScale <= 1 ? 1 : fontScale * 0.85) -
-            1,
+            1.2,
           flexDirection: 'row',
         },
       ]}>
       <Text
-        style={[t.mediumButton, {marginRight: theme.spacing.s}]}
+        style={[t.mediumButton, {marginRight: theme.spacing.s, marginTop: 1}]}
         numberOfLines={1}>
         Fechar pedido
       </Text>
-      <ArrowM />
+      <ArrowIconM />
     </MediumButton>
   );
 }

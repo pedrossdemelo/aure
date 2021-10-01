@@ -4,9 +4,9 @@ import {theme} from '../../theme';
 
 export function PlusIcon() {
   return (
-    <Svg width={12} height={12} fill="none">
+    <Svg width={14} height={14} fill="none">
       <Path
-        d="M1 6h10M6 11V1"
+        d="M2 7h10M7 12V2"
         stroke={theme.colors.textPrimary}
         strokeWidth={2}
         strokeLinecap="round"

@@ -21,7 +21,7 @@ export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
 
     productContainer: {
       marginHorizontal: theme.spacing.xs,
-      width: (window.width - 16) / 2,
+      width: (window.width - 24) / 2,
     },
   });
 

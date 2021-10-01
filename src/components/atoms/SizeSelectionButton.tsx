@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, useWindowDimensions} from 'react-native';
-import {ArrowXS} from '../../assets/icons/ArrowXS';
+import {ArrowIconXS} from '../../assets/icons/ArrowIconXS';
 import {t} from '../../styles';
 import {theme} from '../../theme';
 import {SmallButton} from './SmallButton';
@@ -19,12 +19,17 @@ export function SizeSelectionButton() {
         justifyContent: 'space-between',
         paddingHorizontal:
           0.375 * theme.buttons.small * (fontScale <= 1 ? 1 : fontScale * 0.85),
+        paddingRight:
+          0.375 *
+            theme.buttons.small *
+            (fontScale <= 1 ? 1 : fontScale * 0.85) -
+          2,
         flexDirection: 'row',
       }}>
       <Text style={[t.smallButton]} numberOfLines={1}>
         Tam: 14
       </Text>
-      <ArrowXS />
+      <ArrowIconXS />
     </SmallButton>
   );
 }

@@ -43,7 +43,7 @@ export function FilterButton() {
         },
       ]}>
       <Text
-        style={[t.mediumButton, {marginRight: theme.spacing.s}]}
+        style={[t.mediumButton, {marginRight: theme.spacing.s, marginTop: 1}]}
         numberOfLines={1}>
         Filtro
       </Text>

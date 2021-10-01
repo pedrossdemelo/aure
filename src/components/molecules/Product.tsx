@@ -83,3 +83,179 @@ export function Product() {
     </View>
   );
 }
+
+interface ProductProps {
+  brand: string;
+  price: string;
+  installmentPrice: string;
+  name: string;
+  image: string;
+}
+
+export function ProductFromList({
+  brand,
+  price,
+  installmentPrice,
+  name,
+  image,
+}: ProductProps) {
+  const insets = useSafeAreaInsets();
+  const window = useWindowDimensions();
+  const hs = getHookedStyles(insets, window);
+
+  function ProductCard() {
+    function ProductDiscountTag() {
+      return null;
+    }
+
+    function ProductFavoriteButton() {
+      return null;
+    }
+
+    return (
+      <ImageTouchableFeedback
+        source={image}
+        style={[v.productCard]}
+        shadow={[v.shadow]}
+        pressColor={theme.colors.background}
+        onPress={() => {}}>
+        <ProductDiscountTag />
+        <ProductFavoriteButton />
+      </ImageTouchableFeedback>
+    );
+  }
+
+  function ProductPrice() {
+    function ProductOriginalPrice() {
+      return null;
+    }
+    function ProductCurrentPrice() {
+      return (
+        <Text style={[t.price]} numberOfLines={1}>
+          R$ {price}
+        </Text>
+      );
+    }
+
+    function ProductInstallmentPrice() {
+      return (
+        <Text style={[t.paragraph2, t.installmentPrice]} numberOfLines={1}>
+          12x R$ {installmentPrice}
+        </Text>
+      );
+    }
+
+    return (
+      <View style={[v.productPricingContainer]}>
+        <ProductCurrentPrice />
+        <ProductOriginalPrice />
+        <ProductInstallmentPrice />
+      </View>
+    );
+  }
+
+  const ProductDescription = () => {
+    return (
+      <View style={{flex: 1, marginHorizontal: theme.spacing.xs}}>
+        <Text style={[t.title2]} numberOfLines={2}>
+          {brand}
+          {'\n'}
+          <Text style={[t.paragraph]}>{name}</Text>
+        </Text>
+      </View>
+    );
+  };
+
+  return (
+    <View style={[hs.productContainer, {marginBottom: theme.spacing.s}]}>
+      <ProductCard />
+      <ProductPrice />
+      <ProductDescription />
+    </View>
+  );
+}
+
+function ProductFromList2({
+  brand,
+  price,
+  installmentPrice,
+  name,
+  image,
+}: ProductProps) {
+  const insets = useSafeAreaInsets();
+  const window = useWindowDimensions();
+  const hs = getHookedStyles(insets, window);
+
+  function ProductCard() {
+    function ProductDiscountTag() {
+      return null;
+    }
+
+    function ProductFavoriteButton() {
+      return null;
+    }
+
+    return (
+      <ImageTouchableFeedback
+        source={image}
+        style={[v.productCard]}
+        shadow={[v.shadow]}
+        pressColor={theme.colors.background}
+        onPress={() => {}}>
+        <ProductDiscountTag />
+        <ProductFavoriteButton />
+      </ImageTouchableFeedback>
+    );
+  }
+
+  function ProductPrice() {
+    function ProductOriginalPrice() {
+      return null;
+    }
+    function ProductCurrentPrice() {
+      return (
+        <Text style={[t.price]} numberOfLines={1}>
+          R$ {price}
+        </Text>
+      );
+    }
+
+    function ProductInstallmentPrice() {
+      return (
+        <Text style={[t.paragraph2, t.installmentPrice]} numberOfLines={1}>
+          12x R$ {installmentPrice}
+        </Text>
+      );
+    }
+
+    return (
+      <View style={[v.productPricingContainer]}>
+        <ProductCurrentPrice />
+        <ProductOriginalPrice />
+        <ProductInstallmentPrice />
+      </View>
+    );
+  }
+
+  const ProductDescription = () => {
+    return (
+      <View style={{flex: 1, marginHorizontal: theme.spacing.xs}}>
+        <Text style={[t.title2]} numberOfLines={2}>
+          {brand}
+          {'\n'}
+          <Text style={[t.paragraph]}>{name}</Text>
+        </Text>
+      </View>
+    );
+  };
+
+  return (
+    <View style={[hs.productContainer, {marginBottom: theme.spacing.s}]}>
+      <ProductCard />
+      <ProductPrice />
+      <ProductDescription />
+    </View>
+  );
+}
+
+export default React.memo(ProductFromList2);

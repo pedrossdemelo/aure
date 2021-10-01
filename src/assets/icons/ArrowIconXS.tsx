@@ -2,13 +2,14 @@ import React from 'react';
 import Svg, {Path} from 'react-native-svg';
 import {theme} from '../../theme';
 
-export function ArrowXS() {
+export function ArrowIconXS() {
   return (
-    <Svg width={12} height={12} fill="none">
+    <Svg width={14} height={14} fill="none">
       <Path
-        d="M2 4.8l3.293 3.674a.93.93 0 001.414 0L10 4.8"
-        stroke={theme.colors.textPrimary}
+        d="M3 5l3.293 3.675a.93.93 0 001.414 0L11 5"
+        stroke="#321A12"
         strokeWidth={2}
+        strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
