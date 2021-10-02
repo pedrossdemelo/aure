@@ -3,12 +3,17 @@ import {View, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AureLogo from '../assets/icons/AureLogo';
 import {FilterButton} from '../components/atoms/FilterButton';
+import {TranslucentHeader} from '../components/atoms/TransluscentHeader';
 import {theme} from '../theme';
+import {ProductFlatList} from './Catalog';
 
 function Favorites() {
   return (
     <>
-      <View style={{flex: 1}} />
+      <TranslucentHeader title={'Favoritos'} />
+      <View style={{flex: 1}}>
+        <ProductFlatList />
+      </View>
       <FilterButton />
     </>
   );

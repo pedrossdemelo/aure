@@ -7,12 +7,15 @@ import {PricePreview} from '../components/molecules/PricePreview';
 import {CheckoutButton} from '../components/atoms/CheckoutButton';
 import {theme} from '../theme';
 import {v} from '../styles';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {TranslucentHeader} from '../components/atoms/TransluscentHeader';
 
 export default function Bag() {
   return (
     <>
+      <TranslucentHeader title={'Bolsa'} />
       {Platform.OS === 'android' ? <TranslucentStatusBar /> : null}
-      <MainScrollView>
+      <MainScrollView style={{paddingTop: useSafeAreaInsets().top + 46}}>
         <PricePreview />
         <BagItem />
         <View style={v.bagItemLineSeparator} />

@@ -13,6 +13,16 @@ export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
       zIndex: 1,
     },
 
+    transluscentHeader: {
+      height: insets.top + 46,
+      paddingTop: insets.top,
+      width: '100%',
+      backgroundColor: theme.colors.translucent.background,
+      top: 0,
+      position: 'absolute',
+      zIndex: 2,
+    },
+
     mainScrollViewContentContainer: {
       paddingTop: insets.top,
       paddingBottom:
@@ -202,7 +212,8 @@ export const v = StyleSheet.create({
     paddingVertical: theme.spacing.m - 2,
     paddingBottom: theme.spacing.m - 6,
     borderBottomWidth: theme.spacing.xxs,
-    borderBottomColor: theme.colors.touchablePrimary,
+    borderTopWidth: theme.spacing.xxs,
+    borderColor: theme.colors.touchablePrimary,
   },
 
   pricePreviewSection: {
