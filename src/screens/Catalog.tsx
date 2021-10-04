@@ -8,6 +8,7 @@ import ProductFromList2, {
   ProductFromList,
 } from '../components/molecules/Product';
 import {getHookedStyles} from '../styles';
+import {sample} from '../assets/sample';
 
 import {theme} from '../theme';
 
@@ -34,8 +35,8 @@ function fknLol() {
       installmentPrice: makeid(4),
       image:
         n % 2 === 0
-          ? 'https://storage.cloudconvert.com/tasks/a2f51e1f-8232-4847-8ef4-77e7739be1dc/tiffany-true-engagement-ring-with-a-tiffany-true-diamond-in-platinum-63594873_996049_ED_M.webp?AWSAccessKeyId=cloudconvert-production&Expires=1633232857&Signature=stoUFtX%2F4KhIYyFeu6pAzNnel3I%3D&response-content-disposition=inline%3B%20filename%3D%22tiffany-true-engagement-ring-with-a-tiffany-true-diamond-in-platinum-63594873_996049_ED_M.webp%22&response-content-type=image%2Fwebp'
-          : 'https://media.tiffany.com/is/image/Tiffany/EcomItemL2/tiffany-true-engagement-ring-with-a-tiffany-true-diamond-in-platinum-63594873_996049_ED_M.jpg?&op_usm=1.75,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&',
+          ? 'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Tiffany%20T1/Anel_largo_True_nvkyok.webp'
+          : 'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Tiffany%20T1/Anel_Wire_com_diamantes_dfcplg.webp',
       key: n,
     });
   }
@@ -62,16 +63,14 @@ export function ProductFlatList() {
       numColumns={2}
       initialNumToRender={20}
       maxToRenderPerBatch={48}
-      data={productData}
+      data={sample}
       ListFooterComponent={() => (
         <View style={{height: theme.buttons.medium + theme.spacing.xs}} />
       )}
-      keyExtractor={item => item.key}
       renderItem={({item}) => (
         <ProductFromList2
-          image={item.image}
+          image={item.thumbnail}
           price={item.price}
-          installmentPrice={item.installmentPrice}
           name={item.name}
           brand={item.brand}
         />

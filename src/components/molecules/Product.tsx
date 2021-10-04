@@ -87,18 +87,12 @@ export function Product() {
 interface ProductProps {
   brand: string;
   price: string;
-  installmentPrice: string;
+  installmentPrice?: string;
   name: string;
   image: string;
 }
 
-export function ProductFromList({
-  brand,
-  price,
-  installmentPrice,
-  name,
-  image,
-}: ProductProps) {
+export function ProductFromList({brand, price, name, image}: ProductProps) {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
   const hs = getHookedStyles(insets, window);
@@ -140,7 +134,7 @@ export function ProductFromList({
     function ProductInstallmentPrice() {
       return (
         <Text style={[t.paragraph2, t.installmentPrice]} numberOfLines={1}>
-          12x R$ {installmentPrice}
+          12x R$ {Number(price) / 12}
         </Text>
       );
     }
@@ -179,13 +173,7 @@ export function ProductFromList({
   );
 }
 
-function ProductFromList2({
-  brand,
-  price,
-  installmentPrice,
-  name,
-  image,
-}: ProductProps) {
+function ProductFromList2({brand, price, name, image}: ProductProps) {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
   const hs = getHookedStyles(insets, window);
@@ -227,7 +215,7 @@ function ProductFromList2({
     function ProductInstallmentPrice() {
       return (
         <Text style={[t.paragraph2, t.installmentPrice]} numberOfLines={1}>
-          12x R$ {installmentPrice}
+          12x R$ {Math.round(Number(price) / 12)}
         </Text>
       );
     }

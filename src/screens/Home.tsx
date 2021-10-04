@@ -11,7 +11,7 @@ import {Platform} from 'react-native';
 
 //TODO: reuse base components like "ForYouSection"
 export const Placeholder =
-  'https://media.tiffany.com/is/image/Tiffany/EcomItemL2/anel-de-noivado-tiffany-soleste-em-platina-com-lapidao-brilhante-61100415_995693_ED_M.jpg?&op_usm=1.75,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&';
+  'https://res.cloudinary.com/aure/image/upload/v1633370682/Chanel%20Thumbnails/Coco%20Crush/Anel_Coco_Crush_2_c25qxu.webp';
 
 function Home() {
   return (
