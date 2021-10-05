@@ -13,6 +13,8 @@ interface SmallButtonProps {
   styleInternal?: StyleProp;
   shadow?: StyleProp;
   children?: JSX.Element[] | JSX.Element;
+  color?: ColorValue;
+  textColor?: ColorValue;
 }
 
 export function SmallButton({
@@ -23,13 +25,20 @@ export function SmallButton({
   children,
   onLongPress,
   shadow,
+  color,
+  textColor,
 }: SmallButtonProps) {
   return (
     <BaseButton
       onPress={onPress}
-      color={theme.colors.touchablePrimary}
+      color={color || theme.colors.touchablePrimary}
       onLongPress={onLongPress}
-      textStyle={t.smallButton}
+      textStyle={{
+        fontFamily: 'Lato-SemiBold',
+        fontSize: theme.fontSize.smallButton,
+        color: textColor || theme.colors.textPrimary,
+        lineHeight: theme.fontSize.smallButton * 1.2,
+      }}
       pressColor={theme.colors.background}
       style={style}
       minHeight={theme.buttonSize.small}

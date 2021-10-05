@@ -73,7 +73,7 @@ export const theme = {
     small: 32,
     medium: 38,
     large: 44,
-    invisible: 40,
+    invisible: 42,
   },
 
   barSize: {

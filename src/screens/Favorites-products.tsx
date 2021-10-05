@@ -1,11 +1,16 @@
 import React from 'react';
 import {View, Text, useWindowDimensions, StyleSheet} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  ScrollView,
+  TouchableWithoutFeedback,
+} from 'react-native-gesture-handler';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import ArrowIconS from '../assets/icons/ArrowIconS';
 import AureLogo from '../assets/icons/AureLogo';
 import {FilterButton} from '../components/atoms/FilterButton';
 import {MediumButton} from '../components/atoms/MediumButton';
 import {TranslucentHeader} from '../components/atoms/TransluscentHeader';
+import {t} from '../styles';
 import {theme} from '../theme';
 import {ProductFlatList} from './Catalog';
 
@@ -22,6 +27,23 @@ const v = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+function InvisibleButton({title}) {
+  return (
+    <TouchableWithoutFeedback
+      style={{
+        height: theme.buttonSize.invisible,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: theme.spacing.m,
+        backgroundColor: theme.colors.background,
+        justifyContent: 'space-between',
+      }}>
+      <Text style={t.mediumButton}>{title}</Text>
+      <ArrowIconS style={{transform: [{rotate: '270deg'}]}} />
+    </TouchableWithoutFeedback>
+  );
+}
 
 function Favorites() {
   return (
@@ -128,8 +150,22 @@ function Favorites() {
               </View>
             </View>
           </View>
-          <View style={{marginHorizontal: theme.spacing.m}}>
-            <MediumButton onPress={() => {}} color={theme.colors.foreground} textColor={theme.colors.background} title={'Adicionar à Bolsa'}/>
+          <MediumButton
+            onPress={() => {}}
+            color={theme.colors.foreground}
+            textColor={theme.colors.background}
+            title={'Adicionar à Bolsa'}
+            style={{marginHorizontal: theme.spacing.m}}
+          />
+          <View>
+            <InvisibleButton title={'Descrição'} />
+            <InvisibleButton title={'Composição & cuidados'} />
+            <InvisibleButton title={'Especificações & dimensões'} />
+            <InvisibleButton title={'Envio & pagamento'} />
+            <InvisibleButton title={'Sobre a marca'} />
+            <InvisibleButton title={'Produtos da marca'} />
+            <InvisibleButton title={'Produtos semelhantes'} />
+            <InvisibleButton title={'Visto recentemente'} />
           </View>
         </ScrollView>
       </View>
