@@ -32,11 +32,11 @@ export function FilterButton() {
           justifyContent: 'space-between',
           paddingLeft:
             0.375 *
-            theme.buttons.medium *
+            theme.buttonSize.medium *
             (fontScale <= 1 ? 1 : fontScale * 0.85),
           paddingRight:
             0.375 *
-              theme.buttons.medium *
+              theme.buttonSize.medium *
               (fontScale <= 1 ? 1 : fontScale * 0.85) -
             1,
           flexDirection: 'row',

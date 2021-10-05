@@ -8,6 +8,7 @@ export const sample = [
     price: '32950',
     discountPrice: '29500',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -18,6 +19,7 @@ export const sample = [
     price: '11500',
     discountPrice: '7950',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -28,6 +30,7 @@ export const sample = [
     price: '21950',
     discountPrice: '19500',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -38,6 +41,7 @@ export const sample = [
     price: '35850',
     discountPrice: '28940',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -48,6 +52,7 @@ export const sample = [
     price: '5700',
     discountPrice: '4900',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -58,6 +63,7 @@ export const sample = [
     price: '28900',
     discountPrice: '24200',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -68,6 +74,7 @@ export const sample = [
     price: '108000',
     discountPrice: '95000',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -78,6 +85,7 @@ export const sample = [
     price: '40000',
     discountPrice: '32000',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -88,6 +96,7 @@ export const sample = [
     price: '102000',
     discountPrice: '68000',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -98,6 +107,7 @@ export const sample = [
     price: '102000',
     discountPrice: '68000',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -108,6 +118,7 @@ export const sample = [
     price: '125000',
     discountPrice: '92500',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -118,6 +129,7 @@ export const sample = [
     price: '94000',
     discountPrice: '62000',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -128,6 +140,7 @@ export const sample = [
     price: '65500',
     discountPrice: '58500',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -138,6 +151,7 @@ export const sample = [
     price: '71000',
     discountPrice: '62500',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -148,6 +162,7 @@ export const sample = [
     price: '56450',
     discountPrice: '49000',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -158,6 +173,7 @@ export const sample = [
     price: '18950',
     discountPrice: '14595',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -168,6 +184,7 @@ export const sample = [
     price: '42760',
     discountPrice: '40050',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -178,6 +195,7 @@ export const sample = [
     price: '71250',
     discountPrice: '69420',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -188,6 +206,7 @@ export const sample = [
     price: '17540',
     discountPrice: '15040',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -198,6 +217,7 @@ export const sample = [
     price: '16500',
     discountPrice: '14500',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -208,6 +228,7 @@ export const sample = [
     price: '27650',
     discountPrice: '21350',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -218,6 +239,7 @@ export const sample = [
     price: '16750',
     discountPrice: '14350',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -228,6 +250,7 @@ export const sample = [
     price: '16750',
     discountPrice: '14350',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -238,6 +261,7 @@ export const sample = [
     price: '125000',
     discountPrice: '100000',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -248,6 +272,7 @@ export const sample = [
     price: '10990',
     discountPrice: '8450',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -258,6 +283,7 @@ export const sample = [
     price: '6350',
     discountPrice: '5950',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -268,6 +294,7 @@ export const sample = [
     price: '13650',
     discountPrice: '11450',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -278,6 +305,7 @@ export const sample = [
     price: '7690',
     discountPrice: '5690',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -288,6 +316,7 @@ export const sample = [
     price: '5390',
     discountPrice: '4860',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -298,6 +327,7 @@ export const sample = [
     price: '4490',
     discountPrice: '3990',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -308,6 +338,7 @@ export const sample = [
     price: '5350',
     discountPrice: '4950',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -318,6 +349,7 @@ export const sample = [
     price: '5490',
     discountPrice: '5150',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -328,6 +360,7 @@ export const sample = [
     price: '3450',
     discountPrice: '3150',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -338,6 +371,7 @@ export const sample = [
     price: '5790',
     discountPrice: '5230',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -348,6 +382,7 @@ export const sample = [
     price: '3290',
     discountPrice: '2990',
     onSale: false,
+    type: 'ring',
   },
   {
     thumbnail:
@@ -358,5 +393,6 @@ export const sample = [
     price: '2990',
     discountPrice: '2690',
     onSale: false,
+    type: 'ring',
   },
 ];

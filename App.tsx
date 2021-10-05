@@ -30,8 +30,7 @@ export default function App() {
           <Stack.Navigator
             screenOptions={{
               headerShown: false,
-            }}
-            initialRouteName={'Home'}>
+            }}>
             <Stack.Screen name="Main" component={Tabs} />
           </Stack.Navigator>
         </NavigationContainer>

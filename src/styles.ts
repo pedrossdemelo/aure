@@ -14,7 +14,7 @@ export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
     },
 
     transluscentHeader: {
-      height: insets.top + 46,
+      height: insets.top + theme.barSize.header,
       paddingTop: insets.top,
       width: '100%',
       backgroundColor: theme.colors.translucent.background,

@@ -19,7 +19,7 @@ export function OperationIconButton({
   const fontScale = useWindowDimensions().fontScale;
   const smallButtonHeight =
     theme.fontSize.smallButton * 1.2 * fontScale +
-    (theme.buttons.small - theme.fontSize.smallButton * 1.2);
+    (theme.buttonSize.small - theme.fontSize.smallButton * 1.2);
   return (
     <TouchableHighlight
       underlayColor={pressColor}

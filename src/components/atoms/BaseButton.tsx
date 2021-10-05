@@ -69,7 +69,7 @@ export function BaseButton({
               : null,
             {height: '100%', backgroundColor: color},
           ]}>
-          {title ? <Text style={[textStyle]}>{title}</Text> : null}
+          {title ? <Text style={textStyle}>{title}</Text> : null}
           {children}
         </View>
       </TouchableHighlight>

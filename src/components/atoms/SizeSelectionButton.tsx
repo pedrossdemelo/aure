@@ -18,10 +18,10 @@ export function SizeSelectionButton() {
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal:
-          0.375 * theme.buttons.small * (fontScale <= 1 ? 1 : fontScale * 0.85),
+          0.375 * theme.buttonSize.small * (fontScale <= 1 ? 1 : fontScale * 0.85),
         paddingRight:
           0.375 *
-            theme.buttons.small *
+            theme.buttonSize.small *
             (fontScale <= 1 ? 1 : fontScale * 0.85) -
           2,
         flexDirection: 'row',

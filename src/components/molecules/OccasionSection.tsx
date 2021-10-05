@@ -11,13 +11,14 @@ export function OccasionSection() {
     );
   }
 
-  function OccasionCard() {
+  function OccasionCard({title, image}) {
     return (
       <ImageTouchableDescription
-        title={'Formatura'}
+        title={title}
         style={[v.occasionCard]}
         onPress={() => {}}
         flex={1}
+        source={image}
       />
     );
   }
@@ -31,8 +32,14 @@ export function OccasionSection() {
           flexDirection: 'row',
           marginHorizontal: theme.spacing.s,
         }}>
-        <OccasionCard />
-        <OccasionCard />
+        <OccasionCard
+          title="Formatura"
+          image="https://res.cloudinary.com/aure/image/upload/v1633439175/Home%20Thumbnails/Men_aeng9h.webp"
+        />
+        <OccasionCard
+          title="Presentes"
+          image="https://res.cloudinary.com/aure/image/upload/v1633442181/Home%20Thumbnails/Gift_ivp5tg.webp"
+        />
       </View>
       <View
         style={{
@@ -40,8 +47,14 @@ export function OccasionSection() {
           flexDirection: 'row',
           marginHorizontal: theme.spacing.s,
         }}>
-        <OccasionCard />
-        <OccasionCard />
+        <OccasionCard
+          title="Nascimento"
+          image="https://res.cloudinary.com/aure/image/upload/v1633437695/Home%20Thumbnails/baby_qt2z55.webp"
+        />
+        <OccasionCard
+          title="Bodas"
+          image="https://res.cloudinary.com/aure/image/upload/v1633437695/Home%20Thumbnails/Engagement_yw4rwo.webp"
+        />
       </View>
     </View>
   );

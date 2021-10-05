@@ -12,10 +12,11 @@ export function DiscoverSection() {
     return <Text style={[t.title, t.titleMargin]}>Conheça</Text>;
   }
 
-  function DiscoverCards() {
+  function DiscoverCard({title, image}) {
     return (
       <ImageTouchableDescription
-        title={'Alianças'}
+        source={image}
+        title={title}
         style={[v.discoverCard]}
         pressColor={theme.colors.background}
         onPress={() => {}}
@@ -28,9 +29,26 @@ export function DiscoverSection() {
     <View style={v.sectionContainer}>
       <DiscoverHeader />
       <View style={v.discoverCardsContainer}>
-        {window.width > 367 ? <DiscoverCards /> : null}
-        <DiscoverCards />
-        <DiscoverCards />
+        {window.width > 367 ? (
+          <DiscoverCard
+            title="Alianças"
+            image={
+              'https://res.cloudinary.com/aure/image/upload/v1633437695/Home%20Thumbnails/Engagement_yw4rwo.webp'
+            }
+          />
+        ) : null}
+        <DiscoverCard
+          title="Homem"
+          image={
+            'https://res.cloudinary.com/aure/image/upload/v1633439175/Home%20Thumbnails/Men_aeng9h.webp'
+          }
+        />
+        <DiscoverCard
+          title="Mulher"
+          image={
+            'https://res.cloudinary.com/aure/image/upload/v1633437696/Home%20Thumbnails/Women_im8xan.webp'
+          }
+        />
       </View>
     </View>
   );

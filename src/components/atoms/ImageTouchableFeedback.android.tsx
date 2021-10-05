@@ -1,9 +1,6 @@
 import React from 'react';
-import {View, Platform, ColorValue, StyleProp, ImageBackground} from 'react-native';
-import {
-  TouchableNativeFeedback,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import {View, ColorValue, StyleProp} from 'react-native';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 import FastImage from 'react-native-fast-image';
 import {theme} from '../../theme';
 

@@ -48,7 +48,9 @@ const Tabs = () => {
           height:
             insets.bottom === 0 ? insets.bottom + 52 : insets.bottom + 47.7,
         },
-      }}>
+      }}
+      // TODO: remove this later
+      initialRouteName={'Favoritos'}>
       <Tab.Screen
         name="Início"
         component={Home}

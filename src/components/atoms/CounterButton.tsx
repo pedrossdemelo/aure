@@ -21,7 +21,7 @@ export function CounterButton() {
 
   const smallButtonHeight =
     theme.fontSize.smallButton * 1.2 * fontScale +
-    (theme.buttons.small - theme.fontSize.smallButton * 1.2);
+    (theme.buttonSize.small - theme.fontSize.smallButton * 1.2);
   return (
     <View style={v.counterButtonContainer}>
       <View style={v.absoluteFillContainerCenter}>

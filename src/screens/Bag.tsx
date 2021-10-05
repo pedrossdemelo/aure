@@ -28,7 +28,7 @@ export default function Bag() {
         <BagItem />
         <View style={v.bagItemLineSeparator} />
         <BagItem />
-        <View style={{height: theme.buttons.medium + theme.spacing.s}} />
+        <View style={{height: theme.buttonSize.medium + theme.spacing.s}} />
       </MainScrollView>
       <CheckoutButton />
     </>

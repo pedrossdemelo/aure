@@ -32,7 +32,7 @@ export function SmallButton({
       textStyle={t.smallButton}
       pressColor={theme.colors.background}
       style={style}
-      minHeight={theme.buttons.small}
+      minHeight={theme.buttonSize.small}
       title={title}
       shadow={shadow}
       styleInternal={styleInternal}>

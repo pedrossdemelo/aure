@@ -34,6 +34,7 @@ export const theme = {
     textSecondary: palette.primary.Beaver,
     touchablePrimary: palette.primary.Linen,
     touchableSecondary: palette.secondary.PeachPuff,
+    touchableTertiary: palette.primary.DarkSienna,
     notification: palette.secondary.Coral,
     discount: palette.secondary.Coral,
     buttonRipple: {
@@ -68,9 +69,15 @@ export const theme = {
     mediumButton: 16,
   },
 
-  buttons: {
+  buttonSize: {
     small: 32,
     medium: 38,
     large: 44,
+    invisible: 40,
+  },
+
+  barSize: {
+    header: 46,
+    search: 52,
   },
 };

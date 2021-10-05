@@ -18,7 +18,9 @@ export function UserHeader() {
     return (
       <ImageTouchableFeedback
         style={[v.userAvatar]}
-        source={Placeholder}
+        source={
+          'https://res.cloudinary.com/aure/image/upload/v1633442859/Home%20Thumbnails/Avatar_exewgb.webp'
+        }
         onPress={() => {}}
       />
     );
