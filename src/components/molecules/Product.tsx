@@ -17,6 +17,7 @@ export function Product({brand, price, name, image}: ProductProps) {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
   const hs = getHookedStyles(insets, window);
+  const navigation = useNavigation();
 
   function ProductCard() {
     function ProductDiscountTag() {
@@ -33,7 +34,7 @@ export function Product({brand, price, name, image}: ProductProps) {
         style={[v.productCard]}
         shadow={[v.shadow]}
         pressColor={theme.colors.background}
-        onPress={() => {}}>
+        onPress={() => {navigation.navigate('ProductPage')}}>
         <ProductDiscountTag />
         <ProductFavoriteButton />
       </ImageTouchableFeedback>
