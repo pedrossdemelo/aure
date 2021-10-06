@@ -57,28 +57,28 @@ function Favorites() {
         style={{
           overflow: 'hidden',
           borderRadius: theme.spacing.l,
-          flex: 1,
           marginTop: useSafeAreaInsets().top,
         }}>
         <ScrollView
-          style={{flex: 1, backgroundColor: 'white'}}
-          contentContainerStyle={{marginTop: theme.spacing.s}}>
+          style={{backgroundColor: 'white'}}
+          // setting borderRadius to containerStyle makes round scrollviews work
+          contentContainerStyle={{marginTop: theme.spacing.xs}}>
           {/* Product Info Section */}
           <View>
             {/* Brand */}
-            <Text style={v.productPageHeaderTextAlignment}>Hi</Text>
+            <Text style={[v.productPageHeaderTextAlignment, t.title]}>Vivara</Text>
             {/* Collection */}
-            <Text style={v.productPageHeaderTextAlignment}>Hi</Text>
+            <Text style={[v.productPageHeaderTextAlignment, t.title2, {fontFamily: 'Lato-Regular'}]}>Coleção Vivara</Text>
             {/* Name */}
-            <Text style={v.productPageHeaderTextAlignment}>Hi</Text>
-            {/* Price Info Section */}
-            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            <Text style={[v.productPageHeaderTextAlignment, t.title2, {fontFamily: 'Lato-Regular', color: theme.colors.textSecondary}]}>Anel Vivara Ouro Rosé e Diamantes Negros</Text>
+            {/* Price Info Section TODO: fix center alignment*/}
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginVertical: theme.spacing.s}}>
               {/* Price */}
-              <Text>Hi</Text>
+              <Text style={[t.price, {marginHorizontal: theme.spacing.s}]}>R$ 2400,00</Text>
               {/* DiscountPrice */}
-              <Text>Hi</Text>
+              <Text style={[t.price, {color: theme.colors.notification, marginHorizontal: theme.spacing.s}]}>R$ 1920,00</Text>
               {/* InstallmentPrice */}
-              <Text>Hi</Text>
+              <Text style={[t.paragraph2, t.installmentPrice, {textAlign: undefined, flex: 0, marginHorizontal: theme.spacing.s}]}>12x R$ 180,00</Text>
             </View>
           </View>
           {/* Size Selection Section */}
@@ -96,22 +96,24 @@ function Favorites() {
                 style={{
                   height: 2,
                   flex: 1,
-                  backgroundColor: 'black',
+                  backgroundColor: theme.colors.touchablePrimary,
                   marginHorizontal: theme.spacing.m,
+                  borderRadius: 999,
                 }}
               />
-              <Text>HI</Text>
+              <Text style={[t.mediumButton, {lineHeight: theme.fontSize.mediumButton * 1.2}]}>Selecione o tamanho</Text>
               <View
                 style={{
                   height: 2,
                   flex: 1,
-                  backgroundColor: 'black',
+                  backgroundColor: theme.colors.touchablePrimary,
                   marginHorizontal: theme.spacing.m,
+                  borderRadius: 999,
                 }}
               />
             </View>
             {/* Size selection buttons */}
-            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'center', marginVertical: theme.spacing.xs * 1.5, }}>
               <View
                 style={{
                   borderRadius: 999,
@@ -155,7 +157,7 @@ function Favorites() {
             color={theme.colors.foreground}
             textColor={theme.colors.background}
             title={'Adicionar à Bolsa'}
-            style={{marginHorizontal: theme.spacing.m}}
+            style={{marginHorizontal: theme.spacing.m, marginVertical: theme.spacing.xs * 1.5}}
           />
           <View>
             <InvisibleButton title={'Descrição'} />
