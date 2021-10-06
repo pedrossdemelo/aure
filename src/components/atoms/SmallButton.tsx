@@ -15,6 +15,7 @@ interface SmallButtonProps {
   children?: JSX.Element[] | JSX.Element;
   color?: ColorValue;
   textColor?: ColorValue;
+  fontFamily?: string;
 }
 
 export function SmallButton({
@@ -27,6 +28,7 @@ export function SmallButton({
   shadow,
   color,
   textColor,
+  fontFamily,
 }: SmallButtonProps) {
   return (
     <BaseButton
@@ -34,7 +36,7 @@ export function SmallButton({
       color={color || theme.colors.touchablePrimary}
       onLongPress={onLongPress}
       textStyle={{
-        fontFamily: 'Lato-SemiBold',
+        fontFamily: fontFamily || 'Lato-SemiBold',
         fontSize: theme.fontSize.smallButton,
         color: textColor || theme.colors.textPrimary,
         lineHeight: theme.fontSize.smallButton * 1.2,

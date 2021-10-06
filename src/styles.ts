@@ -296,6 +296,6 @@ export const t = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: theme.fontSize.mediumButton,
     color: theme.colors.textPrimary,
-    lineHeight: theme.fontSize.mediumButton * 1.5,
+    lineHeight: theme.fontSize.mediumButton * 1.4,
   },
 });

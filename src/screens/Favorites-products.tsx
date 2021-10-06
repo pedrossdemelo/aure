@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, useWindowDimensions, StyleSheet} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {
   ScrollView,
   TouchableWithoutFeedback,
@@ -9,6 +10,7 @@ import ArrowIconS from '../assets/icons/ArrowIconS';
 import AureLogo from '../assets/icons/AureLogo';
 import {FilterButton} from '../components/atoms/FilterButton';
 import {MediumButton} from '../components/atoms/MediumButton';
+import {SmallButton} from '../components/atoms/SmallButton';
 import {TranslucentHeader} from '../components/atoms/TransluscentHeader';
 import {t} from '../styles';
 import {theme} from '../theme';
@@ -26,21 +28,42 @@ const v = StyleSheet.create({
     marginHorizontal: theme.spacing.m,
     textAlign: 'center',
   },
+  productPageScrollViewStyle: {
+    borderTopRightRadius: theme.spacing.l,
+    borderTopLeftRadius: theme.spacing.l,
+    backgroundColor: theme.colors.background,
+    overflow: 'hidden',
+  },
+  productPageScrollViewInternalStyle: {
+    paddingTop: theme.spacing.xs * 1.5,
+    borderTopRightRadius: theme.spacing.l,
+    borderTopLeftRadius: theme.spacing.l,
+    overflow: 'hidden',
+  },
 });
 
 function InvisibleButton({title}) {
+  const minHeight = theme.buttonSize.invisible;
+  const fontScale = useWindowDimensions().fontScale;
   return (
     <TouchableWithoutFeedback
       style={{
-        height: theme.buttonSize.invisible,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: theme.spacing.m,
-        backgroundColor: theme.colors.background,
         justifyContent: 'space-between',
+        height:
+          t.mediumButton.lineHeight * fontScale +
+          (minHeight - t.mediumButton.lineHeight),
+        minHeight: minHeight,
       }}>
       <Text style={t.mediumButton}>{title}</Text>
-      <ArrowIconS style={{transform: [{rotate: '270deg'}]}} />
+      <ArrowIconS
+        style={[
+          {marginLeft: theme.spacing.m},
+          {transform: [{rotate: '270deg'}]},
+        ]}
+      />
     </TouchableWithoutFeedback>
   );
 }
@@ -55,30 +78,91 @@ function Favorites() {
       <FilterButton /> */}
       <View
         style={{
-          overflow: 'hidden',
-          borderRadius: theme.spacing.l,
-          marginTop: useSafeAreaInsets().top,
+          backgroundColor: 'white',
+          flex: 1,
         }}>
+        <FastImage
+          source={{
+            uri: 'https://res.cloudinary.com/aure/image/upload/v1633388606/Vivara%20Thumbnails/Vivara/Anel_Ouro_Vivara_e_Diamantes_Negros_bwsydj.webp',
+          }}
+          style={{aspectRatio: 1.1}}
+        />
         <ScrollView
-          style={{backgroundColor: 'white'}}
-          // setting borderRadius to containerStyle makes round scrollviews work
-          contentContainerStyle={{marginTop: theme.spacing.xs}}>
+          style={v.productPageScrollViewStyle}
+          // setting borderRadius to containerStyle makes round scrollviews work with overflow 'hidden'
+          contentContainerStyle={[
+            v.productPageScrollViewInternalStyle,
+            {
+              paddingBottom: 52 + useSafeAreaInsets().bottom,
+            },
+          ]}>
           {/* Product Info Section */}
           <View>
             {/* Brand */}
-            <Text style={[v.productPageHeaderTextAlignment, t.title]}>Vivara</Text>
+            <Text style={[v.productPageHeaderTextAlignment, t.title]}>
+              Vivara
+            </Text>
             {/* Collection */}
-            <Text style={[v.productPageHeaderTextAlignment, t.title2, {fontFamily: 'Lato-Regular'}]}>Coleção Vivara</Text>
+            <Text
+              style={[
+                v.productPageHeaderTextAlignment,
+                t.title2,
+                {fontFamily: 'Lato-Regular'},
+              ]}>
+              Coleção Vivara
+            </Text>
             {/* Name */}
-            <Text style={[v.productPageHeaderTextAlignment, t.title2, {fontFamily: 'Lato-Regular', color: theme.colors.textSecondary}]}>Anel Vivara Ouro Rosé e Diamantes Negros</Text>
+            <Text
+              style={[
+                v.productPageHeaderTextAlignment,
+                t.title2,
+                {fontFamily: 'Lato-Regular', color: theme.colors.textSecondary},
+              ]}>
+              Anel Vivara Ouro Rosé e Diamantes Negros
+            </Text>
             {/* Price Info Section TODO: fix center alignment*/}
-            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginVertical: theme.spacing.s}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: theme.spacing.s - 0.5,
+                marginTop: theme.spacing.s + theme.spacing.xxs,
+              }}>
               {/* Price */}
-              <Text style={[t.price, {marginHorizontal: theme.spacing.s}]}>R$ 2400,00</Text>
+              <Text
+                style={[
+                  t.price,
+                  {marginHorizontal: theme.spacing.s, fontSize: 16},
+                ]}>
+                R$ 2400,00
+              </Text>
               {/* DiscountPrice */}
-              <Text style={[t.price, {color: theme.colors.notification, marginHorizontal: theme.spacing.s}]}>R$ 1920,00</Text>
+              <Text
+                style={[
+                  t.price,
+                  {
+                    color: theme.colors.notification,
+                    marginHorizontal: theme.spacing.s,
+                    fontSize: 16,
+                  },
+                ]}>
+                R$ 1920,00
+              </Text>
               {/* InstallmentPrice */}
-              <Text style={[t.paragraph2, t.installmentPrice, {textAlign: undefined, flex: 0, marginHorizontal: theme.spacing.s}]}>12x R$ 180,00</Text>
+              <Text
+                style={[
+                  t.paragraph2,
+                  t.installmentPrice,
+                  {
+                    textAlign: undefined,
+                    flex: 0,
+                    marginHorizontal: theme.spacing.s,
+                    fontSize: 12,
+                  },
+                ]}>
+                12x R$ 180,00
+              </Text>
             </View>
           </View>
           {/* Size Selection Section */}
@@ -101,7 +185,13 @@ function Favorites() {
                   borderRadius: 999,
                 }}
               />
-              <Text style={[t.mediumButton, {lineHeight: theme.fontSize.mediumButton * 1.2}]}>Selecione o tamanho</Text>
+              <Text
+                style={[
+                  t.mediumButton,
+                  {lineHeight: theme.fontSize.mediumButton * 1.4},
+                ]}>
+                Selecione o tamanho
+              </Text>
               <View
                 style={{
                   height: 2,
@@ -113,43 +203,59 @@ function Favorites() {
               />
             </View>
             {/* Size selection buttons */}
-            <View style={{flexDirection: 'row', justifyContent: 'center', marginVertical: theme.spacing.xs * 1.5, }}>
-              <View
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginTop: theme.spacing.xs * 1.5,
+                marginBottom: theme.spacing.xxs * 1.5,
+                marginHorizontal: theme.spacing.m,
+                flexWrap: 'wrap',
+              }}>
+              <SmallButton
+                onPress={() => {}}
+                title={'13'}
+                color={'transparent'}
                 style={{
-                  borderRadius: 999,
-                  height: 32,
-                  width: 32,
-                  borderColor: 'black',
                   borderWidth: 1.2,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text>Hi</Text>
-              </View>
-              <View
+                  borderColor: theme.colors.touchableSecondary,
+                  margin: theme.spacing.xs,
+                }}
+                fontFamily={'Lato-Regular'}
+              />
+              <SmallButton
+                onPress={() => {}}
+                title={'14'}
+                color={theme.colors.touchableSecondary}
                 style={{
-                  borderRadius: 999,
-                  height: 32,
-                  width: 32,
-                  borderColor: 'black',
                   borderWidth: 1.2,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text>Hi</Text>
-              </View>
-              <View
+                  borderColor: theme.colors.touchableSecondary,
+                  margin: theme.spacing.xs,
+                }}
+                fontFamily={'Lato-Bold'}
+              />
+              <SmallButton
+                onPress={() => {}}
+                title={'15'}
+                color={'transparent'}
                 style={{
-                  borderRadius: 999,
-                  height: 32,
-                  width: 32,
-                  borderColor: 'black',
                   borderWidth: 1.2,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text>Hi</Text>
-              </View>
+                  borderColor: theme.colors.touchableSecondary,
+                  margin: theme.spacing.xs,
+                }}
+                fontFamily={'Lato-Regular'}
+              />
+              <SmallButton
+                onPress={() => {}}
+                title={'16'}
+                color={'transparent'}
+                style={{
+                  borderWidth: 1.2,
+                  borderColor: theme.colors.touchableSecondary,
+                  margin: theme.spacing.xs,
+                }}
+                fontFamily={'Lato-Regular'}
+              />
             </View>
           </View>
           <MediumButton
@@ -157,7 +263,10 @@ function Favorites() {
             color={theme.colors.foreground}
             textColor={theme.colors.background}
             title={'Adicionar à Bolsa'}
-            style={{marginHorizontal: theme.spacing.m, marginVertical: theme.spacing.xs * 1.5}}
+            style={{
+              marginHorizontal: theme.spacing.m,
+              marginVertical: theme.spacing.xs * 1.5,
+            }}
           />
           <View>
             <InvisibleButton title={'Descrição'} />

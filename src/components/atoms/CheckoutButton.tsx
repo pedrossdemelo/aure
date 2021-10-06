@@ -43,7 +43,7 @@ export function CheckoutButton() {
         },
       ]}>
       <Text
-        style={[t.mediumButton, {marginRight: theme.spacing.s, marginTop: 1}]}
+        style={[t.mediumButton, {marginRight: theme.spacing.s}]}
         numberOfLines={1}>
         Fechar pedido
       </Text>

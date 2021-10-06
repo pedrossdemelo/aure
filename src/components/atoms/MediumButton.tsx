@@ -15,6 +15,7 @@ interface MediumButtonProps {
   children?: JSX.Element[] | JSX.Element;
   color?: ColorValue;
   textColor?: ColorValue;
+  fontFamily?: string;
 }
 
 export function MediumButton({
@@ -27,6 +28,7 @@ export function MediumButton({
   shadow,
   color,
   textColor,
+  fontFamily,
 }: MediumButtonProps) {
   return (
     <BaseButton
@@ -34,10 +36,10 @@ export function MediumButton({
       color={color || theme.colors.touchableSecondary}
       onLongPress={onLongPress}
       textStyle={{
-        fontFamily: 'Poppins-Medium',
+        fontFamily: fontFamily || 'Poppins-Medium',
         fontSize: theme.fontSize.mediumButton,
         color: textColor || theme.colors.textPrimary,
-        lineHeight: theme.fontSize.mediumButton * 1.5,
+        lineHeight: theme.fontSize.mediumButton * 1.4,
       }}
       pressColor={theme.colors.background}
       style={style}
