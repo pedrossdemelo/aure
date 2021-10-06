@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -93,6 +94,7 @@ function ProductFromList({brand, price, name, image}: ProductProps) {
   const insets = useSafeAreaInsets();
   const window = useWindowDimensions();
   const hs = getHookedStyles(insets, window);
+  const navigation = useNavigation();
 
   function ProductCard() {
     function ProductDiscountTag() {
@@ -109,7 +111,7 @@ function ProductFromList({brand, price, name, image}: ProductProps) {
         style={[v.productCard]}
         shadow={[v.shadow]}
         pressColor={theme.colors.background}
-        onPress={() => {}}>
+        onPress={() => {navigation.navigate('ProductPage')}}>
         <ProductDiscountTag />
         <ProductFavoriteButton />
       </ImageTouchableFeedback>

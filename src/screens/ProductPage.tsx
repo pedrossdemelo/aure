@@ -11,9 +11,11 @@ import {MediumButton} from '../components/atoms/MediumButton';
 import {SmallButton} from '../components/atoms/SmallButton';
 import {t} from '../styles';
 import {theme} from '../theme';
+import {sample} from '../assets/sample';
 
 interface ProductPageProps {
   brand: string;
+  name: string;
   collection: string;
   price: string;
   discountPrice: string;
@@ -65,8 +67,9 @@ function InvisibleButton({title}) {
   );
 }
 
-function ProductPage({
+function ProductPageTemp({
   brand,
+  name,
   collection,
   price,
   discountPrice,
@@ -117,7 +120,7 @@ function ProductPage({
               t.title2,
               {fontFamily: 'Lato-Regular', color: theme.colors.textSecondary},
             ]}>
-            Anel Vivara Ouro Rosé e Diamantes Negros
+            {name}
           </Text>
           {/* Price Info Section TODO: fix center alignment*/}
           <View
@@ -282,4 +285,16 @@ function ProductPage({
   );
 }
 
-export default React.memo(ProductPage);
+export function ProductPage() {
+  const random = Math.floor(Math.random() * (35 + 1));
+  return (
+    <ProductPageTemp
+      brand={sample[random].brand}
+      name={sample[random].name}
+      collection={sample[random].collection}
+      price={sample[random].price}
+      discountPrice={sample[random].discountPrice}
+      image={sample[random].thumbnail}
+    />
+  );
+}

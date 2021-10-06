@@ -14,7 +14,7 @@ import SystemNavigationBar from 'react-native-system-navigation-bar';
 import Tabs from './src/navigation/tabs';
 import {enableScreens} from 'react-native-screens';
 import {theme} from './src/theme';
-import ProductPage from './src/screens/ProductPage';
+import {ProductPage} from './src/screens/ProductPage';
 
 const Stack = createNativeStackNavigator();
 
