@@ -41,7 +41,7 @@ const v = StyleSheet.create({
   },
 });
 
-function InvisibleButton({title}) {
+function InvisibleButton({title}: any) {
   const minHeight = theme.buttonSize.invisible;
   const fontScale = useWindowDimensions().fontScale;
   return (
