@@ -1,44 +1,37 @@
 import React from 'react';
-import {ColorValue, StyleProp, Text} from 'react-native';
+import {ColorValue, Text, ViewStyle} from 'react-native';
 import {Placeholder} from '../../screens/Home';
 import {t, v} from '../../styles';
 import {theme} from '../../theme';
-import {ImageTouchableFeedback} from './ImageTouchableFeedback';
+import {ImageTouchableFeedback} from './base/ImageTouchableFeedback';
 
 interface ImageTouchableDescriptionProps {
   title: string;
   source?: string;
-  flex: number;
+  flex?: number;
   pressColor?: ColorValue;
-  style?: StyleProp;
+  style?: ViewStyle;
   onPress?: () => void;
   onLongPress?: () => void;
   numberOfLines?: number;
 }
-export function ImageTouchableDescription({
-  title,
-  source,
-  onPress,
-  onLongPress,
-  style,
-  numberOfLines,
-  pressColor,
-  flex,
-}: ImageTouchableDescriptionProps) {
+export function ImageTouchableDescription(
+  props: ImageTouchableDescriptionProps,
+) {
   return (
     <ImageTouchableFeedback
-      source={source || Placeholder}
-      style={style}
+      source={props.source || Placeholder}
+      style={props.style}
       shadow={[v.shadow]}
-      pressColor={pressColor || theme.colors.background}
-      onPress={onPress}
-      onLongPress={onLongPress}
+      pressColor={props.pressColor || theme.colors.background}
+      onPress={props.onPress}
+      onLongPress={props.onLongPress}
       styleInternal={v.imageTouchableAlignmentRight}
-      flex={flex}>
+      flex={props.flex || 0}>
       <Text
         style={[t.title, t.imageTouchableTextAlignmentRight]}
-        numberOfLines={numberOfLines || 1}>
-        {title}
+        numberOfLines={props.numberOfLines || 1}>
+        {props.title}
       </Text>
     </ImageTouchableFeedback>
   );

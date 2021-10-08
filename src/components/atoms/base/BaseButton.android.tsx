@@ -7,7 +7,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
-import {theme} from '../../theme';
+import {theme} from '../../../theme';
 
 interface BaseButtonProps {
   title?: string;

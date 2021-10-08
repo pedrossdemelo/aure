@@ -4,7 +4,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ArrowIconM} from '../../assets/icons/ArrowIconM';
 import {t, v} from '../../styles';
 import {theme} from '../../theme';
-import {MediumButton} from './MediumButton';
+import {MediumButton} from './base/MediumButton';
 
 export function CheckoutButton() {
   const fontScale = useWindowDimensions().fontScale;

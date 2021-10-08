@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {Placeholder} from '../../screens/Home';
 import {t, v} from '../../styles';
-import {ImageTouchableFeedback} from '../atoms/ImageTouchableFeedback';
+import {ImageTouchableFeedback} from '../atoms/base/ImageTouchableFeedback';
 
 export function UserHeader() {
   function UserGreetings() {

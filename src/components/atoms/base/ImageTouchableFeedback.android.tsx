@@ -1,15 +1,16 @@
 import React from 'react';
-import {ColorValue, View, ViewStyle, Platform, StyleProp} from 'react-native';
-import {
-  TouchableNativeFeedback,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
-import {theme} from '../../theme';
+import {View, ColorValue, StyleProp} from 'react-native';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+import FastImage from 'react-native-fast-image';
+import {theme} from '../../../theme';
 
-export interface TouchableFeedbackProps {
+interface ImageTouchableFeedbackProps {
+  source: string;
   children?: JSX.Element[] | JSX.Element;
   style?: StyleProp;
   styleInternal?: StyleProp;
+  shadow?: StyleProp;
+  flex?: number;
   pressColor?: ColorValue;
   useForeground?: boolean;
   onPress?: () => void;
@@ -17,21 +18,22 @@ export interface TouchableFeedbackProps {
   activeOpacity?: number;
 }
 
-/**
- * @deprecated
- */
-export function TouchableFeedback({
+export function ImageTouchableFeedback({
+  source,
   children,
   onPress,
   onLongPress,
   pressColor,
   style,
   styleInternal,
+  shadow,
   useForeground,
-  activeOpacity,
-}: TouchableFeedbackProps) {
-  return Platform.OS === 'android' ? (
-    <View style={[{overflow: 'hidden'}, style]}>
+  flex,
+}: ImageTouchableFeedbackProps) {
+  return (
+    <FastImage
+      source={{uri: source}}
+      style={[{flex: flex || undefined}, {overflow: 'hidden'}, style, shadow]}>
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.Ripple(
           pressColor || theme.colors.background,
@@ -42,14 +44,6 @@ export function TouchableFeedback({
         onLongPress={onLongPress}>
         <View style={[styleInternal, {height: '100%'}]}>{children}</View>
       </TouchableNativeFeedback>
-    </View>
-  ) : (
-    <TouchableOpacity
-      onPress={onPress}
-      onLongPress={onLongPress}
-      activeOpacity={activeOpacity || 0.7}
-      style={[{overflow: 'hidden'}, style]}>
-      <View style={[styleInternal, {height: '100%'}]}>{children}</View>
-    </TouchableOpacity>
+    </FastImage>
   );
 }

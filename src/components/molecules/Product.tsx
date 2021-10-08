@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, useWindowDimensions} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {getHookedStyles, t, v} from '../../styles';
 import {theme} from '../../theme';
-import {ImageTouchableFeedback} from '../atoms/ImageTouchableFeedback';
+import {ImageTouchableFeedback} from '../atoms/base/ImageTouchableFeedback';
 
 interface ProductProps {
   brand: string;
@@ -34,7 +34,9 @@ export function Product({brand, price, name, image}: ProductProps) {
         style={[v.productCard]}
         shadow={[v.shadow]}
         pressColor={theme.colors.background}
-        onPress={() => {navigation.navigate('ProductPage')}}>
+        onPress={() => {
+          navigation.navigate('ProductPage');
+        }}>
         <ProductDiscountTag />
         <ProductFavoriteButton />
       </ImageTouchableFeedback>
@@ -112,7 +114,9 @@ function ProductFromList({brand, price, name, image}: ProductProps) {
         style={[v.productCard]}
         shadow={[v.shadow]}
         pressColor={theme.colors.background}
-        onPress={() => {navigation.navigate('ProductPage')}}>
+        onPress={() => {
+          navigation.navigate('ProductPage');
+        }}>
         <ProductDiscountTag />
         <ProductFavoriteButton />
       </ImageTouchableFeedback>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleProp, ColorValue} from 'react-native';
-import {t} from '../../styles';
-import {theme} from '../../theme';
+import {t} from '../../../styles';
+import {theme} from '../../../theme';
 import {BaseButton} from './BaseButton';
 
 interface SmallButtonProps {

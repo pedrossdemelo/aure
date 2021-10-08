@@ -1,8 +1,12 @@
-import {Platform, ScaledSize, StyleSheet} from 'react-native';
+import {Platform, ScaledSize, StyleSheet, useWindowDimensions} from 'react-native';
 import {EdgeInsets} from 'react-native-safe-area-context';
 import {theme} from './theme';
 
-export const getHookedStyles = (insets: EdgeInsets, window: ScaledSize) =>
+export const getHookedStyles = (
+  insets: EdgeInsets,
+  window: ScaledSize,
+  fontScale: number,
+) =>
   StyleSheet.create({
     translucentStatusBar: {
       height: insets.top,
@@ -59,7 +63,9 @@ export const v = StyleSheet.create({
     left: theme.spacing.s,
     right: theme.spacing.s,
   },
+
   // Component styles for BagItem.tsx
+
   bagItemLineSeparator: {
     height: theme.spacing.xxs,
     backgroundColor: theme.colors.touchablePrimary,
@@ -91,7 +97,30 @@ export const v = StyleSheet.create({
     flexDirection: 'row',
     margin: theme.spacing.xs,
   },
+
+  // Component styles for the product page screen
+
+  productPageHeaderTextAlignment: {
+    marginHorizontal: theme.spacing.m,
+    textAlign: 'center',
+  },
+
+  productPageScrollViewStyle: {
+    borderTopRightRadius: theme.spacing.l,
+    borderTopLeftRadius: theme.spacing.l,
+    backgroundColor: theme.colors.background,
+    overflow: 'hidden',
+  },
+
+  productPageScrollViewInternalStyle: {
+    paddingTop: theme.spacing.xs * 1.5,
+    borderTopRightRadius: theme.spacing.l,
+    borderTopLeftRadius: theme.spacing.l,
+    overflow: 'hidden',
+  },
+
   // Component styles for the home screen
+
   logoContainer: {
     marginVertical: theme.spacing.m,
     alignItems: 'center',
@@ -184,7 +213,9 @@ export const v = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+
   //Component styles for CounterButton
+
   counterButtonContainer: {
     padding: theme.spacing.s,
     flexDirection: 'row',
@@ -206,10 +237,12 @@ export const v = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.touchablePrimary,
   },
+
   //Component styles for PricePreview.tsx
+
   pricePreviewContainer: {
     paddingHorizontal: theme.spacing.m,
-    paddingVertical: theme.spacing.m - 2,
+    paddingTop: theme.spacing.m - 2,
     paddingBottom: theme.spacing.m - 6,
     borderBottomWidth: theme.spacing.xxs,
     borderTopWidth: theme.spacing.xxs,

@@ -4,7 +4,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import FilterIconM from '../../assets/icons/FilterIconM';
 import {t, v} from '../../styles';
 import {theme} from '../../theme';
-import {MediumButton} from './MediumButton';
+import {MediumButton} from './base/MediumButton';
 
 export function FilterButton() {
   const fontScale = useWindowDimensions().fontScale;

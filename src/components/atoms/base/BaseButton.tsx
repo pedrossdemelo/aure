@@ -7,7 +7,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import {TouchableHighlight} from 'react-native';
-import {theme} from '../../theme';
+import {theme} from '../../../theme';
 
 // TODO: use stylesheet for inlinestyles
 interface BaseButtonProps {

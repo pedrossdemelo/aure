@@ -1,10 +1,10 @@
 import React from 'react';
 import {useWindowDimensions, View, Text} from 'react-native';
-import {ImageTouchableFeedback} from '../atoms/ImageTouchableFeedback';
+import {ImageTouchableFeedback} from '../atoms/base/ImageTouchableFeedback';
 import {t, v} from '../../styles';
 import {theme} from '../../theme';
 import {Placeholder} from '../../screens/Home';
-import {SmallButton} from '../atoms/SmallButton';
+import {SmallButton} from '../atoms/base/SmallButton';
 import {CounterButton} from '../atoms/CounterButton';
 import {SizeSelectionButton} from '../atoms/SizeSelectionButton';
 

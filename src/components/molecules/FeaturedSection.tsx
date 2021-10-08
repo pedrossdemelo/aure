@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {t, v} from '../../styles';
 import {theme} from '../../theme';
-import {ImageTouchableFeedback} from '../atoms/ImageTouchableFeedback';
+import {ImageTouchableFeedback} from '../atoms/base/ImageTouchableFeedback';
 
 export function FeaturedSection({title, image, title2, description}) {
   function FeaturedSectionHeader() {

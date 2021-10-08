@@ -1,5 +1,6 @@
 export const sample = [
   {
+    id: 1,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Tiffany%20T1/Anel_T1_Ouro_Rose_qgwgxy.webp',
     brand: 'Tiffany & Co',
@@ -11,6 +12,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 2,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Tiffany%20T1/Anel_Wire_com_diamantes_dfcplg.webp',
     brand: 'Tiffany & Co',
@@ -22,6 +24,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 3,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Tiffany%20T1/Anel_T1_Ouro_Amarelo_c9dzoa.webp',
     brand: 'Tiffany & Co',
@@ -33,6 +36,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 4,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Tiffany%20T1/Anel_largo_True_nvkyok.webp',
     brand: 'Tiffany & Co',
@@ -44,6 +48,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 5,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Tiffany%20T1/Anel_T1_Prata_fina_pcellc.webp',
     brand: 'Tiffany & Co',
@@ -55,6 +60,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 6,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370230/Tiffany%20Thumbnails/Tiffany%20T1/Anel_estreito_com_pave%CC%81_de_diamantes_ednyhm.webp',
     brand: 'Tiffany & Co',
@@ -66,6 +72,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 7,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370230/Tiffany%20Thumbnails/Victoria/Anel_bypass_Vine_com_diamantes_qynevm.webp',
     brand: 'Tiffany & Co',
@@ -77,6 +84,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 8,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Victoria/Anel_Key_Top_hjazln.webp',
     brand: 'Tiffany & Co',
@@ -88,6 +96,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 9,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370230/Tiffany%20Thumbnails/Victoria/Anel_bypass_ouro_rosa_18k_com_safiras_rosa_e_diamantes_kbnhh9.webp',
     brand: 'Tiffany & Co',
@@ -99,6 +108,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 10,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370230/Tiffany%20Thumbnails/Victoria/Anel_bypass_Vine_prata_com_safiras_e_diamantes_lcay1h.webp',
     brand: 'Tiffany & Co',
@@ -110,6 +120,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 11,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370230/Tiffany%20Thumbnails/Victoria/Anel_de_voltas_Vine_em_platina_com_diamante_gi088b.webp',
     brand: 'Tiffany & Co',
@@ -121,6 +132,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 12,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370229/Tiffany%20Thumbnails/Victoria/Anel_Vine_kwck2p.webp',
     brand: 'Tiffany & Co',
@@ -132,6 +144,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 13,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370682/Chanel%20Thumbnails/Ruban/Anel_Ruban_vy7wyc.webp',
     brand: 'Chanel',
@@ -143,6 +156,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 14,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370682/Chanel%20Thumbnails/Ruban/Anel_Ruban_2_aoqmgt.webp',
     brand: 'Chanel',
@@ -154,6 +168,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 15,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370682/Chanel%20Thumbnails/Ruban/Anel_Ruban_3_te8wkn.webp',
     brand: 'Chanel',
@@ -165,6 +180,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 16,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370682/Chanel%20Thumbnails/Ruban/Anel_Ruban_4_twllto.webp',
     brand: 'Chanel',
@@ -176,6 +192,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 17,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370683/Chanel%20Thumbnails/Ruban/Anel_Ruban_5_zvdrrv.webp',
     brand: 'Chanel',
@@ -187,6 +204,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 18,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370682/Chanel%20Thumbnails/Ruban/Anel_Ruban_6_qz8v4f.webp',
     brand: 'Chanel',
@@ -198,6 +216,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 19,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370683/Chanel%20Thumbnails/Coco%20Crush/Anel_Coco_Crush_j4i5a6.webp',
     brand: 'Chanel',
@@ -209,6 +228,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 20,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370682/Chanel%20Thumbnails/Coco%20Crush/Anel_Coco_Crush_2_c25qxu.webp',
     brand: 'Chanel',
@@ -220,6 +240,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 21,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370683/Chanel%20Thumbnails/Coco%20Crush/Anel_Coco_Crush_toi_et_moi_i4vfcy.webp',
     brand: 'Chanel',
@@ -231,6 +252,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 22,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370683/Chanel%20Thumbnails/Coco%20Crush/Anel_Coco_Crush_toi_et_moi_2_le6ygn.webp',
     brand: 'Chanel',
@@ -242,6 +264,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 23,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370683/Chanel%20Thumbnails/Coco%20Crush/Anel_Coco_Crush_4_rpdnz2.webp',
     brand: 'Chanel',
@@ -253,6 +276,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 24,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633370683/Chanel%20Thumbnails/Coco%20Crush/Anel_Coco_Crush_3_tka7hs.webp',
     brand: 'Chanel',
@@ -264,6 +288,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 25,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633388606/Vivara%20Thumbnails/Vivara/Anel_Ouro_Vivara_e_Diamantes_Negros_bwsydj.webp',
     brand: 'Vivara',
@@ -275,6 +300,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 26,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633388606/Vivara%20Thumbnails/Vivara/Anel_Ouro_Vivara_e_Diamantes_Negros_2_cluhgo.webp',
     brand: 'Vivara',
@@ -286,6 +312,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 27,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633388606/Vivara%20Thumbnails/Vivara/Anel_Ouro_Vivara_e_Diamantes_Negros_3_ymk8vf.webp',
     brand: 'Vivara',
@@ -297,6 +324,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 28,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633388606/Vivara%20Thumbnails/Vivara/Anel_Ouro_VIvara_e_Diamantes_Negros_4_daxqbl.webp',
     brand: 'Vivara',
@@ -308,6 +336,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 29,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633388606/Vivara%20Thumbnails/Vivara/Anel_Ouro_Branco_e_Diamantes_Grande_it2dmx.webp',
     brand: 'Vivara',
@@ -319,6 +348,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 30,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633388606/Vivara%20Thumbnails/Vivara/Anel_Ouro_Rose%CC%81_Topa%CC%81zio_London_e_Diamantes_asrrp7.webp',
     brand: 'Vivara',
@@ -330,6 +360,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 31,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633389158/Vivara%20Thumbnails/Classic%20Oriental/Anel_Ouro_Branco_Diamantes_e_Rubis_2_s4fakv.webp',
     brand: 'Vivara',
@@ -341,6 +372,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 32,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633389158/Vivara%20Thumbnails/Classic%20Oriental/Anel_Ouro_Branco_Diamantes_e_Rubis_jh75ye.webp',
     brand: 'Vivara',
@@ -352,6 +384,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 33,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633389158/Vivara%20Thumbnails/Classic%20Oriental/Anel_Ouro_Branco_Diamantes_e_Rubis_3_x2deak.webp',
     brand: 'Vivara',
@@ -363,6 +396,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 34,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633389158/Vivara%20Thumbnails/Classic%20Oriental/Anel_Oriental_Ouro_Branco_Diamantes_qonues.webp',
     brand: 'Vivara',
@@ -374,6 +408,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 35,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633389158/Vivara%20Thumbnails/Classic%20Oriental/Anel_Gota_Ouro_Branco_Safira_e_Diamantes_h6jsz9.webp',
     brand: 'Vivara',
@@ -385,6 +420,7 @@ export const sample = [
     type: 'ring',
   },
   {
+    id: 36,
     thumbnail:
       'https://res.cloudinary.com/aure/image/upload/v1633389158/Vivara%20Thumbnails/Classic%20Oriental/Anel_Ouro_Amarelo_Diamantes_e_Safira_ivy4vu.webp',
     brand: 'Vivara',

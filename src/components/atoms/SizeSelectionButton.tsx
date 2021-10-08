@@ -3,7 +3,7 @@ import {Text, useWindowDimensions} from 'react-native';
 import {ArrowIconXS} from '../../assets/icons/ArrowIconXS';
 import {t} from '../../styles';
 import {theme} from '../../theme';
-import {SmallButton} from './SmallButton';
+import {SmallButton} from './base/SmallButton';
 
 export function SizeSelectionButton() {
   const fontScale = useWindowDimensions().fontScale;
@@ -18,7 +18,9 @@ export function SizeSelectionButton() {
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal:
-          0.375 * theme.buttonSize.small * (fontScale <= 1 ? 1 : fontScale * 0.85),
+          0.375 *
+          theme.buttonSize.small *
+          (fontScale <= 1 ? 1 : fontScale * 0.85),
         paddingRight:
           0.375 *
             theme.buttonSize.small *
